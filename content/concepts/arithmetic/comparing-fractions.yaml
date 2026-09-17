@@ -10,12 +10,15 @@ track: arithmetic
 level: 5
 estimated_minutes: 14
 
-# GRAPH MAPPING: 1:1 with math.arithmetic.comparing-fractions; prerequisites copied from the graph.
+# GRAPH MAPPING: 1:1 with math.arithmetic.comparing-fractions; prerequisites copied from the
+# graph. The upstream prerequisite is now fractions-on-number-line rather than the whole-number
+# number-line node — the graph was reaching for the fraction magnitude model and finding only the
+# whole-number one; curriculum fixed that on 2026-09-17.
 # The graph records no unlocks for this node. In the Phase-1 chain it is nevertheless sequenced
 # before addition, because re-cutting to a common piece size is introduced here.
 prerequisites:
   - math.arithmetic.equivalent-fractions
-  - math.arithmetic.number-line
+  - math.arithmetic.fractions-on-number-line
 
 unlocks: []
 

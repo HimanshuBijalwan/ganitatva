@@ -349,3 +349,61 @@ OTHER OPEN ITEMS from the brief (do not guess these): the `bu` physical metric n
      all five platforms; whether the geru bead reads as "error" to an actual 13-year-old (put it in the
      Phase 1 five-tester session); Quiet mode discoverability; whether the progress "shelf" motivates at all.
 STATUS: ⚠️ open — resolve in Phase 0/1
+
+---
+DECISION: Art Direction Brief APPROVED by user — THE BENCH
+DATE: 2026-09-17
+STATUS: ✅ user signed off. UI work unblocked. Built result must still clear design-critic ≥65/100 +
+     non-transferability before "done". Supersedes the pending status in the earlier entry.
+
+---
+DECISION: Paper-and-scissors dry run of concept 7 BEFORE any Flutter is written
+DATE: 2026-09-17 (pedagogy agent's recommendation; adopted into Phase 0 with exit-gate teeth)
+WHY IT'S THE HIGHEST-VALUE ACTION AVAILABLE: the whole Phase 1 gate reduces to one gesture — dragging the
+     leftover onto the measuring stick. Testing the intuition script on paper with two real kids isolates
+     the PEDAGOGY from the WIDGET. If it fails on paper, no widget rescues it. If it passes on paper and
+     then fails in the app, we know the defect is execution, not teaching.
+     Cost: one afternoon. Without it, a Phase 1 failure is uninterpretable — we would not know whether to
+     rebuild the teaching or the interaction, and would likely rebuild the wrong one.
+REUSABLE LESSON: When a bet depends on two things at once (idea × execution), find the cheap test that
+     isolates one of them. An expensive test that confounds both tells you almost nothing when it fails.
+STATUS: ✅ added to Phase 0 as item 6 and written into the Phase 0 exit gate
+
+---
+DECISION: The Phase 1 gate is scored on the EXPLANATION, never the answer
+DATE: 2026-09-17 (pedagogy agent finding; adopted)
+THE TRAP: the number 3/2 is reachable by at least three routes — the measurement model (what we taught),
+     chanted flip-and-multiply (what we're replacing), and componentwise division, which is ALGEBRAICALLY
+     VALID since (a÷c)/(b÷d) = (a/b)(d/c). A learner can produce 3/2 having understood nothing we intended.
+CONSEQUENCE: passing this gate by accident is WORSE than failing it — we would build Phases 2–7 on a thesis
+     we never actually tested, and not find out for a year. Do NOT build a detector for componentwise
+     division; it isn't wrong, it's just not evidence.
+ALSO ADOPTED: separate "the pedagogy failed" from "the instrument failed" (misconceptions.md §6.4). A
+     teenager who understands may still not say it aloud to an adult with a clipboard. Rebuilding pedagogy
+     because five people were shy would be an expensive mistake.
+REUSABLE LESSON: Before trusting a test, ask what ELSE could produce a pass. A metric with multiple causal
+     routes to the same reading measures none of them.
+STATUS: ✅ written into docs/03-GOALS.md G2
+
+---
+DECISION: Accessibility text must announce STATE, never the remedy
+DATE: 2026-09-17 (pedagogy caught the defect in widgets' spec; widgets generalized the fix; endorsed)
+THE DEFECT: FractionBar `combine` mode's pour-refusal screen-reader announcement ended "...They will not
+     combine until both are cut the same way." That clause is the REVEAL of concept 5 — the answer to its
+     own discovery prompt. A sighted learner sees a red edge and has to work out why; a screen-reader
+     learner was handed the conclusion for free.
+WHY IT MATTERS: it is a pedagogy leak and an equity regression at the same time, and it arrived disguised
+     as an accessibility improvement — which is exactly why it nearly shipped. Being helpful in the
+     announcement destroyed the lesson for the learner who most needed it intact.
+GENERALIZED (kit-wide, docs/widgets/00-kit-overview.md §4.2): the guided-discovery exception governs the
+     GESTURE, not the announcement. Being allowed into an invalid state never licenses announcing the
+     remedy — only the state. The rejected wording is kept in the doc so a future editor who re-adds the
+     helpful-sounding clause sees why it went.
+ALSO TIGHTENED: an intentionally-invalid widget state must now name the specific `practice.misconceptions`
+     entry it is the remedy for, or it is unvalidated input wearing the exception's justification as a costume.
+REUSABLE LESSON: Accessibility text is content, and it is subject to every pedagogical rule the visible
+     content is. Treating it as a mechanical description is how a11y work quietly ships a worse experience
+     to the users it was written for.
+PROCESS NOTE: pedagogy reviewed widgets' spec and found this; widgets fixed and generalized it. Neither
+     agent owns both files. Cross-review across ownership boundaries is what caught it.
+STATUS: ✅ fixed and generalized

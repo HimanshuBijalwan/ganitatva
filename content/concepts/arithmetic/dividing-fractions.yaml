@@ -24,14 +24,22 @@ level: 6
 estimated_minutes: 22
 
 # GRAPH MAPPING: 1:1 with math.arithmetic.fraction-division; prerequisites copied from the graph.
-# math.arithmetic.division-as-measuring was added to the graph at this file's request and is the
-# single most important upstream edge in the chain — see the design notes above.
-# NOTE FOR CURRICULUM: the graph records NO unlocks for fraction-division. That looks like a miss —
-# ratio-intro, unit-rate and rates-and-unit-conversion all genuinely need this idea (a rate IS a
-# measurement-division question, and unit conversion IS this operation). Left empty here to conform.
+#   math.arithmetic.division-as-measuring was added to the graph at this file's request and is the
+#   single most important upstream edge in the chain — see the design notes above.
+#   math.arithmetic.fractions-on-number-line was added as a third prerequisite (2026-09-17); the
+#   measurement model is a magnitude argument, so the number-line reframe genuinely gates it.
+#   unlocks: [] is deliberate and RESOLVED, not an oversight. I argued for edges to ratio-intro /
+#   unit-rate / rates-and-unit-conversion on the grounds that a rate is measurement division and
+#   unit conversion is this operation. Curriculum declined with reasoning: at the level those
+#   nodes are currently scoped (whole-number and decimal quantities) they are coherent without
+#   ever having divided a fraction by a fraction, and forcing the edge would gate ordinary
+#   Class 6-7 content behind one of the arithmetic track's deepest nodes. Accepted. If a
+#   "unit conversion with fractional conversion factors" node is ever authored, THAT one should
+#   take fraction-division as a prerequisite. See docs/curriculum/00-track-maps.md §6.2.
 prerequisites:
   - math.arithmetic.fraction-multiplication
   - math.arithmetic.division-as-measuring
+  - math.arithmetic.fractions-on-number-line
 
 unlocks: []
 
@@ -308,7 +316,7 @@ layers:
       - "Set the stick to exactly one whole. What does the count do, and does that explain anything about dividing by one?"
       - "Set the stick to nothing at all and try to fill the ribbon. How long can you keep laying sticks down? What does that tell you about dividing by zero?"
       - "Now cut the ribbon and the stick into the same-sized pieces and look only at the two counts. Do you still need the picture to get the answer?"
-      - "Turn the picture off and predict the count for a ribbon of five sixths with a stick of one half. Then turn it back on and check yourself."
+      - "Turn the picture off. For a ribbon of five sixths and a stick of one half, what count do you predict, and what is the leftover worth? Turn it back on — were you right?"
     reveal: >-
       Dividing asks how many of the measuring stick fit inside the amount. So the answer is
       counted in sticks — not in wholes. That is why the leftover gets held against the stick

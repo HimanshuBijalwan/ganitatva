@@ -1,6 +1,6 @@
 # Art Direction Brief — Ganitatva
 
-**Status: AWAITING USER APPROVAL.** This is the Phase 0 design-doctrine gate artifact (`docs/02-PLAN.md` Phase 0 item 3; `docs/03-GOALS.md` G1). **No UI work may begin until this is approved.** Per doctrine hard stop 1, no design starts without a concept sentence + out-of-category references + a filled brief `[02 §1.2–1.3, §4]`.
+**Status: ✅ APPROVED BY USER 2026-09-17.** UI work may begin. The built result must still pass design-critic ≥65/100 + the non-transferability test before anything is called done. This is the Phase 0 design-doctrine gate artifact (`docs/02-PLAN.md` Phase 0 item 3; `docs/03-GOALS.md` G1). **No UI work may begin until this is approved.** Per doctrine hard stop 1, no design starts without a concept sentence + out-of-category references + a filled brief `[02 §1.2–1.3, §4]`.
 
 Owner: design-director · Date: 2026-09-17 · Supersedes nothing.
 Read with: `01-DISCOVERY-AND-DIRECTIONS.md` (why) · `02-DESIGN-TOKENS.md` (the numbers) · `IMAGERY-SYSTEM.md` (illustration-director).

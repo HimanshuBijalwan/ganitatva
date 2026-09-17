@@ -29,7 +29,17 @@ The unglamorous week that prevents six months of pain.
 4. **Content schema v1** — JSON Schema for a concept file; one hand-written example
 5. **Skeleton app** — Riverpod + go_router + Drift wired, one screen
 
-**EXIT GATE:** App runs on macOS, APK installs on a real phone, CI produces a Windows .exe artifact, `flutter doctor` is clean.
+6. **Paper-and-scissors dry run of concept 7** — before a single line of Flutter is written.
+   Take the authored intuition script from `content/concepts/arithmetic/dividing-fractions.yaml`, a paper
+   ribbon and a paper measuring stick, and run it on **two real kids**. Costs an afternoon.
+   **Why this is the highest-value action in Phase 0:** the Phase 1 gate rests on one gesture — dragging the
+   leftover onto the stick. This test isolates the *pedagogy* from the *widget*. If the script fails on
+   paper, no widget will rescue it — and that is worth learning now rather than three weeks and one widget
+   implementation later. If it succeeds on paper and then fails in the app, we know the defect is execution,
+   not teaching. Either outcome is actionable; skipping it makes a Phase 1 failure uninterpretable.
+
+**EXIT GATE:** App runs on macOS, APK installs on a real phone, CI produces a Windows .exe artifact,
+`flutter doctor` is clean, **and the paper dry run has been run with its result written down.**
 
 ---
 

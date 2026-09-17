@@ -18,11 +18,11 @@ statistics & probability. Logic, algorithms, and physics are out of scope for th
 
 ---
 
-## 1. Arithmetic (`math.arithmetic.*` — 55 nodes)
+## 1. Arithmetic (`math.arithmetic.*` — 56 nodes)
 
 Arithmetic is the only track with two true roots in the whole math graph that matter at scale:
-`counting` (170 descendants) and, one step later, `place-value` (169 descendants). Nearly every other node
-in the entire 192-node graph — across every track — traces back through these two. That is not a modeling
+`counting` (171 descendants) and, one step later, `place-value` (170 descendants). Nearly every other node
+in the entire 193-node graph — across every track — traces back through these two. That is not a modeling
 choice; it is a fact about mathematics. You cannot make "place value" less structurally central by rearranging
 the graph, only by refusing to admit how much depends on it, which would be dishonest.
 
@@ -43,7 +43,7 @@ the graph, only by refusing to admit how much depends on it, which would be dish
    alongside them.
 4. Negative numbers — deliberately placed **after** the whole-number operations are solid, not interleaved
    with them (see fracture point §5.2).
-5. Fractions — the largest single sub-graph in the track (17 nodes); detailed fully in `01-graph-analysis.md`
+5. Fractions — the largest single sub-graph in the track (18 nodes); detailed fully in `01-graph-analysis.md`
    §4 since it is Phase 1's vertical slice.
 6. Decimals, ratio/proportion, percentage, exponents/roots — each is fractions-in-a-different-notation, so
    each is sequenced strictly after the fractions spine it depends on (`decimals-intro` needs
@@ -134,7 +134,7 @@ same measurement).
 
 ### 5.1 Fractions
 
-**Where:** `math.arithmetic.unit-fractions` through `math.arithmetic.fraction-division` (17-node sub-graph;
+**Where:** `math.arithmetic.unit-fractions` through `math.arithmetic.fraction-division` (18-node sub-graph;
 full detail in `01-graph-analysis.md` §4).
 
 **Why here:** Every downstream fraction concept requires whole-number multiplication/division and
@@ -145,6 +145,15 @@ error: students apply whole-number logic (bigger denominator = bigger fraction; 
 straight across) because they haven't yet built a fraction-as-single-magnitude model. That model cannot be
 built before whole-number magnitude itself is solid, which is why fractions sits where it does and not
 earlier.
+
+**`math.arithmetic.fractions-on-number-line` (added after a second pedagogy-agent coordination round, §6.1)
+is the node that actually builds that single-magnitude model**, as distinct from `fraction-as-part-whole`
+(the part-whole/area reframe of *what a fraction means*, which the research above notes is good for that
+job specifically but not for magnitude) and from the plain `number-line` (whole numbers only). It sits
+between them: prerequisites `[fraction-as-part-whole, number-line]`, and it is now the direct prerequisite
+of `comparing-fractions` (replacing the coarser whole-number `number-line` reference that node used to point
+at) and an added prerequisite of `fraction-division` — the magnitude model is what makes "how many halves
+fit into 3/4" a question about position on a line rather than a rule to apply.
 
 **Why it's Phase 1's vertical slice:** it is universally hated, purely visual at its core, and contains the
 hardest teaching problem in school math (why dividing by 1/2 makes the answer bigger). The research backs
@@ -238,6 +247,8 @@ read together rather than one silently standing in for the other.
 
 ## 6. Cross-track coordination note (fractions IDs)
 
+### 6.1 Round 1 — initial id mapping
+
 While this graph was being built, the pedagogy agent authoring `content/concepts/arithmetic/*.yaml` for the
 Phase 1 fractions vertical slice proposed three new upstream nodes and flagged five downstream "unlocks"
 targets. Resolution (full mapping sent back to that agent directly, summarized here for anyone reading the
@@ -259,6 +270,38 @@ graph later):
 This is noted here because `content/graph/prerequisites.yaml` is meant to be the backbone every content file
 conforms to (per `docs/01-ARCHITECTURE.md` ADR-004) — any future content author working on fractions should
 use the ids in this graph's fractions sub-graph (`01-graph-analysis.md` §4) rather than inventing new ones.
+
+### 6.2 Round 2 — after all 7 Phase-1 files were conformed
+
+Once the pedagogy agent finished conforming its 7 concept files to the round-1 mapping, it surfaced two
+further questions — a genuine graph gap, and a proposed edge. Both were decided against the same
+incoherent-vs-merely-unfamiliar test used throughout this graph, not by default-accepting either:
+
+- **Accepted: `math.arithmetic.fractions-on-number-line`.** Pedagogy's argument was specific and correct —
+  the graph had `fraction-as-part-whole` (the part-whole reframe of what a fraction *means*) and
+  `number-line` (whole numbers only), but no node for "a fraction is one number with a position on the
+  line," which is the actual target of the whole-number-bias research (§5.1) and the hinge the
+  componentwise-comparison error, the "5/4 isn't a real fraction" error, and the "is there a next fraction"
+  error all trace back to. Telling evidence this was a real gap rather than a preference: `comparing-fractions`
+  already pointed at plain `number-line` as if reaching for a fraction-specific version that didn't exist.
+  Added with prerequisites `[fraction-as-part-whole, number-line]`; wired as the (replaced) prerequisite of
+  `comparing-fractions` and an added prerequisite of `fraction-division` (§5.1). **Declined to wire it into**
+  `mixed-numbers` **or** `improper-fractions`, despite pedagogy's single content file covering all three
+  topics — regrouping between mixed and improper fractional forms is coherent purely through the
+  part-whole/division model (`fraction-as-part-whole` + `division-with-remainder`), with no dependence on
+  the number-line magnitude model. **One content file legitimately covering several graph-node topics is an
+  authoring-scope decision, not a reason to add a graph edge** — the two are kept deliberately separate here.
+- **Declined: edges from `fraction-division` to `ratio-intro` / `unit-rate` /
+  `math.prealgebra.rates-and-unit-conversion`.** Pedagogy's underlying observation is real — a rate is a
+  measurement-division question, and unit conversion is dimensional analysis, which is division dressed
+  differently — but at the level these three nodes are currently scoped (basic ratio/rate/conversion using
+  whole-number or decimal quantities), they remain fully coherent without ever having formally divided a
+  fraction by a fraction. Forcing the edge would gate ordinary Class 6-7 rate and conversion work behind one
+  of the arithmetic track's deepest nodes (`fraction-division` sits at raw depth 10-11), which most curricula
+  — correctly — do not require. The connection pedagogy is pointing at is real for a *more advanced* version
+  of unit conversion (one that explicitly uses fractional conversion factors), which is not what
+  `rates-and-unit-conversion` currently is; if that more advanced node gets authored later, *it* should take
+  `fraction-division` as a prerequisite. No change made to the current graph.
 
 ---
 

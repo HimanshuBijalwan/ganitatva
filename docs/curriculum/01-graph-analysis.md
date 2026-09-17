@@ -18,9 +18,9 @@ split exists specifically so a bug in the generator's own bookkeeping can't prod
 **The graph is a genuine DAG with no cycles, and every `prerequisites`/`unlocks` id referenced resolves to
 a real node. Both properties were checked twice, independently.**
 
-- **Node count:** 192
+- **Node count:** 193
 - **Method:** Kahn's-algorithm topological sort. A cycle would leave at least one node whose indegree never
-  reaches zero; the independent verifier's topological sort visited all 192/192 nodes, confirming no cycle
+  reaches zero; the independent verifier's topological sort visited all 193/193 nodes, confirming no cycle
   exists. The generator additionally runs a second, algorithmically distinct check (a monotonicity assertion
   over every edge: a prerequisite's derived `level` must never exceed its dependent's), which passed on
   every one of the graph's edges.
@@ -28,7 +28,7 @@ a real node. Both properties were checked twice, independently.**
   exist as an actual node `id` elsewhere in the file. Zero orphans found, in both the generator's inline
   check and the independent re-parse.
 - **Unlocks consistency:** `unlocks` is mechanically the transpose of `prerequisites` (if A lists B as a
-  prerequisite, B lists A in `unlocks`, and nothing else) — verified by direct set comparison over all 192
+  prerequisite, B lists A in `unlocks`, and nothing else) — verified by direct set comparison over all 193
   nodes in the independent verifier, not merely computed-and-trusted.
 - **Two root nodes**, confirmed to have zero prerequisites and to be the *only* zero-prerequisite nodes:
   `math.arithmetic.counting` and `math.geometry.point-line-plane`. Every other track roots itself back into
@@ -38,18 +38,18 @@ a real node. Both properties were checked twice, independently.**
   (e.g. `fraction-subtraction`, `improper-fractions`, `law-of-cosines`, `combinations`), not a sign of a
   disconnected graph.
 
-Per-track node counts (192 total, target was "roughly 180"):
+Per-track node counts (193 total, target was "roughly 180"):
 
 | Track | Nodes |
 |---|---|
-| Arithmetic | 55 |
+| Arithmetic | 56 |
 | Abacus | 8 |
 | Pre-Algebra | 18 |
 | Algebra | 35 |
 | Geometry | 40 |
 | Trigonometry | 15 |
 | Statistics & Probability | 21 |
-| **Total** | **192** |
+| **Total** | **193** |
 
 ---
 
@@ -58,26 +58,26 @@ Per-track node counts (192 total, target was "roughly 180"):
 **Method:** for every node, computed the size of its full transitive descendant set (every node reachable by
 following `unlocks` edges forward, not just direct children). `load_bearing: true` is set when that count is
 at or above a data-driven threshold — the 85th percentile of nonzero descendant counts across the graph,
-floored at 8 — which came out to **≥ 42 descendants**. 22 of 192 nodes clear it.
+floored at 8 — which came out to **≥ 42 descendants**. 22 of 193 nodes clear it.
 
 **Top 20 by transitive descendant count:**
 
 | Rank | Descendants | Level | Node | Title |
 |---|---|---|---|---|
-| 1 | 170 | 1 | `math.arithmetic.counting` | Counting |
-| 2 | 169 | 2 | `math.arithmetic.place-value` | Place Value |
-| 3 | 159 | 2 | `math.arithmetic.addition-basic` | Addition of Whole Numbers |
-| 4 | 138 | 2 | `math.arithmetic.multiplication-as-repeated-addition` | Multiplication as Repeated Addition |
+| 1 | 171 | 1 | `math.arithmetic.counting` | Counting |
+| 2 | 170 | 2 | `math.arithmetic.place-value` | Place Value |
+| 3 | 160 | 2 | `math.arithmetic.addition-basic` | Addition of Whole Numbers |
+| 4 | 139 | 2 | `math.arithmetic.multiplication-as-repeated-addition` | Multiplication as Repeated Addition |
 | 5 | 124 | 3 | `math.arithmetic.multiplication-tables` | Multiplication Facts and Tables |
-| 6 | 115 | 3 | `math.arithmetic.division-as-equal-sharing` | Division as Equal Sharing (Partitive) |
+| 6 | 116 | 3 | `math.arithmetic.division-as-equal-sharing` | Division as Equal Sharing (Partitive) |
 | 7 | 96 | 4 | `math.arithmetic.division-with-remainder` | Division with Remainders |
 | 8 | 87 | 2 | `math.arithmetic.addition-regrouping` | Addition with Regrouping (Carrying) |
 | 9 | 84 | 4 | `math.arithmetic.multiplication-multidigit` | Multi-Digit Multiplication |
-| 10 | 69 | 4 | `math.arithmetic.unit-fractions` | Unit Fractions |
-| 11 | 67 | 2 | `math.arithmetic.number-comparison` | Comparing and Ordering Numbers |
-| 12 | 60 | 4 | `math.arithmetic.fraction-as-part-whole` | Fractions as Part of a Whole |
-| 13 | 57 | 4 | `math.arithmetic.factors-and-multiples` | Factors and Multiples |
-| 14 | 57 | 2 | `math.arithmetic.number-line` | The Number Line |
+| 10 | 70 | 4 | `math.arithmetic.unit-fractions` | Unit Fractions |
+| 11 | 69 | 2 | `math.arithmetic.number-comparison` | Comparing and Ordering Numbers |
+| 12 | 61 | 4 | `math.arithmetic.fraction-as-part-whole` | Fractions as Part of a Whole |
+| 13 | 59 | 2 | `math.arithmetic.number-line` | The Number Line |
+| 14 | 57 | 4 | `math.arithmetic.factors-and-multiples` | Factors and Multiples |
 | 15 | 57 | 2 | `math.arithmetic.subtraction-basic` | Subtraction of Whole Numbers |
 | 16 | 54 | 3 | `math.arithmetic.negative-numbers-intro` | Negative Numbers |
 | 17 | 51 | 1 | `math.geometry.point-line-plane` | Points, Lines, and Planes |
@@ -194,27 +194,27 @@ gap this project exists to close. No further edges were cut.
 
 ## 4. The fractions sub-graph (Phase 1's vertical slice)
 
-17 nodes (16 in `math.arithmetic.*`, plus `decimals-intro` and `fraction-decimal-conversion` which sit
-directly on the fractions spine, plus one node in `math.algebra.*` that consumes it downstream). Full
+18 nodes (17 in `math.arithmetic.*`, plus one node in `math.algebra.*` that consumes it downstream). Full
 sub-graph:
 
 | Node | Level | Depth | Descendants | Load-bearing | Prerequisites |
 |---|---|---|---|---|---|
-| `unit-fractions` | 4 | 6 | **69** | **yes** | `division-as-equal-sharing` |
+| `unit-fractions` | 4 | 6 | **70** | **yes** | `division-as-equal-sharing` |
 | `division-as-measuring` | 3 | 5 | 1 | no | `multiplication-as-repeated-addition` |
-| `fraction-as-part-whole` | 4 | 7 | **60** | **yes** | `unit-fractions` |
+| `fraction-as-part-whole` | 4 | 7 | **61** | **yes** | `unit-fractions` |
 | `decimals-intro` | 4 | 7 | 10 | no | `place-value`, `unit-fractions` |
 | `equivalent-fractions` | 4 | 8 | **44** | **yes** | `fraction-as-part-whole`, `factors-and-multiples` |
 | `mixed-numbers` | 4 | 8 | 1 | no | `fraction-as-part-whole`, `division-with-remainder` |
 | `fraction-addition-like-denominators` | 4 | 8 | 4 | no | `fraction-as-part-whole` |
 | `fraction-of-a-quantity` | 4 | 8 | 6 | no | `fraction-as-part-whole`, `multiplication-multidigit` |
 | `fraction-decimal-conversion` | 4 | 8 | 3 | no | `decimals-intro`, `long-division` |
-| `comparing-fractions` | 5 | 9 | 0 | no | `equivalent-fractions`, `number-line` |
+| `fractions-on-number-line` | 4 | 8 | 2 | no | `fraction-as-part-whole`, `number-line` |
 | `improper-fractions` | 5 | 9 | 0 | no | `mixed-numbers` |
+| `comparing-fractions` | 5 | 9 | 0 | no | `equivalent-fractions`, `fractions-on-number-line` |
 | `fraction-multiplication` | 5 | 9 | 3 | no | `fraction-of-a-quantity`, `equivalent-fractions` |
 | `fraction-addition-unlike-denominators` | 6 | 11 | 3 | no | `fraction-addition-like-denominators`, `lcm` |
 | `fraction-simplification` | 6 | 11 | 3 | no | `equivalent-fractions`, `gcd` |
-| `fraction-division` | 6 | 10 | 0 | no | `fraction-multiplication`, `division-as-measuring` |
+| `fraction-division` | 6 | 10 | 0 | no | `fraction-multiplication`, `division-as-measuring`, `fractions-on-number-line` |
 | `fraction-subtraction` | 6 | 12 | 0 | no | `fraction-addition-unlike-denominators` |
 | `linear-equations-with-fractions` (algebra) | 8 | 16 | 1 | no | `linear-equations-one-variable`, `fraction-addition-unlike-denominators` |
 
@@ -231,12 +231,19 @@ sub-graph:
   is the graph's own confirmation of `docs/research/02-fractions-evidence.md`'s "whole-number bias" framing:
   the spine's entire job is building a fraction as *one magnitude*, not two stacked whole numbers, before
   any operation touches it.
-- **`division-as-measuring` is a deliberate late addition** (§`00-track-maps.md` §6) sitting as a *sibling*
+- **`division-as-measuring` is a deliberate late addition** (`00-track-maps.md` §6.1) sitting as a *sibling*
   to `division-as-equal-sharing`, not a descendant of it — both meanings of whole-number division are built
   independently on `multiplication-as-repeated-addition`, and only the measurement meaning feeds
   `fraction-division`. This is the graph encoding a specific pedagogical claim: the sharing model of division
   has no coherent answer for "divide by one-half," while the measuring model does ("how many halves fit into
   this"), which is *why* fraction division is learnable rather than a rule to memorize.
+- **`fractions-on-number-line` is a second, later addition** (`00-track-maps.md` §6.2), sitting between
+  `fraction-as-part-whole` and both `comparing-fractions` and `fraction-division`. It exists to hold the
+  specific idea `fraction-as-part-whole` does not: a fraction as *one magnitude with a position*, not a
+  part-whole relationship. Its addition was itself evidence-driven — before it existed, `comparing-fractions`
+  pointed at the plain whole-number `number-line` node, which cannot actually represent where 3/4 sits
+  relative to 1/2. That mismatch was the tell that a node was missing, not just that an edge needed
+  re-pointing.
 - **`fraction-division` is a leaf node (0 descendants) in this graph's current scope.** That is worth stating
   plainly rather than glossing over: nothing later in the Class 6-10 graph formally requires having divided a
   fraction by a fraction. That doesn't make the concept unimportant — it is Phase 1's entire gate — it means
@@ -274,14 +281,19 @@ true dependency depth.
 
 ## 6. Summary
 
-- 192 nodes, verified genuine DAG (no cycles, no orphan references, `unlocks` consistent with
+- 193 nodes, verified genuine DAG (no cycles, no orphan references, `unlocks` consistent with
   `prerequisites`) by two independent scripts.
 - Load-bearing ranking is real but root-dominated by construction; read alongside the four doctrine fracture
   points (`00-track-maps.md` §5), which are a different and complementary signal.
 - The graph's longest chains (16-19 deep) are mostly genuine curriculum depth, not accidental
   over-linearization; one genuine over-constraint was found and fixed during this analysis
   (`fraction-decimal-conversion`).
-- The fractions sub-graph's three-node spine (`unit-fractions → fraction-as-part-whole →
-  equivalent-fractions`) carries almost the entire arithmetic track's second half; `fraction-division`
+- The fractions sub-graph's spine (`unit-fractions → fraction-as-part-whole → equivalent-fractions`, plus
+  `fractions-on-number-line` added in a second coordination round to carry the magnitude/position model
+  those first three don't) carries almost the entire arithmetic track's second half; `fraction-division`
   itself is structurally a leaf, and its importance is pedagogical rather than load-bearing — the clearest
   demonstration in this graph that the two are not the same measurement.
+- Two rounds of cross-agent coordination on the fractions sub-graph are both fully resolved: one node
+  accepted and added on each round (`division-as-measuring`, `fractions-on-number-line`), one proposed edge
+  set declined with reasoning recorded (`fraction-division` → ratio/rate/unit-conversion) — see
+  `00-track-maps.md` §6.

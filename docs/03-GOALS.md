@@ -25,6 +25,23 @@ Every one of those can go up while understanding goes down. We refuse to optimiz
 - [ ] Fractions concept complete across all 6 layers
 - [ ] 5 human testers run through it
 - **Measure:** **≥ 4 of 5 explain 3/4 ÷ 1/2 in their own words** — no "flip and multiply"
+
+**How this gate is scored — and how it could be passed by accident:**
+> The *number* 3/2 is not evidence of anything. At least three different routes produce it: the measurement
+> model (what we taught), chanted flip-and-multiply (what we're trying to replace), and componentwise
+> division — which is **algebraically valid**, since (a÷c)/(b÷d) = (a/b)(d/c). A learner can arrive at 3/2
+> while understanding nothing we intended.
+>
+> So: **score the explanation, never the answer.** Rubric with accept/reject example sentences is in
+> `docs/curriculum/misconceptions.md` §6. Do not build a detector for componentwise division — it isn't wrong.
+>
+> Passing this gate by accident is **worse than failing it**, because we'd then build Phase 2–7 on a thesis
+> we never actually tested.
+
+**Separate "pedagogy failed" from "instrument failed."** An 11–16-year-old who understands may still not
+*say* it to an adult with a clipboard. `misconceptions.md` §6.4 distinguishes these. Rebuilding the pedagogy
+because five people were shy would be an expensive mistake.
+
 - **If this fails:** stop. Redesign the pedagogy. Do not build Phase 2.
 
 ### G3 — "Content scales without engineers" · by **Nov 5, 2026**

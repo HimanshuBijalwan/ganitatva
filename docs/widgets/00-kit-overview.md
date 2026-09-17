@@ -133,6 +133,36 @@ weight), the widget snaps to the valid set of positions. Free-floating "close en
 kit-wide: letting a learner eyeball an approximately-right answer teaches eyeballing, not the concept. Every
 individual spec states its own snap grid.
 
+**Named exception — the guided-discovery exception (added after reviewing the authored Phase 1 YAML,
+2026-09-17):** a concept may deliberately suspend snapping, or otherwise allow an "invalid" state, so the
+learner can watch a plausible wrong instinct fail in front of them instead of being told it's wrong.
+`fraction-bar.md`'s `partition` mode lets a learner drag cut lines to genuinely unequal sizes
+(`unequal_cuts`); its `equivalence` mode lets a learner perform "add the same number to both" for real and
+watch the amount visibly drift (`sabotage_mode`); NumberLine's `fractions-on-number-line` usage lets a
+learner drop a marker anywhere, unsnapped, specifically to go hunting for a stride size that lands a tick
+under it (`free_drag_toggle`). This is not a hole in §4.2 — it's a distinct, narrower pattern with three
+hard requirements: (1) it must be **opt-in** (a separate control the learner deliberately activates, never
+the default state), (2) it must be **reversible** (a snap-back / re-equalize / undo path is always present),
+and (3) it must be **tied to a specific, named entry in that concept's `practice.misconceptions` block** —
+not merely "the concept YAML states a purpose" in prose, but an actual `pattern`/`diagnosis`/`remedy` triple
+this exact invalid state is the `remedy` for (refinement from pedagogy's review, 2026-09-17). That third
+requirement is the test that keeps the pattern from becoming a license to skip validation: if a widget lets
+the learner into an invalid state and no misconception entry names the belief that state exists to break, it
+is not a guided-discovery exception, it is an unvalidated input wearing the exception's justification as a
+costume. A widget spec that wants to use this exception states so explicitly, by name, in its own
+interaction-model section, and cites the misconception entry it serves — silently loosening a snap rule
+without both is a spec bug, not a valid use of this pattern.
+
+**Corollary — the exception governs the gesture, not the announcement.** Being allowed into an invalid state
+so a wrong belief can fail visibly does not license telling the learner *why* it failed or *what to do about
+it* — the failure must be discoverable, including through `describeState()` and any live-region
+announcement (§8's live-region rule), exactly as it is for a sighted learner watching the visual fail
+silently. An
+announcement that states the remedy (rather than only the state) defeats the exception's own purpose for
+the one audience most dependent on that announcement to know what happened at all. See `fraction-bar.md` §6
+for a worked case (the `combine`-mode pour-refusal announcement) where an earlier draft of this spec got
+that distinction wrong and was corrected.
+
 ### 4.3 Zoom/pan policy — one-handed first
 
 Pinch-to-zoom requires a second hand (or an awkward one-handed pinch) and is explicitly disallowed as the
@@ -327,19 +357,60 @@ pedagogy bug, not a cosmetic one.
 
 ## 10. How this composes: the fractions vertical slice
 
-Phase 1's exit gate is entirely about `FractionBar`, `NumberLine`, and `AreaModel` proving the kit
-generalizes across the hardest teaching problem in school math (why dividing by ½ makes a number bigger).
-They divide the labor rather than each attempting the whole concept:
+> **Revised 2026-09-17** against the seven authored concept YAML files in
+> `content/concepts/arithmetic/` — the original version of this section predicted the labor split before
+> any concept existed; the actual authored chain divides it differently, and this section now reports what
+> was actually built, not the original prediction.
 
-- **`FractionBar`** establishes the prerequisite everything else depends on: a fraction is *one* quantity
-  (a portion of a whole), and two differently-partitioned bars can represent the same quantity
-  (equivalence). Without this, "3/4 ÷ 1/2" is two meaningless whole-number pairs.
-- **`NumberLine`** carries the actual division insight, via *measurement division*: ÷ ½ asks "how many
-  half-hops fit in 3/4?" — a counting question whose answer is visibly more than one hop.
-- **`AreaModel`** carries fraction *multiplication* (a fraction of a fraction is an overlap, not a sum) —
-  the complementary operation a learner needs so that "why does division behave oppositely to
-  multiplication" is itself visible, not asserted.
+Phase 1's exit gate is a **seven-concept chain**, not three widgets each carrying one operation. All three
+widgets appear more than once, in different modes, and the gate-deciding interaction turns out to live
+inside `FractionBar`, not `NumberLine`:
 
-A concept YAML composes these three by *mounting more than one widget across the Manipulate layers of a
-concept sequence*, each with `interaction_level` progressing from `guided` (first exposure) to `free`
-(consolidation) — no single widget is asked to be the whole lesson.
+1. `fractions-as-parts` — `FractionBar` `partition` mode. A fraction names a piece *size*, not a piece.
+2. `fractions-on-number-line` — `NumberLine`. The reframe: a fraction is *one number with a position*, not
+   two numbers stacked. This is the hinge the rest of the chain turns on.
+3. `equivalent-fractions` — `FractionBar` `equivalence` mode. Renaming preserves amount; adding-to-both does
+   not (`sabotage_mode` lets the learner watch the wrong instinct fail).
+4. `comparing-fractions` — `NumberLine` again, now as the primary manipulable (two markers, landmark
+   reasoning against ½ and 1) — chosen deliberately because the evidence for number-line representation is
+   strongest for magnitude/comparison specifically (`fractions-on-number-line.yaml`'s design note).
+5. `fraction-addition-unlike-denominators` — `FractionBar` `combine` mode. The denominator is a unit name;
+   mismatched pieces physically refuse to pour together until re-cut.
+6. `fraction-multiplication` — `AreaModel` `product` mode. A fraction *of* a fraction is an overlap, smaller
+   than either factor when both are under one — the complementary operation that makes "why does division
+   behave oppositely" visible rather than asserted.
+7. `fraction-division` — `FractionBar` `measure` mode is **the actual gate-deciding widget**, via
+   *measurement division*: ÷ ½ asks "how many stick-lengths fit in the ribbon?" `NumberLine` supports this
+   concept only as a scripted, largely non-interactive Intuition-layer illustration (hop arcs shown before
+   any hands-on manipulation) — the hands-on insight, specifically dragging the leftover remainder out and
+   laying it against the stick rather than against the whole, happens on `FractionBar`, not `NumberLine`.
+
+The corrected takeaway: **no single widget owns "the division insight" in isolation** — `NumberLine`
+supplies the position/magnitude intuition the whole chain depends on (step 2, reused in step 4), and
+`FractionBar`'s `measure` mode is where that intuition gets turned into the specific manipulate-layer
+gesture the Phase 1 human exit gate is actually scored against. See `fraction-bar.md` §1 and §3.4 for the
+full detail on why the remainder-against-the-stick gesture, not any single widget's "core job," is the
+load-bearing element.
+
+---
+
+## 11. Noted for later — the boundary-guard pattern (not Phase 1 work)
+
+Flagged by pedagogy during review of the fractions slice (2026-09-17), recorded here so it isn't
+rediscovered from scratch in Phase 2/3: every concept that teaches a **direction-of-change** rule has a
+turning-point case on the other side of the boundary that must exist and must be build-time enforced, or
+the concept installs a replacement false rule as damaging as the one it was built to remove. This spec
+currently handles it **per widget, as an ad hoc preset rule**: `fraction-bar.md` §2.4 requires a
+`stick-past-one` preset for `measure` mode (guards against "dividing by a fraction always makes it
+bigger"), `area-model.md` §2 requires a `factor-past-one` preset for `product` mode (guards against
+"multiplying by a fraction always shrinks"). Both work, but they're two separate, independently-invented
+rules with the same shape.
+
+The same shape will recur wherever a rule has a turning point: negative numbers under multiplication,
+inequalities under division by a negative, exponents below one, and others not yet authored. Pedagogy's
+suggestion — worth weighing when the kit next grows a widget that teaches a direction-of-change rule — is a
+**general "boundary guard" concept in the config envelope** (§2.1) rather than continuing to invent a new
+per-widget preset-validation rule each time: something like a `boundary_guard` field that names the turning
+point and requires at least one preset/example on each side of it, validated once at the schema level
+instead of once per widget spec. Not designed here — this section is a pointer for whoever next hits this
+shape, not a commitment to a specific config field.

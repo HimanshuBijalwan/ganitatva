@@ -10,23 +10,23 @@ track: arithmetic
 level: 5
 estimated_minutes: 14
 
-# GRAPH MAPPING — ATTENTION, UNRESOLVED:
-#   math.arithmetic.fractions-on-number-line DOES NOT YET EXIST in content/graph/prerequisites.yaml.
-#   It is PROPOSED to curriculum. The graph currently has math.arithmetic.number-line (whole
-#   numbers only), mixed-numbers and improper-fractions, but no node for the reframe itself —
-#   "a fraction is ONE number with a position", which is the hinge the whole Phase-1 chain turns
-#   on and which comparing-fractions already implicitly depends on.
-#   This file also covers the content of math.arithmetic.mixed-numbers and
-#   math.arithmetic.improper-fractions (formalize layer).
-#   Until curriculum adds the node, this id will not validate against the graph.
+# GRAPH MAPPING: 1:1 with math.arithmetic.fractions-on-number-line.
+#   Node added to content/graph/prerequisites.yaml by curriculum at this file's request
+#   (2026-09-17) — the graph previously had no node for the reframe "a fraction is ONE number
+#   with a position", which is the hinge the whole Phase-1 chain turns on. Prerequisites and
+#   unlocks below are copied verbatim from the graph.
+#   This file ALSO teaches the content of math.arithmetic.mixed-numbers and
+#   math.arithmetic.improper-fractions in its formalize layer. Curriculum deliberately did NOT
+#   wire graph edges to those two — regrouping between forms is coherent through the part-whole
+#   model alone and does not structurally require the magnitude model. That is correct: one
+#   content file covering several topics is a different question from one node requiring another.
+#   For pipeline purposes record only math.arithmetic.fractions-on-number-line as satisfied here.
 prerequisites:
   - math.arithmetic.fraction-as-part-whole
   - math.arithmetic.number-line
 
 unlocks:
   - math.arithmetic.comparing-fractions
-  - math.arithmetic.mixed-numbers
-  - math.arithmetic.improper-fractions
   - math.arithmetic.fraction-division
 
 layers:
