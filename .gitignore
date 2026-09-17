@@ -1,0 +1,12 @@
+.DS_Store
+build/
+.dart_tool/
+.packages
+.flutter-plugins
+.flutter-plugins-dependencies
+*.iml
+.idea/
+ios/Pods/
+macos/Pods/
+*.g.dart
+*.freezed.dart

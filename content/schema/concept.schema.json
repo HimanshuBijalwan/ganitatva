@@ -1,0 +1,136 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ganitatva.app/schema/concept/v1",
+  "title": "Ganitatva Concept v1",
+  "description": "One concept = one YAML file. Enforces the 6-layer doctrine. The 'manipulate' layer is REQUIRED — this schema is where the 'no concept without a manipulable widget' rule is mechanically enforced, not merely documented.",
+  "type": "object",
+  "required": ["id", "title", "domain", "track", "prerequisites", "layers"],
+  "additionalProperties": false,
+  "properties": {
+    "id":     { "type": "string", "pattern": "^[a-z]+(\\.[a-z0-9-]+)+$" },
+    "title":  { "type": "string", "minLength": 3 },
+    "domain": { "enum": ["math", "logic", "algorithms", "physics"] },
+    "track":  { "type": "string" },
+    "level":  { "type": "integer", "minimum": 1, "maximum": 10 },
+    "estimated_minutes": { "type": "integer", "minimum": 3, "maximum": 45 },
+    "prerequisites": { "type": "array", "items": { "type": "string" } },
+    "unlocks":       { "type": "array", "items": { "type": "string" } },
+
+    "layers": {
+      "type": "object",
+      "required": ["hook", "intuition", "manipulate", "formalize", "practice", "connect"],
+      "additionalProperties": false,
+      "properties": {
+
+        "hook": {
+          "description": "A real question the concept answers. Never 'today we learn X'.",
+          "type": "object",
+          "required": ["question"],
+          "properties": {
+            "question": { "type": "string" },
+            "body":     { "type": "string" }
+          }
+        },
+
+        "intuition": {
+          "description": "Physical/visual metaphor. NO symbols permitted — enforced by review, flagged by lint.",
+          "type": "object",
+          "required": ["body"],
+          "properties": {
+            "body":    { "type": "string" },
+            "visual":  { "$ref": "#/$defs/widget" }
+          }
+        },
+
+        "manipulate": {
+          "description": "REQUIRED. The interactive core. Learner changes input, math responds.",
+          "type": "object",
+          "required": ["widget", "prompts"],
+          "properties": {
+            "widget":  { "$ref": "#/$defs/widget" },
+            "prompts": {
+              "description": "What to nudge the learner to try. Discovery, not instruction.",
+              "type": "array", "minItems": 1, "items": { "type": "string" }
+            },
+            "reveal": {
+              "description": "The insight they should arrive at themselves. Shown only after exploration.",
+              "type": "string"
+            }
+          }
+        },
+
+        "formalize": {
+          "description": "Notation — introduced ONLY after intuition exists.",
+          "type": "object",
+          "required": ["body"],
+          "properties": {
+            "notation": { "type": "string", "description": "LaTeX" },
+            "body":     { "type": "string" },
+            "naming":   { "type": "string", "description": "Why the symbols look the way they do." }
+          }
+        },
+
+        "practice": {
+          "type": "object",
+          "required": ["generators", "misconceptions"],
+          "properties": {
+            "generators": {
+              "description": "Parameterized item templates — NOT a static question bank.",
+              "type": "array", "minItems": 1,
+              "items": {
+                "type": "object",
+                "required": ["type", "params"],
+                "properties": {
+                  "type":       { "type": "string" },
+                  "params":     { "type": "object" },
+                  "difficulty": { "type": "integer", "minimum": 1, "maximum": 5 }
+                }
+              }
+            },
+            "misconceptions": {
+              "description": "The diagnosis engine. A red X teaches nothing; this is what replaces it.",
+              "type": "array", "minItems": 1,
+              "items": {
+                "type": "object",
+                "required": ["pattern", "diagnosis", "remedy"],
+                "properties": {
+                  "pattern":   { "type": "string", "description": "Detectable signature of the wrong answer" },
+                  "diagnosis": { "type": "string", "description": "What the learner actually believes" },
+                  "remedy":    { "type": "string", "description": "Which widget/prompt confronts that belief" }
+                }
+              }
+            }
+          }
+        },
+
+        "connect": {
+          "type": "object",
+          "required": ["body"],
+          "properties": {
+            "body":  { "type": "string" },
+            "links": { "type": "array", "items": { "type": "string" } }
+          }
+        }
+      }
+    }
+  },
+
+  "$defs": {
+    "widget": {
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": {
+          "enum": [
+            "NumberLine", "AbacusBoard", "AreaModel", "FractionBar",
+            "BalanceScale", "FunctionGrapher", "MatrixTransform",
+            "GeometryCanvas", "UnitCircle", "ProbabilitySimulator",
+            "TruthTable", "LogicGates", "SetDiagram",
+            "StepperMachine", "CalculusZoom", "VectorField"
+          ]
+        },
+        "config": { "type": "object" }
+      }
+    }
+  }
+}
