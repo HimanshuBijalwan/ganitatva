@@ -54,9 +54,9 @@ const paras = (s: string) => (s ?? '').trim().split(/\n\s*\n/);
           id="widget-mount"
           data-widget={L.manipulate.widget.type}
           data-config={JSON.stringify(L.manipulate.widget.config ?? {})}
-          style="min-height: 18rem; display: grid; place-items: center;"
+          style="min-height: 18rem;"
         >
-          <p style="color: var(--ink-500); font-size: 15px; text-align: center;">
+          <p data-placeholder style="color: var(--ink-500); font-size: 15px; text-align: center;">
             {L.manipulate.widget.type} — loading
           </p>
         </div>
@@ -101,6 +101,7 @@ const paras = (s: string) => (s ?? '').trim().split(/\n\s*\n/);
     const kind = el.dataset.widget;
     const config = JSON.parse(el.dataset.config || '{}');
     const load = loaders['../../widgets/mount.ts'];
+    const placeholder = el.querySelector('[data-placeholder]');
     const unbuilt = () => {
       el.innerHTML =
         '<p style="color:var(--ink-500);font-size:15px;text-align:center;">' +
@@ -110,8 +111,10 @@ const paras = (s: string) => (s ?? '').trim().split(/\n\s*\n/);
     if (kind === 'FractionBar' && load) {
       load()
         .then((m: any) => {
-          if (typeof m.mountFractionBar === 'function') m.mountFractionBar(el, config);
-          else unbuilt();
+          if (typeof m.mountFractionBar === 'function') {
+            placeholder?.remove();
+            m.mountFractionBar(el, config);
+          } else unbuilt();
         })
         .catch(unbuilt);
     } else {

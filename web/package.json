@@ -7,7 +7,8 @@
     "dev": "pnpm content && astro dev",
     "build": "pnpm content && astro build",
     "preview": "astro preview",
-    "typecheck": "astro check"
+    "typecheck": "astro check",
+    "smoke": "node scripts/smoke.mjs"
   },
   "dependencies": {
     "astro": "^5.16.2"
@@ -16,6 +17,7 @@
     "@astrojs/check": "^0.9.5",
     "ajv": "^8.17.1",
     "katex": "^0.18.7",
+    "playwright": "^1.63.0",
     "typescript": "^5.9.3",
     "yaml": "^2.8.1"
   },
