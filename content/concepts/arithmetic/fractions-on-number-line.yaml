@@ -1,0 +1,277 @@
+# Ganitatva concept — Phase 1 fractions chain, 2 of 7
+# THE REFRAME. A fraction is ONE number with an address, not two numbers stacked.
+# Evidence note: number-line representation carries the magnitude understanding that
+# area/part-whole models do not (Siegler, Gunderson). Part-whole first, line second.
+
+id: math.arithmetic.fractions-on-number-line
+title: "A Fraction Is One Number"
+domain: math
+track: arithmetic
+level: 2
+estimated_minutes: 14
+
+prerequisites:
+  - math.arithmetic.fractions-as-parts
+  - math.arithmetic.whole-numbers-on-number-line
+
+unlocks:
+  - math.arithmetic.equivalent-fractions
+  - math.arithmetic.comparing-fractions
+  - math.arithmetic.dividing-fractions
+
+layers:
+
+  hook:
+    question: "Your ruler has a mark sitting between the three and the four. Something is exactly that long. What number is its length — and why does it take two numbers to say one number?"
+    body: >-
+      Everyone agrees that seven is a number. You can point at where it lives on a ruler, a
+      thermometer, a road sign. Ask most people whether three quarters is a number and they
+      hesitate — it looks like two numbers with a line between them, like a score in a match.
+
+      That hesitation is not stupidity. It is a real and reasonable confusion caused by the way
+      the thing is written. This concept settles it, because almost everything that goes wrong
+      later — comparing, adding, dividing — goes wrong in people who are secretly still treating
+      a fraction as a pair rather than as a single amount.
+
+  intuition:
+    body: >-
+      Picture a straight road with milestone posts hammered in at every kilometre. Between post
+      zero and post one there are no posts at all. Does that mean there is nothing there? Of
+      course not. There is a tea stall somewhere along that stretch, and it is standing in one
+      single spot, not in two spots.
+
+      To tell a friend where the tea stall is, you would say something like: chop that stretch
+      into four equal strides and walk three of them. Two pieces of information — how long a
+      stride is, and how many strides you took — and they arrive at one place. Your home address
+      works the same way: a street name and a house number, two pieces of information, one house.
+      Nobody thinks you live in two places.
+
+      Now walk it. Chopping the stretch into four equal strides is exactly the cutting you
+      already did to the chapati, except the stretch of road is the whole. Take three strides and
+      stop. You are standing at three quarters. One spot. One number. You can point at it.
+
+      Two things fall out of this immediately, and both of them matter.
+
+      The first is that the stride length is the whole story of the bottom number. Change the
+      stride and the same count of strides drops you somewhere completely different. Three long
+      strides go much further than three short ones. So the pair of numbers cannot be pulled
+      apart and compared one at a time — they only mean something together, as a set of walking
+      directions.
+
+      The second is that the milestone at post one is not a wall. Nothing stops you walking past
+      it. Keep taking quarter-strides and after four of them you are standing on post one, and
+      after five you are past it. Five quarter-strides is a perfectly ordinary place to stand.
+      The road does not care that you crossed a post, and neither should you.
+
+      And if two different sets of directions happen to leave you standing on the exact same
+      spot — well, then they are two names for one place. That is coming next.
+
+  manipulate:
+    widget:
+      type: NumberLine
+      config:
+        range: { min: 0, max: 2 }
+        whole_unit: 1
+        stride:
+          control: slider
+          label: "strides per whole"
+          min: 1
+          max: 12
+          step: 1
+          initial: 4
+          render: "tick marks subdividing every whole, redrawn live"
+        marker:
+          id: walker
+          initial_value: 0.75
+          draggable: true
+          snap_to: stride_ticks
+          snap_tolerance_px: 12
+          free_drag_toggle: "let me stand anywhere"
+        readout:
+          primary: fraction            # e.g. 3/4
+          secondary: stride_sentence   # "3 strides of size one-quarter"
+          show_decimal_toggle: true
+          hide_labels_toggle: "hide the labels and make me predict"
+        trail:
+          show_stride_arcs: true       # draw each stride as a hop, so the count is visible
+          colour_completed_strides: true
+        landmarks:
+          show_whole_numbers: true
+          show_half_marker: true
+        second_marker:
+          enabled: true
+          id: ghost
+          purpose: "park a second fraction on the same line to compare or to catch an equal name"
+        zoom:
+          enabled: true
+          min_range: 0.05
+          label: "look closer between the marks"
+        endpoints_editable:
+          enabled: true
+          presets: [[0, 1], [0, 2], [0, 4], [2, 3]]
+          purpose: "breaks the belief that the halfway point of whatever is on screen is one half"
+    prompts:
+      - "Set the strides to four and walk to the third mark. Now change the strides to eight without dragging the marker. What does the reading say now, and did you move?"
+      - "Can you land exactly on the post at one using fifths? Using fourths? How many strides did each take?"
+      - "Park the marker anywhere between zero and one with free drag on. Now hunt for a stride size that puts a tick exactly under it. Does one always exist?"
+      - "Drag the marker past the post at one. What does the reading do? Is that still a fraction, or did something break?"
+      - "Change the ends of the line from zero-to-one to zero-to-four. Where does one half live now? Did it move, or did your eyes?"
+      - "Park the ghost marker at one half and hunt for every stride setting that puts a tick on top of it. What do those settings have in common?"
+      - "Zoom in between two ticks. Is there anything in there? Is there a 'next' fraction after three quarters?"
+    reveal: >-
+      Every fraction is one point on the line. The two numbers are not two quantities — they are
+      walking directions: how big a stride, and how many of them. That is why you can never judge
+      a fraction by looking at its numbers one at a time.
+
+      Two consequences you just found by yourself. Different directions can end at the same spot,
+      which is why one point has many names. And there is no wall at one — a fraction can sit
+      anywhere on the line, including past the whole numbers.
+
+  formalize:
+    notation: |
+      \frac{3}{4} \in \mathbb{R} \qquad \frac{5}{4} = 1 + \frac{1}{4} = 1\tfrac{1}{4}
+    body: >-
+      A fraction is a number. It has a position on the number line, it can be compared with any
+      other number, and it obeys all the usual rules. Writing it with two digits and a bar is a
+      notation choice, not evidence that it is two things.
+
+      When the numerator is smaller than the denominator, the number sits between zero and one —
+      you have taken fewer strides than it takes to cross a whole. When the numerator is larger,
+      you have walked past one. Textbooks call that an "improper fraction", which is an unlucky
+      name: five quarters is not misbehaving, it has simply gone past a milestone. Nothing about
+      it is improper.
+
+      A mixed number like one and three quarters is a reading convenience: it tells you which
+      post you passed and how far beyond it you are standing. It is the same point on the line as
+      seven quarters — same spot, different directions for getting there.
+    naming: >-
+      Two honest warnings about notation, because unexplained notation is where students start
+      to feel that mathematics is out to get them.
+
+      First: in a mixed number, the whole part and the fraction part are written next to each
+      other and it secretly means ADD. One and three quarters means one plus three quarters.
+      This is the one place in all of mathematics where writing two things side by side means
+      add — everywhere else, from algebra onwards, side by side means multiply. It is a genuine
+      inconsistency in the notation, it has caused real confusion for centuries, and you should
+      know it is there rather than discover it the hard way in algebra class.
+
+      Second: the word "improper" is historical baggage, not a mathematical statement. It comes
+      from a time when a fraction was thought of only as a part of a whole, so having more than
+      the whole sounded like a contradiction. Once the fraction is a point on a line, the whole
+      objection evaporates.
+
+  practice:
+    generators:
+      - type: place-fraction-on-line
+        difficulty: 2
+        params:
+          line_endpoints: [[0, 1], [0, 2], [0, 3], [1, 2], [0, 5]]
+          ticks_shown: [none, whole_numbers_only, matching_denominator]
+          denominator: { min: 2, max: 12 }
+          numerator_rule: "1..2*denominator"
+          tolerance_fraction_of_stride: 0.25
+      - type: read-fraction-from-line
+        difficulty: 2
+        params:
+          line_endpoints: [[0, 1], [0, 2]]
+          denominator: { min: 2, max: 10 }
+          marker_on_tick: true
+          answer_format: [fraction, mixed_number]
+      - type: improper-and-mixed-same-point
+        difficulty: 3
+        params:
+          denominator: { min: 2, max: 8 }
+          numerator_rule: "denominator+1 .. 3*denominator"
+          ask: "which two of these names land on the same point"
+      - type: which-is-not-a-number
+        difficulty: 2
+        params:
+          candidates_include: [proper, improper, whole, unit_fraction]
+          expected_answer: "all of them are numbers"
+          require_reason: true
+      - type: between-two-fractions
+        difficulty: 4
+        params:
+          pair_denominators: { min: 2, max: 8 }
+          ask: "name a fraction that sits strictly between these two"
+          accept_any_valid: true
+          hint_widget: zoom
+
+    misconceptions:
+      - pattern: "On a line labelled 0 to 4, places three quarters at the third tick (i.e. at 3)."
+        diagnosis: >-
+          The learner reads the numerator as the position and treats the denominator as
+          decoration or as a label for the diagram. This follows directly from years of whole
+          numbers, where the single digit written IS the position. Nothing in the notation warns
+          them that the bottom number changes where the top number lands.
+        remedy: >-
+          The strides slider. Park the marker, then change the stride count and watch the same
+          numerator land somewhere completely different. The point moving while the top number
+          stands still is the confrontation.
+      - pattern: "Places one half exactly halfway between whatever two marks happen to be on screen."
+        diagnosis: >-
+          The learner believes 'half' means the middle of the visible picture. This is correct
+          whenever the picture happens to run from zero to one, which is how every textbook
+          diagram they have ever seen was drawn — so the rule has a perfect track record and has
+          never been tested.
+        remedy: >-
+          endpoints_editable with the [2, 3] and [0, 4] presets. Ask where one half is on a line
+          running from two to three. The visible middle is two and a half, which they can see is
+          not one half.
+      - pattern: "Says five quarters is not a real fraction, or insists it must be converted before it can be used."
+        diagnosis: >-
+          The learner believes a fraction must be less than one, because the only definition they
+          were given was 'part of a whole' and you cannot have more of a whole than the whole.
+          That is a genuinely logical deduction from a genuinely incomplete definition.
+        remedy: >-
+          Drag the marker past one with trail.show_stride_arcs on. Five quarter-strides is five
+          hops; the fifth hop lands past the post and nothing at all goes wrong. The definition,
+          not the number, was the problem.
+      - pattern: "Judges three quarters greater than two fifths 'because three is more than two and four is more than five'."
+        diagnosis: >-
+          The learner compares the two fractions component by component, as if they were two
+          independent scores. This is coherent — it is exactly how you compare a pair of
+          coordinates or two rows of a table — and it even gives the right answer often enough
+          to survive.
+        remedy: >-
+          second_marker. Put both fractions on one line and look. Then find a counterexample pair
+          together, where the componentwise rule loses; the rule has to fail in front of them,
+          not be declared wrong.
+      - pattern: "Asks what the 'next' fraction after three quarters is, or says there is nothing between two adjacent ticks."
+        diagnosis: >-
+          The learner is importing the successor structure of whole numbers, where every number
+          has a definite next one. Between three and four there is genuinely no whole number, and
+          they are generalising that correctly to the wrong system.
+        remedy: >-
+          zoom, at min_range. Between any two ticks there is always room, and increasing the
+          stride count always finds a new mark in the gap. Let them try to find a gap that
+          resists; they cannot.
+      - pattern: "Cannot place a fraction when the line shows no subdivision ticks."
+        diagnosis: >-
+          The learner can read fractions off a pre-partitioned picture but has not internalised
+          that the partitioning is something they do to the interval. They are pattern-matching
+          on the diagram, not measuring.
+        remedy: >-
+          ticks_shown set to whole_numbers_only, with the strides slider available. They must
+          create the partition themselves before they can place the point — which is the actual
+          skill.
+
+  connect:
+    body: >-
+      This concept is the hinge of the whole chain. Up to now a fraction was a picture of parts
+      of a pizza. From here it is a number with an address, and every later operation is
+      something that happens to a position on a line.
+
+      It pays off three times over. Equivalence becomes obvious: one point, many names. Comparing
+      becomes literal: whichever is further right. And dividing — the hard one — becomes a
+      question about hopping along the line in steps of a chosen size, which is exactly what makes
+      the answer come out bigger than you expect.
+
+      It also quietly opens the door to decimals, which are nothing more than fractions whose
+      stride count is always ten, a hundred, a thousand — and to negative numbers, which are the
+      same line continued in the other direction.
+    links:
+      - math.arithmetic.equivalent-fractions
+      - math.arithmetic.comparing-fractions
+      - math.arithmetic.dividing-fractions
+      - math.arithmetic.decimals-as-fractions

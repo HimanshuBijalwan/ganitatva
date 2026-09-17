@@ -24,7 +24,48 @@ An **interactive intuition engine**. The unit of the product is not a video or a
 **Hard product rule (never negotiable):**
 > No concept ships without at least one widget the learner can manipulate.
 
-That single rule is the entire moat. It's expensive, it's slow, and it's why nobody else does it at scale.
+That rule is non-negotiable. But it is **not**, by itself, the moat — see below.
+
+## What the moat actually is (revised 2026-09-17, after research)
+
+The founding draft of this document claimed the manipulable-widget rule "is the entire moat."
+**Research falsified that, and we are recording the correction rather than quietly dropping it.**
+
+**Mathigon/Polypad already does it** — 50+ polished manipulative types spanning nearly all of K-12,
+genuinely best-in-class interaction design, **free forever** (funded by Amplify via school-district
+contracts, not user payment), 600K+ monthly users, founder still running it. It survived its 2021
+acquisition intact. We cannot out-widget them, and pretending otherwise would be strategy by wishful thinking.
+
+Worse for the original claim: the evidence for manipulatives is **small-to-moderate, not overwhelming**
+(Carbonneau et al. 2013, 55 studies, N=7,237), heavily moderated by *how well* they're used — and the
+evidence for **virtual** manipulatives specifically is thinner than for physical ones. Manipulation is
+necessary. It is nowhere near sufficient.
+
+**So what is actually defensible — four things Mathigon leaves on the table:**
+
+1. **The full pipeline, not just the widget.** Mathigon's atomic unit is an *interactive chapter* — a
+   narrative you read through. Ours is a *masterable concept* with its own progress state. They are superb at
+   Layers 2–3 (intuition + manipulate) and comparatively weak at Layers 5–6: no spaced repetition, no
+   adaptive item generation, and **no mistake diagnosis**. Layer 5 is where our real work lives.
+2. **The surface they abandoned.** Mathigon's Android app is no longer on Google Play and its iOS listing
+   has gone stale; it is effectively a website now. **Native, offline-first, on a budget Android phone with
+   no data** is an open lane — and it is exactly our stated design target, not a consolation prize.
+3. **Hindi, and then other Indian languages.** Nobody serious is building interactive math intuition for
+   Hindi-medium students. ADR-003 (content-as-data) makes this a translation problem rather than a rewrite.
+4. **Measuring the thing we claim.** CGU — delayed transfer — is a harder metric than anyone in this
+   category reports. Being the product that can actually prove comprehension is itself a position.
+
+## The failure mode that actually kills products like this
+
+Khan Academy's own efficacy research found real learning gains (~+20%) — but **only ~9% of users ever
+reached the usage threshold that produces them.**
+
+Read that again, because it reframes the whole project: **in this category, content quality is rarely what
+fails. Completion is.** A learner who understood three concepts and left has been failed just as surely as
+one who understood none.
+
+This is why Layer 5 and the mastery loop are not "Phase 2 infrastructure" — they are the product. And it is
+why the Phase 3 retention target is the hardest number in `docs/03-GOALS.md`, not a routine one.
 
 ## The 6-layer concept doctrine
 

@@ -107,3 +107,52 @@ NOTE: AI-assisted *authoring* (Phase 3 drafting of ~180 concepts) remains in sco
 REUSABLE LESSON: In domains where the user cannot evaluate correctness, generated content needs a human
      gate before it reaches them — not after.
 STATUS: ✅ decided
+
+---
+DECISION: Moat claim REVISED — "manipulable widgets" is necessary but not the moat
+DATE: 2026-09-17 (after research agent findings)
+WHY: The founding vision doc claimed the no-concept-without-a-widget rule "is the entire moat." Research
+     falsified this. Mathigon/Polypad already ships 50+ polished manipulative types across nearly all of
+     K-12, free forever (Amplify funds it via school-district B2B contracts, not user payment), 600K+ MAU,
+     founder still in place, survived its 2021 acquisition intact. Separately, the manipulatives evidence
+     base is only small-to-moderate (Carbonneau et al. 2013, 55 studies, N=7,237) and heavily moderated by
+     execution quality — with thinner evidence for VIRTUAL manipulatives than physical ones.
+REVISED POSITION — four defensible things Mathigon leaves open:
+     1. Full pipeline vs interactive chapter. Mathigon is strong on Layers 2-3, weak on 5-6: no spaced
+        repetition, no adaptive generation, no mistake diagnosis. Layer 5 is our real work.
+     2. The abandoned surface. Mathigon's Android app is off Google Play, iOS stale — it is a website now.
+        Native + offline + budget Android is an OPEN LANE and already our stated design target.
+     3. Hindi and Indian-language interactive math — nobody serious is there. ADR-003 makes it tractable.
+     4. CGU (delayed transfer) — nobody in the category measures this.
+EXPECTED RESULT: strategy rests on a true claim rather than a flattering one
+REUSABLE LESSON: Commission the research that can falsify your thesis BEFORE the thesis is expensive to
+     change, and give the researcher explicit permission to contradict you. This one cost a few hours at
+     Week 0; at Week 30 it would have cost the product. Also: the finding that looked like bad news
+     (a strong incumbent) contained the best news — the incumbent had vacated the exact surface we target.
+STATUS: ✅ decided — vision doc updated
+
+---
+DECISION: Completion, not content quality, is the category's primary failure mode
+DATE: 2026-09-17
+WHY: Khan Academy's own efficacy research shows real gains (~+20%) but only ~9% of users reach the usage
+     threshold that produces them. Content quality is rarely what fails in this category; people leaving is.
+IMPLICATION: Layer 5 (practice + mistake diagnosis) and the mastery loop are not Phase 2 infrastructure —
+     they ARE the product. The Phase 3 retention target is the hardest number in docs/03-GOALS.md.
+     Note the tension to manage: we reject engagement dark patterns AND need completion. Resolution is that
+     completion must come from the work being comprehensible and satisfying, not from manufactured guilt.
+     That is a harder design problem and we are choosing it deliberately.
+REUSABLE LESSON: Before optimizing quality, check whether quality is the binding constraint. Often reach or
+     completion is, and quality work then has near-zero marginal effect.
+STATUS: ✅ decided
+
+---
+DECISION: Distribution planning moves from Phase 7 into Phase 2/3 — no longer deferred
+DATE: 2026-09-17
+WHY: Research flagged that docs/02-PLAN.md had distribution appearing only in Phase 7 ("ongoing from Sep
+     2027"), despite discovery/CAC being a documented primary failure driver for good products. Every
+     healthy comparable (Mathigon, Khan, Desmos) has an institutional channel — schools. We have none, and
+     a consumer-CAC-funded path is exactly what is not available to a solo operator with no ad budget.
+EXPECTED RESULT: a real channel hypothesis exists before 180 concepts are written for nobody
+REUSABLE LESSON: "Build it then figure out distribution" is the default plan shape and it is the default
+     failure shape. Distribution deserves a phase gate, not an epilogue.
+STATUS: ✅ decided — plan amended

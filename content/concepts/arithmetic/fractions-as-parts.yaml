@@ -1,0 +1,257 @@
+# Ganitatva concept — Phase 1 fractions chain, 1 of 7
+# Spine A starts here: the bottom number NAMES the size of piece; the top number COUNTS them.
+# Everything from adding to dividing is built on that single reframe.
+
+id: math.arithmetic.fractions-as-parts
+title: "Fractions as Parts of a Whole"
+domain: math
+track: arithmetic
+level: 1
+estimated_minutes: 12
+
+prerequisites:
+  - math.arithmetic.equal-groups
+
+unlocks:
+  - math.arithmetic.fractions-on-number-line
+  - math.arithmetic.equivalent-fractions
+  - math.arithmetic.multiplying-fractions
+
+layers:
+
+  hook:
+    question: "You and your friend were both handed 'half a pizza'. Yours is clearly smaller. Did someone lie to you?"
+    body: >-
+      Nobody lied and nobody cheated. Both of you really did get half. The catch is that
+      "half" was never a size in the first place. It was always half OF something, and the
+      two of you were handed halves of two different pizzas.
+
+      That one missing word — "of" — is where almost all fraction trouble begins. Before a
+      single symbol appears, this concept pins down what a fraction is actually a description of.
+
+  intuition:
+    body: >-
+      Take one chapati and tear it into four chunks with your hands. The chunks come out all
+      different sizes. Now hand them around and tell everyone they got "a quarter". Somebody
+      is being robbed, and they will say so before you finish the sentence.
+
+      Cut the same chapati into four pieces that are genuinely identical, and something changes.
+      Now "a quarter" stops being the name of a random chunk and becomes the name of a size.
+      Anyone who gets one gets the same amount as anyone else. That is the deal: the word only
+      means anything when the pieces are equal.
+
+      So two things have to be agreed before anybody can say "a quarter" and be understood.
+      First, how many equal pieces the whole thing was cut into. Second, how many of those
+      pieces you are holding. Change either one and you are talking about a different amount
+      of chapati.
+
+      Here is the part that feels backwards the first time. Invite more people to share the same
+      cake and everybody's slice gets smaller. Nobody is surprised by that at a birthday party.
+      But look at what it means: the number saying how many pieces the cake was cut into goes UP
+      exactly when the size of one piece goes DOWN. More pieces, smaller pieces. That single
+      sentence explains most of the fraction mistakes people go on making for the next five years.
+
+      One last thing, and it is the thing your friend's bigger pizza was trying to tell you.
+      There is no such object as "a quarter" floating around on its own. A quarter of a chapati
+      and a quarter of a cricket ground are both quarters and they are nothing like each other.
+      A fraction always points back at the whole it was cut from. Lose the whole and the word
+      means nothing at all.
+
+  manipulate:
+    widget:
+      type: FractionBar
+      config:
+        mode: partition
+        show_symbolic: false          # notation has not been earned yet; readout is in words
+        bars:
+          - id: main
+            label: "first bar"
+            whole_length: 1.0
+            partitions: 4
+            shaded: 1
+            shade_by: tap
+            partitions_control:
+              min: 1
+              max: 12
+              step: 1
+              label: "equal pieces"
+          - id: other_whole
+            label: "a different bar"
+            whole_length: 0.6          # deliberately a DIFFERENT whole
+            partitions: 4
+            shaded: 1
+            shade_by: tap
+            partitions_control:
+              min: 1
+              max: 12
+              step: 1
+              label: "equal pieces"
+        unequal_cuts:
+          enabled: true
+          label: "drag the cut lines"
+          snap_back_button: "make them equal again"
+        whole_outline:
+          always_visible: true
+          pulse_when_piece_count_changes: true
+        readout:
+          style: words
+          template_id: "parts.readout.words"   # e.g. "3 of 4 equal pieces of the first bar"
+          also_show_piece_size_bar: true       # a small swatch of ONE piece, to watch it shrink
+        edge_cases:
+          allow_zero_partitions: true          # lets the learner break it on purpose
+          allow_one_partition: true
+    prompts:
+      - "Cut the bar into more and more pieces. What happens to the size of one single piece?"
+      - "Shade one piece. Now cut the bar into twice as many pieces and shade one of those. Which shaded amount is bigger?"
+      - "Drag the cut lines until the pieces are clearly not equal. Would you still be happy to be handed any one of them without looking?"
+      - "The second bar is a different size from the first. Shade half of each. Are those two shaded amounts the same amount of stuff?"
+      - "Can you find two different ways of cutting that end up shading exactly the same amount of the bar?"
+      - "Try cutting the bar into one piece. Then try zero pieces. What goes wrong, and why?"
+    reveal: >-
+      A fraction is never a size on its own. It reports two things at once: how many equal
+      pieces the whole was cut into, and how many of them you took. More pieces always means
+      smaller pieces — which is why the counting number grows at the exact moment the piece
+      shrinks. And swap the whole for a different one, and the very same words now describe a
+      completely different amount.
+
+  formalize:
+    notation: |
+      \frac{3}{4} \quad \text{— three quarters}
+      \\
+      \frac{\text{how many you took}}{\text{how many equal pieces the whole was cut into}}
+    body: >-
+      Everything you just did by hand now gets a written shorthand. The bar between the two
+      numbers is the cut. Under it goes the number of equal pieces the whole was chopped into.
+      Above it goes how many of those pieces you have.
+
+      So three quarters is written with a four underneath, because the whole was cut into four
+      equal pieces, and a three on top, because you took three of them.
+
+      Read it out loud the useful way: not "three over four", but "three quarters" — three of
+      the thing called a quarter. That is not a poetic flourish. It is the most important
+      sentence in this entire chain of concepts, and four concepts from now it will make adding
+      and dividing fractions almost obvious.
+    naming: >-
+      The bottom number is called the DENOMINATOR, from the Latin word for naming. It does not
+      count anything — it names what kind of piece you are dealing with: quarters, fifths,
+      hundredths. It is a unit, like "metre" or "rupee".
+
+      The top number is called the NUMERATOR, from the Latin for number. That one does the
+      counting. It says how many of the named piece you have.
+
+      Which means a fraction is built exactly like "three apples": a count, then the name of the
+      thing being counted. Three quarters is three of the quarter-sized thing. Once you see a
+      fraction as a count of a named unit, the rest of fractions stops being a list of rules.
+
+      The horizontal bar is called a VINCULUM, from the Latin for a binding or a tie. It ties
+      the two numbers into one idea. It is also, not coincidentally, the same mark that will
+      later mean "divide" — because cutting a whole into four equal pieces IS dividing it by
+      four. The notation was never arbitrary; it is a picture of a cut.
+
+  practice:
+    generators:
+      - type: identify-fraction-from-shaded
+        difficulty: 1
+        params:
+          shape: [bar, circle, grid]
+          denominator: { min: 2, max: 12 }
+          numerator_rule: "1..denominator"
+          answer_format: [fraction, words]
+          distractors: [swap-numerator-denominator, part-to-part-ratio, count-of-unshaded]
+      - type: shade-to-match
+        difficulty: 1
+        params:
+          shape: [bar, circle]
+          denominator: { min: 2, max: 10 }
+          target_numerator_rule: "1..denominator"
+          grid_prepartitioned: [true, false]
+      - type: equal-parts-judgement
+        difficulty: 2
+        params:
+          partitions_equal: false
+          claim: "the shaded piece is one <denominator>th"
+          denominator: { min: 3, max: 6 }
+          expected_answer: "no — the pieces are not equal"
+          require_reason: true
+      - type: same-name-different-whole
+        difficulty: 3
+        params:
+          whole_ratio: { min: 0.4, max: 0.8 }
+          fraction: { numerator: 1, denominator: [2, 3, 4] }
+          question_id: "parts.practice.same-name-different-whole"
+      - type: unit-fraction-ordering
+        difficulty: 2
+        params:
+          denominators: { sample_from: [2, 3, 4, 5, 6, 8, 10, 12], count: 4 }
+          numerator: 1
+          order: descending
+
+    misconceptions:
+      - pattern: "Names any one-of-four pieces 'a quarter' even when the pieces are visibly unequal."
+        diagnosis: >-
+          The learner believes a fraction names a PIECE, not a SIZE. Their working rule is
+          "one piece out of four pieces is a quarter", and equality never entered the rule
+          because in ordinary language "a piece" really is just any piece. The rule is coherent
+          and matches how the word gets used at the dinner table.
+        remedy: >-
+          FractionBar partition mode with unequal_cuts enabled. Ask them to drag the cuts
+          however they like, then tell them they must accept whichever piece they are given
+          without looking. Self-interest does the teaching: they immediately re-equalise the
+          cuts. Only then name what they just did.
+      - pattern: "States that one eighth is bigger than one quarter."
+        diagnosis: >-
+          The learner is applying whole-number order, which has worked without exception for
+          their entire life: eight is bigger than four, therefore an eighth is bigger than a
+          quarter. This is not carelessness, it is a correct rule applied outside its domain.
+        remedy: >-
+          The partitions slider with also_show_piece_size_bar on. Dragging the count from 2 to
+          12 makes the number grow and the piece swatch shrink in the same motion. The two
+          things moving in opposite directions at the same time is the confrontation.
+      - pattern: "Says half of a small bar equals half of a large bar."
+        diagnosis: >-
+          The learner treats a fraction as an absolute quantity — "half" is a fixed amount, the
+          way "one litre" is. Reasonable, because every number word they learned before this one
+          did behave that way.
+        remedy: >-
+          The two-bar layout with different whole_length values. Shade half of each, then drag
+          the smaller shaded region up against the larger one. Same name, visibly different
+          amount, no argument possible.
+      - pattern: "Shades 3 of 8 pieces and names it three fifths (counting the unshaded pieces as the bottom number)."
+        diagnosis: >-
+          The learner is reading the picture as a comparison of shaded to unshaded — a
+          part-to-part ratio — rather than part-to-whole. This is a genuinely useful way of
+          reading pictures and it is exactly right for ratios; it is simply not what fraction
+          notation means.
+        remedy: >-
+          whole_outline.pulse_when_piece_count_changes, plus tapping the bottom number lights up
+          the entire bar rather than the unshaded part. The denominator visibly belongs to the
+          whole object, not to the leftovers.
+      - pattern: "Cannot answer 'how many pieces is the whole cut into' when the picture shows more than one whole."
+        diagnosis: >-
+          The learner has fused 'the whole' with 'everything on the screen'. If two bars are
+          shown, they count the pieces across both.
+        remedy: >-
+          whole_outline.always_visible. The unit of measurement must be drawn as an object, not
+          assumed. Ask them to point at 'the whole' before answering anything.
+
+  connect:
+    body: >-
+      This is the foundation stone of the entire fractions chain, and it does exactly one job:
+      it establishes that a fraction is a COUNT of a NAMED UNIT. The denominator names the
+      piece; the numerator counts it.
+
+      Hold on to that, because it is what makes the rest stop being a rulebook. Adding fractions
+      will turn out to be impossible until both amounts are counted in the same-named piece —
+      the same reason you cannot add two metres to three feet and call it five. And dividing by
+      a fraction will turn out to be a question about counting in a smaller unit, which is why
+      the answer comes out bigger.
+
+      The next concept does something that looks small and is not: it moves the fraction off the
+      pizza and onto the number line, where it stops being a picture of parts and becomes a
+      single number with an address.
+    links:
+      - math.arithmetic.fractions-on-number-line
+      - math.arithmetic.equivalent-fractions
+      - math.arithmetic.multiplying-fractions
+      - math.arithmetic.decimals-as-fractions
+      - math.arithmetic.percentages

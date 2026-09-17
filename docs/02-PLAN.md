@@ -63,7 +63,11 @@ Turn one hand-built concept into a factory.
 - **Profile & progress**, offline-first — deliberately *without* streak-guilt mechanics
 - Over-the-air content updates
 
-**EXIT GATE:** a person who cannot write Dart authors a complete, shippable concept in under one day, using only the authoring guide.
+- **Distribution hypothesis** (new — was wrongly deferred to Phase 7): name the channel. Realistic candidates
+  for a solo operator with no ad budget: individual teachers (the route Desmos and Mathigon actually grew
+  through), Hindi-medium schools and coaching centres, and parents of Class 6–10 students. Pick one to test first.
+
+**EXIT GATE:** a person who cannot write Dart authors a complete, shippable concept in under one day, using only the authoring guide — **and** a written, falsifiable channel hypothesis exists.
 
 ---
 
@@ -79,7 +83,11 @@ Content marathon. This is where the real cost lives — 80% of total project eff
 
 Target: **~180 concepts** ≈ Class 6–10 equivalent coverage.
 
-**EXIT GATE:** 180 concepts live · 100 beta users · **7-day retention ≥ 25%** · first CGU measurements flowing.
+Also in this phase: **test the channel hypothesis with real users**, not just build content for them.
+
+**EXIT GATE:** 180 concepts live · 100 beta users · **7-day retention ≥ 25%** · first CGU measurements flowing ·
+channel hypothesis either validated or replaced. Note that 25% D7 is a *hard* target given Khan's ~9% threshold
+finding — treat a miss as signal about the product, not about the number.
 
 ---
 
@@ -148,4 +156,6 @@ Everything after that is execution. Everything before that is the actual bet.
 | Scope creep into physics early | 🟡 Med | Hard gate — physics cannot start before Phase 5 passes |
 | iOS: full Xcode + $99/yr + review | 🟡 Med | Ship Android/macOS/Windows first; iOS follows |
 | Solo burnout on a 48-week plan | 🟡 Med | Every phase ships something installable and usable |
-| Math is a crowded market | 🟢 Low | We're not competing on content volume — the manipulable-widget rule is the wedge |
+| **No distribution channel** — every healthy comparable (Mathigon, Khan, Desmos) reaches learners through schools; we have no institutional channel and no ad budget | 🔴 High | Channel hypothesis due in Phase 2, tested in Phase 3 — *not* deferred to Phase 7 |
+| **Completion, not content quality, is what kills products here** (Khan: real gains, ~9% reach the threshold) | 🔴 High | Layer 5 + mastery loop treated as core product, not infrastructure |
+| Math is a crowded market — Mathigon is a strong, free, well-funded incumbent | 🟡 Med | We don't out-widget them; we take the pipeline (Layers 5–6), the native/offline surface they abandoned, and Hindi |
