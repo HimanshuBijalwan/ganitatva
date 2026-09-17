@@ -207,3 +207,24 @@ WHY IT MATTERS BEYOND PERF: today content is first-party, so an evaluator is a c
 NEXT ACTION: prototype and benchmark the evaluator in Phase 2 before FunctionGrapher-dependent content is
      authored. Do not let Phase 3 content assume capabilities that aren't proven.
 STATUS: ⚠️ open — owned by platform/widgets in Phase 2
+
+---
+DECISION: The content AUTHOR is a risk vector — Phase 2 authoring guide gets a misconception checklist
+DATE: 2026-09-17 (research agent routing note; unowned recommendation, adopted by main)
+WHY: Research found that even pre-service teachers hold the split-ray and amalgamated-translation
+     misconceptions about negative numbers. We had been implicitly assuming authors hold correct mental
+     models and that quality risk lived only in delivery. It does not.
+WHY IT'S SHARPER THAN IT LOOKS: ADR-003 makes content data so it SCALES. That cuts both ways — a single
+     author's wrong model propagates silently to every learner who touches that concept, and unlike a code
+     bug it throws no error and nobody reports it. They simply fail to understand, and we read it as a
+     retention problem.
+DECIDED: the Phase 2 authoring guide carries a per-concept "misconceptions you must not reinforce"
+     checklist, sourced from docs/research/03-other-fracture-points.md. Treated as a safety mechanism, not
+     documentation polish. Owner: content-pipeline (Phase 2).
+ROUTING NOTE: curriculum correctly declined this as out of scope (it is Phase 2 tooling, not graph work).
+     It had no owner among active agents and would have evaporated. Captured by main instead.
+REUSABLE LESSON: Two things. (1) When a pipeline scales content, it scales errors at the same rate — build
+     the check at the authoring step, not the review step. (2) In a multi-agent setup, a correctly-declined
+     recommendation is exactly the kind that vanishes. The orchestrator must own the unowned, or delegation
+     quietly loses work that no individual agent did anything wrong to lose.
+STATUS: ✅ captured — Phase 2 deliverable with named owner

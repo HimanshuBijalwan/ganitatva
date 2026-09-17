@@ -1,0 +1,319 @@
+# Ganitatva concept — Phase 1 fractions chain, 5 of 7
+# Payoff of Spine A: the denominator is a UNIT NAME. You never add names.
+# The headline remedy here is the mediant trap: (a+c)/(b+d) always lands BETWEEN the two
+# addends, so the wrong answer refutes itself on the number line without anyone marking it wrong.
+
+id: math.arithmetic.adding-fractions
+title: "Adding Fractions — and Why One Half Plus One Third Is Not Two Fifths"
+domain: math
+track: arithmetic
+level: 4
+estimated_minutes: 16
+
+prerequisites:
+  - math.arithmetic.equivalent-fractions
+  - math.arithmetic.comparing-fractions
+
+unlocks:
+  - math.arithmetic.multiplying-fractions
+
+layers:
+
+  hook:
+    question: "One friend ate half the pizza. Another ate a third of it. Add the tops, add the bottoms, and together they ate two fifths — which is less than what the first one ate on his own. Where did the pizza go?"
+    body: >-
+      Two people ate. The total came out smaller than what one of them ate by himself. That is
+      not a small error, it is an impossible answer, and you do not need to know any rule about
+      fractions to be certain something is wrong.
+
+      Hold on to that feeling. In this concept you are going to find out not just what the right
+      method is, but exactly why the obvious method fails — and the reason turns out to be
+      something you have known since you learned the word "metre".
+
+  intuition:
+    body: >-
+      Two apples plus three apples is five apples. Nobody has ever needed a rule for that.
+
+      Two apples plus three oranges is not five applearanges. You can put them in one bag and say
+      you have five pieces of fruit, but you had to invent a new name — fruit — that covers both
+      before the counting made any sense.
+
+      Now say a fraction out loud the way you learned in the first concept. Three quarters is
+      three of the thing called a quarter. Two thirds is two of the thing called a third. So
+      adding a half to a third is adding one of one kind of piece to one of a different kind of
+      piece, and there is simply nothing sensible to call the total yet.
+
+      Here is the same idea in the form that makes the mistake impossible to repeat. Two metres
+      plus three metres is five metres — not five metremetres. The unit is a name. You add the
+      counts and you keep the name. Nobody in history has ever added the units together.
+
+      The bottom number of a fraction is a unit name. That is why it does not get added. Not
+      because a rule forbids it — because adding names is not a thing anybody does anywhere.
+
+      So what do you actually do? The same thing a builder does when one measurement is in metres
+      and the other is in feet: convert both to something common. Cut both the half and the third
+      into sixths. A half is three sixths. A third is two sixths. Now both amounts are counts of
+      the identical piece, and the problem has turned into three plus two, which is a question a
+      six year old can answer. Five sixths.
+
+      Check it against the pizza. Five sixths is more than a half. Of course it is — two people
+      ate. The answer now behaves like reality.
+
+      And notice what did not change. The piece size stayed at sixths the whole way through the
+      addition. Pieces do not get smaller because you collected more of them. The count changed;
+      the name did not.
+
+  manipulate:
+    widget:
+      type: FractionBar
+      config:
+        mode: combine
+        bars:
+          - id: addend_a
+            label: "first amount"
+            whole_length: 1.0
+            partitions: 2
+            shaded: 1
+            numerator_control: { min: 0, max: 12 }
+            denominator_control: { min: 1, max: 12 }
+          - id: addend_b
+            label: "second amount"
+            whole_length: 1.0
+            partitions: 3
+            shaded: 1
+            numerator_control: { min: 0, max: 12 }
+            denominator_control: { min: 1, max: 12 }
+          - id: total
+            label: "poured together"
+            whole_length: 1.0
+            extends_past_whole: true      # the total bar may run past one, on purpose
+            read_only: true
+        pour:
+          action: "drag the shaded pieces of the second bar onto the first"
+          tiling: strict                  # pieces must land on grid lines or they refuse to seat
+          on_mismatch:
+            behaviour: "piece hovers, edges highlighted red, will not seat"
+            message_id: "add.pieces-do-not-tile"
+          allow_force: false
+        recut:
+          control: "find a cut that fits both"
+          min: 1
+          max: 60
+          suggest_lcm_button: "smallest cut that works"
+          animate_ms: 600
+          recuts_shaded_regions: true     # the shaded half visibly becomes three shaded sixths
+          highlight_when_both_tile: true
+        claim_check:
+          enabled: true
+          label: "test your own answer"
+          input: "type any fraction you think is the total"
+          show_on_mini_number_line: true
+          also_plot: [addend_a, addend_b]
+          purpose: >-
+            Adding the tops and adding the bottoms always produces a number that lands BETWEEN
+            the two amounts you started with. Plotted next to both addends it is visibly
+            impossible, and the learner discovers that without being told it is wrong.
+        readout:
+          show_piece_name_separately: true   # "5 of the piece called a sixth"
+          show_unit_analogy_toggle: true     # "3 metres + 2 metres = 5 metres"
+          show_symbolic: true
+        presets:
+          - { a: { numerator: 1, denominator: 2 }, b: { numerator: 1, denominator: 3 }, note: "the hook" }
+          - { a: { numerator: 1, denominator: 4 }, b: { numerator: 1, denominator: 4 }, note: "same pieces already — no recut needed" }
+          - { a: { numerator: 1, denominator: 2 }, b: { numerator: 1, denominator: 4 }, note: "one bar already tiles the other" }
+          - { a: { numerator: 2, denominator: 3 }, b: { numerator: 3, denominator: 4 }, note: "total runs past one" }
+          - { a: { numerator: 1, denominator: 6 }, b: { numerator: 1, denominator: 10 }, note: "smallest cut is not the product" }
+    prompts:
+      - "Try to slide the thirds pieces onto the halves bar. Why will they not seat?"
+      - "Turn the cut dial until both sets of pieces fit the same grid. What is the smallest setting that works, and is it the only one?"
+      - "Once they fit, count what you have. What size is each piece now, and did that size change while you were counting?"
+      - "Type two fifths into the answer box and look at where it lands next to the two amounts you added. Is that a place a total could possibly be?"
+      - "Can you find two fractions that add to exactly one whole? How many different pairs can you build?"
+      - "Build an addition whose total runs past one. Where does it sit on the line, and does anything break?"
+      - "Try to make an addition whose answer has a smaller bottom number than both of the amounts you started with. Can it be done?"
+      - "Set both bars to quarters. Do you need the cut dial at all? What does that tell you about when the extra work is needed?"
+    reveal: >-
+      Adding fractions is nothing more than counting — but the counting is only meaningful once
+      both amounts are measured in the same-sized piece. Re-cut until the pieces match, then add
+      the counts and keep the piece name.
+
+      The bottom number never gets added because it is not a quantity. It is the name of the unit.
+      Three metres plus two metres is five metres, and it has never once been five metremetres.
+
+      And the reason adding tops and bottoms feels so plausible is that it is exactly how
+      multiplying fractions will work, two concepts from now. The instinct is not stupid. It is
+      early.
+
+  formalize:
+    notation: |
+      \frac{a}{c} + \frac{b}{c} = \frac{a+b}{c}
+      \\[6pt]
+      \frac{a}{b} + \frac{c}{d}
+      = \frac{a \times d}{b \times d} + \frac{c \times b}{d \times b}
+      = \frac{ad + cb}{bd}
+      \\[6pt]
+      \frac{1}{2} + \frac{1}{3} = \frac{3}{6} + \frac{2}{6} = \frac{5}{6}
+    body: >-
+      When the denominators already match, you add the numerators and leave the denominator
+      alone. That is the whole rule, and it says in symbols exactly what you said in words: add
+      the counts, keep the unit.
+
+      When they do not match, rename both fractions so that they do, then use the rule above.
+      Multiplying the two denominators always gives a denominator that works, because it is a
+      multiple of each. The smallest denominator that works is their lowest common multiple,
+      which gives smaller numbers to handle but is not required for correctness.
+
+      Subtraction is the identical move with one sign changed: make the pieces match, then take
+      one count away from the other and keep the name. Everything you just learned transfers with
+      no modification.
+
+      One warning that will save you later. Once the denominators match, the denominator is
+      finished. It does not get added, multiplied, or touched again while you are adding.
+    naming: >-
+      The plus sign is a shortened Latin "et", meaning "and" — it was written as a crossed
+      abbreviation by medieval scribes and the cross survived. So the notation is literally saying
+      "this and that", which is exactly what adding means and exactly why the two amounts must be
+      the same kind of thing before the word "and" produces a single total.
+
+      The phrase "common denominator" is worth unpacking too, because it is normally taught as a
+      procedure with a strange name. It means the common NAME — the shared unit both amounts have
+      been rewritten in. It is the same idea as agreeing to talk in centimetres before comparing
+      two lengths. Everything that gets called "finding the common denominator" is just choosing
+      a unit both amounts can be said in.
+
+  practice:
+    generators:
+      - type: add-same-denominator
+        difficulty: 1
+        params:
+          denominator: { min: 2, max: 12 }
+          numerators: { count: 2, min: 1, max: 11 }
+          allow_sum_past_one: true
+      - type: add-one-denominator-divides-other
+        difficulty: 2
+        params:
+          base_denominator: { sample_from: [2, 3, 4, 5] }
+          multiplier: { min: 2, max: 4 }
+          note: "only one bar needs re-cutting"
+      - type: add-coprime-denominators
+        difficulty: 3
+        params:
+          denominators: { sample_from: [2, 3, 4, 5, 6, 7, 8, 9, 10], coprime: true, count: 2 }
+          numerators_rule: "1..denominator-1"
+      - type: add-where-lcm-beats-product
+        difficulty: 4
+        params:
+          denominator_pairs: [[4, 6], [6, 10], [8, 12], [9, 12], [10, 15]]
+          reward_smallest_common_cut: true
+      - type: estimate-before-computing
+        difficulty: 2
+        params:
+          ask: "is the total more or less than one? more or less than a half?"
+          no_exact_answer_required: true
+          note: "trains the size check that makes the mediant error self-evident"
+      - type: spot-the-impossible-total
+        difficulty: 3
+        params:
+          claimed_answers_include: [mediant, numerator_only, denominator_only, correct]
+          ask: "which of these totals could not possibly be right, and how do you know without working it out"
+      - type: missing-addend
+        difficulty: 4
+        params:
+          target: { sample_from: [1, "1/2", "3/4", "5/6"] }
+          given_denominator: { min: 2, max: 12 }
+      - type: subtract-fractions
+        difficulty: 3
+        params:
+          denominators: { sample_from: [2, 3, 4, 5, 6, 8, 10, 12], count: 2 }
+          ensure_positive_result: true
+
+    misconceptions:
+      - pattern: "One half plus one third equals two fifths. Adds the numerators and adds the denominators."
+        diagnosis: >-
+          The single most common error in school mathematics, and it is not carelessness. The
+          learner is applying a rule that is correct nearly everywhere else in their experience:
+          when you combine two pairs of things, you combine them part by part. It is how you add
+          coordinates, how you add scores in two innings, how column addition works place by
+          place, and — crucially — it is exactly how multiplying fractions works, which they may
+          already half-remember. The belief is a reasonable generalisation, not a failure of care.
+          Underneath it sits the real gap: the denominator is being read as a quantity rather than
+          as the name of a unit.
+        remedy: >-
+          claim_check. The learner types two fifths and it is plotted on the line alongside one
+          half and one third. It lands between them. A total of two amounts cannot possibly sit
+          between the two amounts, and they can see that without being told. This is general, not
+          a lucky example — adding tops and bottoms always lands strictly between the two
+          addends, every single time, so the widget refutes the rule rather than this instance of
+          it. Follow immediately with the pour action, where the third-sized piece physically
+          refuses to seat on the halves grid, and with the readout's metres analogy.
+      - pattern: "Finds a common denominator but leaves the numerators alone: one half plus one third becomes one sixth plus one sixth equals two sixths."
+        diagnosis: >-
+          The learner has understood that something must be made common and has concluded that
+          'finding a common denominator' is an operation performed on the denominators, which is
+          what the phrase literally says. In their model the numerator is a fixed count of things
+          they own, and re-labelling the pieces should not change how many they own.
+        remedy: >-
+          recut with recuts_shaded_regions on, watched slowly. One shaded half is cut into three,
+          and there are now three shaded pieces on screen. The count changed because the pieces
+          changed. Ask them to predict the new count before releasing the animation.
+      - pattern: "Adds the denominators but keeps one numerator, or keeps the larger denominator without rescaling."
+        diagnosis: >-
+          A partially-remembered procedure with no model underneath it. The learner knows that
+          something happens to the bottom numbers and something happens to the top ones and is
+          reconstructing from fragments. Distinguishable from the mediant error because the
+          answers are inconsistent between attempts, which is the diagnostic signature.
+        remedy: >-
+          Stop running the procedure entirely. Send them back to the pour action with the
+          symbolic readout switched off, until they can state the total in words — 'five of the
+          piece called a sixth' — before any notation is allowed back on screen.
+      - pattern: "Insists the answer to an addition must be less than one, and rewrites a total of seven sixths as six sevenths or as one."
+        diagnosis: >-
+          The learner still holds the part-of-a-whole definition as a hard ceiling: a fraction
+          cannot exceed the whole it came from, so a fraction answer above one must be a mistake
+          in their own working. Left over from concept one and normally invisible until addition
+          exposes it.
+        remedy: >-
+          The preset with a total past one, with the total bar's extends_past_whole enabled, and
+          the mini number line showing the total sitting calmly to the right of one. Nothing
+          broke. Pair with the number-line concept's stride arcs if the belief persists.
+      - pattern: "Adds mixed numbers by adding the whole parts and separately adding the fraction parts componentwise, e.g. one and a half plus two and a half gives three and one."
+        diagnosis: >-
+          Half of this is right — whole parts do add to whole parts. The error is that the
+          learner does not carry when the fraction parts total a whole or more, because in their
+          model the fraction part is a decoration attached to the whole number rather than an
+          amount that can overflow.
+        remedy: >-
+          Build the same sum on the bars with extends_past_whole enabled and no mixed-number
+          display. The two halves seat together and form a complete bar in front of them. Only
+          then switch the readout back to mixed numbers.
+      - pattern: "Gets the right answer but cannot say why the denominator did not change."
+        diagnosis: >-
+          Procedural fluency without the unit model. This one produces correct work and therefore
+          survives every marking scheme, then collapses silently at algebraic fractions or rates
+          two years later. It is the most dangerous entry in this list precisely because it never
+          looks like an error.
+        remedy: >-
+          readout.show_unit_analogy_toggle, and a spoken-answer item: require the total to be said
+          as a count and a name before the written answer is accepted. If they cannot say 'five
+          sixths' as 'five of the piece called a sixth', the concept is not finished regardless of
+          their score.
+
+  connect:
+    body: >-
+      Addition is where the unit reading of a fraction stops being an elegant idea and starts
+      being load-bearing. Everything downstream leans on it.
+
+      It leads straight into multiplication, which behaves in the opposite way and is the reason
+      the add-tops-and-bottoms instinct is so hard to shake: that instinct is a correct
+      description of multiplication arriving two concepts early. Seeing the two side by side is
+      what finally separates them.
+
+      From there it reaches dividing fractions, where re-cutting both amounts to the same-sized
+      piece turns the whole problem into dividing two ordinary counts. It also underwrites adding
+      decimals — lining up the point is nothing but forcing a common unit — and, later, adding
+      algebraic fractions, which is the identical procedure with letters in it.
+    links:
+      - math.arithmetic.multiplying-fractions
+      - math.arithmetic.dividing-fractions
+      - math.arithmetic.decimals-as-fractions
+      - math.prealgebra.algebraic-fractions

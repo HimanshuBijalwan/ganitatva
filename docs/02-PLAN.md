@@ -57,6 +57,12 @@ Turn one hand-built concept into a factory.
 
 - **Widget kit**: 8–10 primitives, documented, golden-tested
 - **Content pipeline**: YAML → validated → compiled bundle; authoring guide written
+- **Author misconception checklist** — the authoring guide must carry, per concept, a list of documented
+  misconceptions the author must not *reinforce*. Rationale: studies find even pre-service teachers hold the
+  split-ray and amalgamated-translation misconceptions about negative numbers. **We cannot assume the author
+  has a correct mental model either.** Content-as-data means one author's wrong model scales silently across
+  every learner who touches that concept — so the checklist is a safety mechanism, not documentation polish.
+  Source material: final section of `docs/research/03-other-fracture-points.md`. **Owner: content-pipeline.**
 - **Knowledge graph** + path engine + prerequisite diagnosis
 - **FSRS spaced repetition** + mastery model
 - **Practice generators**: parameterized item templates, not static question banks

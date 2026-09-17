@@ -1,0 +1,316 @@
+# Ganitatva concept — Phase 1 fractions chain, 6 of 7
+# Two jobs. (1) "times" means "OF", so taking a part of a part gives less.
+# (2) Install the HONEST rule — less than one shrinks, more than one grows — because
+# concept 7 is its mirror image, and a sloppy rule here poisons the whole gate.
+
+id: math.arithmetic.multiplying-fractions
+title: "Multiplying — Why the Answer Gets Smaller"
+domain: math
+track: arithmetic
+level: 5
+estimated_minutes: 16
+
+prerequisites:
+  - math.arithmetic.fractions-as-parts
+  - math.arithmetic.adding-fractions
+  - math.arithmetic.equal-groups
+
+unlocks:
+  - math.arithmetic.dividing-fractions
+
+layers:
+
+  hook:
+    question: "Multiplying makes things bigger — everybody knows that. So why does taking half of half a chocolate bar leave you with less chocolate than you started with?"
+    body: >-
+      Either multiplication has been lying to you for years, or the sentence "multiplying makes
+      things bigger" was never actually true and simply got away with it because nobody tested it
+      properly.
+
+      It is the second one. And once you see what multiplication really means, the shrinking stops
+      being a strange exception and becomes the obvious outcome. That matters more than it sounds,
+      because the very next concept is this same question standing on its head.
+
+  intuition:
+    body: >-
+      Say three times four out loud and notice what you picture. Three lots of four. Three plates
+      with four samosas on each. The word "times" is doing the job of "copies of".
+
+      Now try to picture half times four the same way. Half a copy? Half a plate? It does not
+      work, and that failure is where the trouble starts — because instead of admitting the
+      picture broke, most people keep the slogan and drop the picture.
+
+      Here is the repair. "Times" has always secretly meant "of". Three times four is three lots
+      of four, which is three copies of it. Half times four is half OF four, which is two. Same
+      word, and the "of" reading survives everywhere the "copies" reading falls apart.
+
+      Once it reads as "of", the chocolate stops being mysterious. Take half of a bar and you have
+      less than a bar. Take half of that half and you have less again. Every time you take a
+      portion smaller than the whole thing, you end up with less than you started with. There is
+      no paradox anywhere. Multiplication never promised to make things bigger. It promised to
+      take some number of copies, and taking less than one whole copy naturally leaves you
+      holding less.
+
+      A photocopier says it best. Set it to fifty percent and press the button. Copying does not
+      always enlarge. It enlarges when you ask for more than one copy's worth and it shrinks when
+      you ask for less, and the machine does not consider either of these strange.
+
+      There is one more thing worth seeing before any writing happens, and it is the part that
+      explains why the tops multiply and the bottoms multiply. Take a square sheet of paper. Fold
+      it one way into four strips and the other way into three, then open it out. The creases have
+      made twelve small rectangles, and you did not have to count them — four across and three
+      down is twelve, which is how a grid always works. Now shade three of the four strips going
+      across and two of the three going down. The patch where the shading overlaps is your answer,
+      and it is made of six of those twelve small rectangles. Three across times two down for how
+      many small rectangles you took, four times three for how many the whole sheet was cut into.
+      The grid does the multiplying for you, on both numbers at once.
+
+      And keep hold of the honest version of the rule, because the slogan is about to cost
+      somebody dearly. Take more than one whole copy and you finish with more. Take exactly one
+      and you finish with what you had. Take less than one and you finish with less. The size of
+      the answer depends entirely on whether what you are taking is bigger or smaller than one
+      whole — never on whether it happens to be written as a fraction.
+
+  manipulate:
+    widget:
+      type: AreaModel
+      config:
+        mode: product
+        unit_square:
+          show_outline: true
+          label: "one whole"
+        factors:
+          - id: across
+            orientation: horizontal
+            fraction: { numerator: 3, denominator: 4 }
+            numerator_control: { min: 0, max: 8 }
+            denominator_control: { min: 1, max: 8 }
+            allow_greater_than_one: true
+            colour_token: factor_a
+          - id: down
+            orientation: vertical
+            fraction: { numerator: 2, denominator: 3 }
+            numerator_control: { min: 0, max: 8 }
+            denominator_control: { min: 1, max: 8 }
+            allow_greater_than_one: true
+            colour_token: factor_b
+        grid:
+          auto_from_denominators: true      # b across by d down, redrawn live
+          show_cell_count: true
+          label_template_id: "mult.grid.cells"
+        overlap:
+          highlight: true
+          show_cell_count: true
+          compare_to_each_strip: true       # side-by-side bars: strip A, strip B, overlap
+        extend_beyond_unit:
+          enabled: true
+          draw_extra_unit_squares: true     # so a factor above one is visibly MORE than one copy
+          label: "let a factor go past one whole"
+        of_language:
+          enabled: true
+          readout_template_id: "mult.readout.of"   # "two thirds OF three quarters of the whole"
+          show_symbolic_toggle: true
+        size_predictor:
+          enabled: true
+          ask_before_reveal: "bigger than both, between them, or smaller than both?"
+          record_prediction: true
+        presets:
+          - { across: { numerator: 1, denominator: 2 }, down: { numerator: 1, denominator: 2 }, note: "half of a half" }
+          - { across: { numerator: 3, denominator: 4 }, down: { numerator: 2, denominator: 3 }, note: "the grid example" }
+          - { across: { numerator: 3, denominator: 4 }, down: { numerator: 1, denominator: 1 }, note: "times one changes nothing" }
+          - { across: { numerator: 3, denominator: 4 }, down: { numerator: 3, denominator: 2 }, note: "factor past one — answer GROWS" }
+          - { across: { numerator: 4, denominator: 5 }, down: { numerator: 0, denominator: 1 }, note: "times zero" }
+    prompts:
+      - "Set both sliders to a bit less than a whole. Is the overlap bigger or smaller than each strip on its own? Is that what you expected?"
+      - "Count the small boxes inside the whole square, then count the ones in the overlap. Where did each of those two numbers come from?"
+      - "Set one factor to exactly one whole. What happens to the overlap, and why does that make sense in words?"
+      - "Can you make an overlap that is bigger than one of the strips you started with? What did you have to do?"
+      - "Push one factor past one whole. Does the answer still shrink? So what was the rule actually about all along?"
+      - "Find two fractions whose overlap is exactly one quarter of the square. How many different pairs can you find?"
+      - "Set one factor to zero. Where did the whole square go, and does the 'of' reading explain it?"
+      - "Do you ever need to make the two denominators match here, the way you did when adding? Try it and see whether it changes the answer or only the work."
+    reveal: >-
+      Times means OF. Taking a part of a part leaves you with less than either part — every time,
+      as long as both are less than a whole.
+
+      The grid is doing the arithmetic in plain sight. The whole square is cut into as many small
+      boxes as one denominator times the other, and you take as many of them as one numerator
+      times the other. That is where multiplying straight across comes from; nobody invented it.
+
+      And the real rule, the one worth carrying: the answer grows when you take more than one
+      whole copy, stays put at exactly one, and shrinks when you take less than one. It was never
+      about whether the number was a fraction.
+
+  formalize:
+    notation: |
+      \frac{a}{b} \times \frac{c}{d} = \frac{a \times c}{b \times d}
+      \\[6pt]
+      \frac{3}{4} \times \frac{2}{3} = \frac{3 \times 2}{4 \times 3} = \frac{6}{12} = \frac{1}{2}
+      \\[6pt]
+      \tfrac{c}{d} > 1 \Rightarrow \text{product} > \tfrac{a}{b}
+      \;;\quad
+      \tfrac{c}{d} = 1 \Rightarrow \text{product} = \tfrac{a}{b}
+      \;;\quad
+      \tfrac{c}{d} < 1 \Rightarrow \text{product} < \tfrac{a}{b}
+    body: >-
+      Multiply the numerators for the top, multiply the denominators for the bottom. The grid
+      says why: the sheet ends up cut into one denominator times the other small boxes, and the
+      shaded patch covers one numerator times the other of them.
+
+      Notice what is NOT required. No common denominator. Adding needed one because you were
+      combining counts of the same-sized piece and the pieces had to match first. Multiplying
+      does not combine counts at all — it builds an entirely new piece, the small box of the grid,
+      and counts those instead. That is why the two operations look so different, and it is worth
+      knowing rather than just obeying, because "always find a common denominator first" is a
+      habit that quietly wastes years of people's time.
+
+      Simplifying before multiplying is allowed and usually easier: any common factor between a
+      top and a bottom can be renamed away first, since it would only be cancelled at the end
+      anyway.
+    naming: >-
+      The multiplication cross is a slanted version of the plus sign, introduced by William
+      Oughtred in 1631 for exactly the reason you would guess — repeated adding, tipped over so it
+      could not be mistaken for the plus itself. The notation remembers that multiplication began
+      as a shortcut for adding the same thing again and again. Which is also a clue about why the
+      "copies" reading feels so natural and why it breaks for fractions: the symbol was designed
+      for whole numbers of copies, and the meaning had to be widened afterwards.
+
+      The word "product" comes from the Latin for "brought forth". The grid is literally producing
+      new, smaller pieces — a quarter met a third and brought forth a twelfth. That is the sense
+      in which multiplying makes something new, rather than more.
+
+      And "of" is not an informal substitute for the cross. In older mathematical English it was
+      the ordinary way to say it, and it is the reading that stays true when the numbers are not
+      whole.
+
+  practice:
+    generators:
+      - type: fraction-of-a-whole-number
+        difficulty: 1
+        params:
+          fraction: { numerator: 1, denominator: { min: 2, max: 6 } }
+          whole: { min: 2, max: 24, divisible_by_denominator: true }
+          phrasing: [of, times]
+      - type: unit-fraction-times-unit-fraction
+        difficulty: 2
+        params:
+          denominators: { min: 2, max: 8, count: 2 }
+          ask_grid_cell_count: true
+      - type: general-product
+        difficulty: 3
+        params:
+          numerators: { min: 1, max: 7, count: 2 }
+          denominators: { min: 2, max: 9, count: 2 }
+          require_simplest_form: true
+      - type: predict-the-size
+        difficulty: 2
+        params:
+          factor_b_relative_to_one: [less, equal, greater]
+          ask: "will the answer be bigger, smaller, or the same as the first number?"
+          no_exact_answer_required: true
+          note: "the direction-of-change item; it is what concept seven will mirror"
+      - type: multiply-past-one
+        difficulty: 4
+        params:
+          factor_b: { numerator_rule: "> denominator" }
+          note: "guards against installing 'multiplying by a fraction always shrinks'"
+      - type: word-problem-of
+        difficulty: 3
+        params:
+          contexts: [recipe_scaling, discount, land_area, distance_covered, water_in_tank]
+          fraction_of_fraction: true
+      - type: spot-the-wrong-method
+        difficulty: 3
+        params:
+          wrong_methods: [cross_multiply, common_denominator_then_multiply_tops_only, add_instead]
+          include_correct: true
+
+    misconceptions:
+      - pattern: "States that multiplying always makes a number bigger, and so rejects or re-does a correct answer that came out smaller."
+        diagnosis: >-
+          The learner generalised from whole numbers, where every multiplier they ever met was two
+          or more. The rule has a perfect record because it was never tested against one, zero, or
+          anything between. It is also reinforced by the language of school — 'multiply' sounds
+          like 'increase' in ordinary English, as in multiplying rabbits.
+        remedy: >-
+          size_predictor, forcing a prediction on record before the overlap is revealed, across a
+          sweep of factors from a quarter through one to two. The turning point sits exactly at
+          one and they find it themselves. Do not hand them the corrected slogan; make them state
+          where the boundary is.
+      - pattern: "Cross-multiplies: three quarters times two thirds becomes nine eighths, or some other crossed arrangement."
+        diagnosis: >-
+          Crossing is a move the learner has genuinely been taught — for comparing fractions and
+          for solving proportions — and no reason was ever given for when it applies. With no
+          model underneath, choosing between straight-across and crossed is a coin flip, and they
+          are picking the more distinctive-looking one.
+        remedy: >-
+          grid.show_cell_count. The whole square is cut into four across by three down. There is
+          no crossing anywhere in the picture; the count of boxes comes straight from the two
+          numbers as they stand. Then revisit where crossing DID come from in comparing fractions,
+          so it has a home and stops floating free.
+      - pattern: "Insists on converting to a common denominator before multiplying."
+        diagnosis: >-
+          Procedural overgeneralisation from addition. The learner has concluded that a common
+          denominator is the entry ritual for all fraction work, because it is the first thing
+          that happened in the last two topics. Notably, this does not produce wrong answers — it
+          produces correct answers slowly, which is why it survives for years undetected.
+        remedy: >-
+          Let them do it both ways in the widget and compare. It agrees, because it is still just
+          renaming. Then ask why addition needed it: to make the counts comparable. Multiplying
+          never compares counts, it builds a new piece. The ritual is not wrong, it is answering a
+          question nobody asked.
+      - pattern: "One half times one half equals two quarters, or equals one."
+        diagnosis: >-
+          Operation confusion under similar-looking notation. Two fractions and a symbol between
+          them triggers the most recently practised routine, which is addition. The tell is that
+          the answer is exactly the sum, or the correct sum of two halves.
+        remedy: >-
+          of_language readout switched on so the problem reads as 'half OF a half' before any
+          symbol appears. Nobody who has said those words out loud answers 'one'. Then place both
+          the sum and the product on the same square so the two operations are visibly different
+          objects.
+      - pattern: "Reads 'two thirds of twelve' as an instruction to add, or cannot start a word problem containing 'of'."
+        diagnosis: >-
+          The learner has 'of' filed as an ordinary English preposition with no mathematical
+          meaning attached. They are not applying a wrong rule; they have no rule at all for that
+          word, and so they guess based on whichever operation was practised most recently.
+        remedy: >-
+          The word-problem-of generator run alongside the widget with of_language on, so that
+          every phrase they read has a picture attached to it. 'Of' must be installed as a
+          synonym for the cross, not merely as a translation tip.
+      - pattern: "After this concept, answers that multiplying by a fraction always makes the answer smaller."
+        diagnosis: >-
+          A brand-new false rule, and one this concept can accidentally install by only ever
+          showing factors below one. The learner has swapped one over-general slogan for its
+          opposite, which is no better and is actively dangerous going into division, where the
+          same over-generalisation produces the 'dividing by a fraction always makes it bigger'
+          error.
+        remedy: >-
+          The preset with a factor of three halves, and extend_beyond_unit drawing the extra unit
+          square. The multiply-past-one generator must appear in the practice mix before this
+          concept is considered complete. The rule they leave with has to be about one, not about
+          fractions.
+
+  connect:
+    body: >-
+      This concept hands two things directly to the next one, and the next one is the hardest
+      idea in school arithmetic.
+
+      The first is the word "of", which finally makes the times sign mean something when the
+      numbers are not whole. The second is the honest rule about size: bigger than one whole makes
+      it grow, smaller than one whole makes it shrink, exactly one leaves it alone.
+
+      Dividing is that rule reflected. Dividing by something bigger than one whole makes the
+      answer smaller; dividing by something smaller than one whole makes it bigger. If the rule
+      you carry out of this concept is "multiplying by a fraction shrinks", the next concept will
+      break you. If the rule you carry is "it depends on whether the number is above or below
+      one", the next concept will feel almost inevitable.
+
+      Further out, this same grid becomes multiplying out brackets in algebra, scaling in
+      geometry, percentages of amounts, probability of two things both happening, and eventually
+      area under a curve.
+    links:
+      - math.arithmetic.dividing-fractions
+      - math.arithmetic.percentages
+      - math.arithmetic.ratio-and-rate
+      - math.prealgebra.algebraic-fractions
