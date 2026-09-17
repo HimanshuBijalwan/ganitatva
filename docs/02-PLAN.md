@@ -10,15 +10,22 @@ only thing standing between this and a beautiful engine nobody learns from.
 
 The unglamorous week that prevents six months of pain.
 
-1. **Toolchain install** (~3 hrs of work, several hours of downloading)
-   - Flutter SDK + `flutter doctor` clean
-   - **Full Xcode** from App Store (~10 GB) — required for macOS *and* iOS
-   - Android Studio → Android SDK + platform-tools, accept licenses
-   - CocoaPods
+> **Restructured 2026-09-17 — WEB FIRST (ADR-006).** The native toolchain is no longer on Phase 0's
+> critical path. It moves to Phase 5. What this buys: Phase 1's gate can be tested on a URL this week
+> instead of after ~25GB of downloads, two store accounts and a 12-tester queue.
+
+1. **Web project scaffold** (hours, not days — Node 25 and pnpm are already installed)
+   - Astro + TypeScript, one concept page rendering from the compiled content bundle
+   - Canvas 2D widget harness — one mounted island, nothing more
 2. **Repo + CI on day one**
    - GitHub repo, `main` protected
-   - GitHub Actions: on every push build **Android APK**, **macOS**, **Windows** (`windows-latest`), iOS-unsigned
-   - Artifacts downloadable from every run ← this is how Windows gets tested without a Windows machine
+   - GitHub Actions: typecheck, **validate every content YAML against the schema**, build, deploy preview
+   - Deploy target with per-branch preview URLs — a tester link per branch is the whole point
+   - *(The 5-platform native CI in `.github/workflows/build.yml` is already written and stays parked until
+     Phase 5. It was not wasted work — it just isn't Phase 0's gate any more.)*
+3. **Native toolchain — start the downloads, don't wait for them.** ~20–27GB, no rush, nothing blocks on it.
+   Runbook: `docs/platform/00-setup-runbook.md`. Also enrol in **Android Developer Verification now** —
+   it is free and calendar-bound, so early enrolment costs nothing and late enrolment costs weeks.
 3. **Design doctrine pass** (mandatory before any UI — per global design-doctrine rules)
    - Concept sentence, out-of-category references, Art Direction Brief
    - Reject the default EdTech look — but honestly: reference research found the blue-purple gradient hero
@@ -26,10 +33,10 @@ The unglamorous week that prevents six months of pain.
      non-gradient). Rejecting it is hygiene, not a differentiator, and we should not congratulate ourselves
      for it. The norm we actually break is structural: ~75% of surveyed apps make content/questions/a game
      the hero rather than the interactive object.
-4. **Content schema v1** — JSON Schema for a concept file; one hand-written example
-5. **Skeleton app** — Riverpod + go_router + Drift wired, one screen
+4. **Content schema v1** — ✅ done (`content/schema/concept.schema.json`)
+5. **Content pipeline v0** — YAML → validated → compiled JSON, consumed by the Astro build
 
-6. **Paper-and-scissors dry run of concept 7** — before a single line of Flutter is written.
+6. **Paper-and-scissors dry run of concept 7** — before a single line of widget code is written.
    Take the authored intuition script from `content/concepts/arithmetic/dividing-fractions.yaml`, a paper
    ribbon and a paper measuring stick, and run it on **two real kids**. Costs an afternoon.
    **Why this is the highest-value action in Phase 0:** the Phase 1 gate rests on one gesture — dragging the
@@ -38,8 +45,9 @@ The unglamorous week that prevents six months of pain.
    implementation later. If it succeeds on paper and then fails in the app, we know the defect is execution,
    not teaching. Either outcome is actionable; skipping it makes a Phase 1 failure uninterpretable.
 
-**EXIT GATE:** App runs on macOS, APK installs on a real phone, CI produces a Windows .exe artifact,
-`flutter doctor` is clean, **and the paper dry run has been run with its result written down.**
+**EXIT GATE:** one concept page renders live at a shareable preview URL, opens correctly **on a real phone
+browser**, CI blocks a deliberately-broken content YAML, **and the paper dry run has been run with its
+result written down.**
 
 ---
 
@@ -70,7 +78,15 @@ The unglamorous week that prevents six months of pain.
   If we can make *that* obvious, the method works.
 
 Build all 6 layers for real: Hook → Intuition → Manipulate → Formalize → Practice (with mistake diagnosis) → Connect.
-Plus: progress persistence, and the same experience on all 4 platforms.
+Plus progress persistence (IndexedDB), shipped **on the web** at a real URL.
+
+**Testers open a link on their own phone.** No sideloading, no TestFlight invite, no store account. This is
+the practical reason web goes first — the gate needs five humans, and friction between us and them is the
+single most likely reason a gate slips.
+
+⚠️ **Test on a real phone browser, never a laptop.** Pedagogy's assessment is that the whole gate reduces to
+whether dragging the leftover onto the measuring stick *feels like discovery on a 5-inch screen*. Testing
+that on a desktop with a mouse tests a different thing and would give us a false pass.
 
 **EXIT GATE — a human gate, not a technical one:**
 > 5 real testers (mix of kids and math-averse adults) use it.
@@ -110,7 +126,7 @@ Turn one hand-built concept into a factory.
   for a solo operator with no ad budget: individual teachers (the route Desmos and Mathigon actually grew
   through), Hindi-medium schools and coaching centres, and parents of Class 6–10 students. Pick one to test first.
 
-**EXIT GATE:** a person who cannot write Dart authors a complete, shippable concept in under one day, using only the authoring guide — **and** a written, falsifiable channel hypothesis exists.
+**EXIT GATE:** a person who cannot write code authors a complete, shippable concept in under one day, using only the authoring guide — **and** a written, falsifiable channel hypothesis exists.
 
 ---
 
@@ -139,9 +155,14 @@ exactly as in Phase 1 — not a number to average away.
 
 Target: **~180 concepts** ≈ Class 6–10 equivalent coverage.
 
+**Public web launch + SEO (new, and this is the payoff for going web first).** Every concept becomes a
+statically-rendered, indexable page. Astro ships zero JS for the prose; only the widget hydrates. This is a
+real acquisition channel, and it compounds — ~180 indexed concept pages is a meaningful surface, and unlike
+ads it does not stop working when you stop paying.
+
 Also in this phase: **test the channel hypothesis with real users**, not just build content for them.
 
-**EXIT GATE:** 180 concepts live · 100 beta users · **7-day retention ≥ 25%** · first CGU measurements flowing ·
+**EXIT GATE:** 180 concepts live and publicly indexed · 100 beta users · **7-day retention ≥ 25%** · first CGU measurements flowing ·
 channel hypothesis either validated or replaced. Note that 25% D7 is a *hard* target given Khan's ~9% threshold
 finding — treat a miss as signal about the product, not about the number.
 
@@ -163,6 +184,26 @@ The differentiator nobody else ships.
 ---
 
 ## Phase 5 — Calculus & Linear Algebra · Apr 2 → May 27, 2027 (8 weeks)
+## ⟂ and the NATIVE TRACK begins, in parallel
+
+**This is where ADR-001 comes off the shelf.** Flutter app targeting the lane Mathigon vacated: native,
+offline, on a budget Android phone with no data. Everything that makes this cheap was decided in Phase 0:
+
+- **Content transfers at zero cost** — the 193-node graph, every concept YAML, the misconception catalog
+  are platform-neutral. That was the entire point of ADR-003.
+- **Widget specs transfer** — `docs/widgets/` was written as specs, not as code, precisely so a second
+  implementation is a build job rather than a redesign. The expensive part was the design.
+- **The 5-platform CI already exists** — `.github/workflows/build.yml`, written in Phase 0 and parked.
+- **Developer Verification enrolment is already done** (started Phase 0), so the calendar dependency has
+  already elapsed rather than starting now.
+
+**What is genuinely duplicated: the widget rendering code.** Accepted knowingly in ADR-006. Keep the engine
+logic — graph traversal, FSRS, misconception matching, practice generation — as pure data-driven functions
+so it ports once and carefully; the widgets have to be native to each platform regardless.
+
+**Sequencing check before starting:** do not open the native track until Phase 3's retention gate has
+passed. Building a second client for a product nobody finished on the first one would be the most expensive
+possible way to avoid confronting a retention problem.
 
 - **Calculus**: local linearity → limits → derivatives → integration as accumulation → FTC *seen, not stated*
 - **Linear algebra**: vectors, linear transformations as **grid deformation**, matrices, determinants as area scaling, eigenvectors

@@ -442,3 +442,38 @@ PROCESS NOTE WORTH KEEPING: the agent verified every version live (pub.dev API, 
 REUSABLE LESSON: Package versions are exactly the class of fact a model should never answer from memory.
      Verify pins at the moment of writing them, every time.
 STATUS: ✅ amended
+
+---
+DECISION: WEB FIRST, native second (ADR-006) — user's call, 2026-09-17
+DATE: 2026-09-17
+WHAT CHANGED: the project now ships a web product first and builds the Flutter native app from Phase 5.
+     ADR-001 (Flutter) is RESCHEDULED, not revoked — every argument in it still holds for the native app.
+WHY WEB FIRST:
+     1. Distribution was our #1 unaddressed risk, and a URL is the lowest-friction distribution that exists.
+     2. It bypasses both Android CALENDAR dependencies (Developer Verification, Play's 12-tester queue) for
+        the validation phase — those consume wall-clock regardless of effort.
+     3. **Phase 1's exit gate is platform-independent.** "4 of 5 explain 3/4 ÷ 1/2" does not care whether
+        the widget ran in Chrome or an APK. Testing the thesis on the cheaper platform is strictly better.
+     4. SEO/discovery — an app is not discoverable, a page is. ~180 indexed concept pages is a compounding
+        acquisition channel we otherwise do not have.
+WHY NATIVE STILL HAPPENS: Mathigon is a website and ABANDONED the native/offline surface (Android app off
+     the Play Store, iOS stale). That vacated lane remains the strongest structural opening we found, and it
+     is only reachable natively. Budget-Android webview perf — ADR-001's reason for rejecting webview stacks
+     — is real AT SCALE (many widgets, dense scenes), not for a handful of widgets on a modern phone browser.
+WEB STACK: Astro (islands + SSG, zero JS for prose, only the widget hydrates) · TypeScript + Canvas 2D for
+     widgets · PWA + service worker for offline · IndexedDB for progress · the SAME content pipeline.
+     **Flutter web explicitly rejected** — heavy, CanvasKit download cost, SEO-invisible, which would
+     forfeit the single biggest reason to go web first. Using it "to share code" defeats the purpose.
+COST ACCEPTED: two widget implementations. The SPECS in docs/widgets/ are shared and were the expensive
+     part; the rendering code is not. Mitigation: keep engine logic (graph traversal, FSRS, misconception
+     matching, practice generation) as pure data-driven functions — port that once and carefully.
+SEQUENCING GUARD WRITTEN INTO THE PLAN: do not open the native track until Phase 3's retention gate passes.
+     Building a second client for a product nobody finished on the first one would be the most expensive
+     available way to avoid confronting a retention problem.
+WHAT THIS VALIDATES: ADR-003 (content as data) bought exactly this optionality, and this is the moment it
+     paid. The 193-node graph, 7 concepts and misconception catalog transfer at zero cost. Nothing authored
+     so far is wasted — including the 5-platform CI, which is written and parked for Phase 5.
+REUSABLE LESSON: Separate "what should we ship" from "what should we build first to find out if we're
+     right". They have different correct answers surprisingly often, and conflating them makes teams buy
+     expensive infrastructure to answer a cheap question.
+STATUS: ✅ decided by user — ADR-006 written, Phases 0/1/2/3/5 restructured, G1 rewritten, G5b added

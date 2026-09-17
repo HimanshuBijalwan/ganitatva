@@ -13,13 +13,15 @@ Every one of those can go up while understanding goes down. We refuse to optimiz
 
 ## Milestone goals
 
-### G1 — "It builds everywhere" · by **Sep 24, 2026**
-- [ ] `flutter doctor` fully clean
-- [ ] Runs on macOS
-- [ ] APK installed on a real Android phone
-- [ ] Windows .exe produced by GitHub Actions
-- [ ] Art Direction Brief approved (design-doctrine gate)
-- **Measure:** 4 platform artifacts from one `git push`
+### G1 — "A stranger can open it on their phone" · by **Sep 24, 2026**
+*(Rewritten 2026-09-17 for web-first — ADR-006. The old G1 measured native build artifacts; that moves to G5.)*
+- [x] Art Direction Brief approved (design-doctrine gate) — ✅ 2026-09-17
+- [ ] One concept page live at a shareable preview URL
+- [ ] Opens and works correctly **on a real phone browser**
+- [ ] CI rejects a deliberately-broken content YAML
+- [ ] Paper dry run of concept 7 run on two kids, result written down
+- [ ] Android Developer Verification enrolment started (calendar dependency — free, has lead time)
+- **Measure:** you can text the link to someone and they can use it
 
 ### G2 — "The thesis is true" · by **Oct 8, 2026** ⭐ *the real bet*
 - [ ] Fractions concept complete across all 6 layers
@@ -59,9 +61,15 @@ because five people were shy would be an expensive mistake.
 - [ ] Logic + algorithms tracks live
 - **Measure:** a non-programmer traces a recursive call stack correctly
 
+### G5b — "Native, on the lane Mathigon left" · from **Apr 2027**
+*Gated on G4 passing. Do not build a second client for a product nobody finished on the first one.*
+- [ ] Flutter app running from the same content bundle, zero content rewritten
+- [ ] Installs and runs offline on a budget Android phone with no data
+- **Measure:** a learner completes a concept start-to-finish in airplane mode
+
 ### G6 — "The full stack of ideas" · by **Aug 19, 2027**
 - [ ] Calculus, linear algebra, physics-1 live
-- [ ] All 5 platforms in stores
+- [ ] Web public and indexed; native in stores
 - **Measure:** learners **derive** projectile range instead of recalling it · 1,000 active learners
 
 ---
