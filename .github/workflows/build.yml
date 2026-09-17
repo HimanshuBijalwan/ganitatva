@@ -26,11 +26,16 @@
 
 name: Build
 
+# PARKED UNTIL PHASE 5 (ADR-006 — web ships first, native second).
+# This workflow is correct and stays here; there is simply no Flutter project to build yet, so
+# running it on every push would fail noisily for a reason that is not a defect. When the native
+# track opens in Phase 5, restore the push/pull_request triggers below.
 on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+  workflow_dispatch:
+  # push:
+  #   branches: [main]
+  # pull_request:
+  #   branches: [main]
   workflow_dispatch: {}
 
 # Cancel superseded runs on the same branch/PR — avoids burning macOS/Windows minutes on a commit that's
