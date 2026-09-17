@@ -40,3 +40,23 @@ Hardest widget to build: **FunctionGrapher** (depth — sandboxed evaluator + in
 dragging + three-way synchronized state). Second: **StepperMachine** (breadth — six algorithm state machines,
 deterministic rewind, recursion call-stack modeling).
 Possible shared engine later: CalculusZoom + UnitCircle reuse FunctionGrapher's viewport/curve machinery.
+
+## Toolchain pins corrected 2026-09-17 (platform agent; verified by main against pub.dev)
+- **`golden_toolkit` is DISCONTINUED** — last release 2023-02-21, flagged discontinued on pub.dev.
+  ADR-002 had specced it. Replaced with **`alchemist` ^0.14.0** (published 2026-03-13, current).
+- **Use `drift_flutter` ^0.3.1**, not `sqlite3_flutter_libs` (marked `+eol` on pub.dev).
+- Verified stack at time of writing: Flutter 3.47.4 / Dart 3.13.3.
+- CocoaPods: install via `brew install cocoapods`, **NOT** `sudo gem install` — the latter breaks on Apple
+  Silicon under SIP.
+
+## Phase 0 setup: actual shape of the work
+Windows and Linux need **zero local setup** — they build entirely on GitHub Actions. The local critical path
+is two INDEPENDENT tracks that should be started in the same sitting so their downloads overlap:
+- **Track A (Apple):** full Xcode (App Store login, ~10–13GB) → iOS Simulator runtime (~4–7GB) → CocoaPods
+- **Track B (Android):** Android Studio (~1GB) → SDK components (~3–5GB) → `flutter doctor --android-licenses`
+Flutter SDK itself (~1GB, `git clone -b stable --depth 1`) is on nobody's critical path — do it first, it's fast.
+Total ~20–27GB, ~2.5–4 hrs elapsed but only ~45min–1.5hrs hands-on.
+
+## CI cost shaping
+Expensive macOS/Windows runners are gated behind a cheap `content-validate` → `analyze` chain on
+`ubuntu-latest`, so bad YAML fails in under a minute instead of after minutes of costly runner time.

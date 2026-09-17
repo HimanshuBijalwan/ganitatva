@@ -407,3 +407,38 @@ REUSABLE LESSON: Accessibility text is content, and it is subject to every pedag
 PROCESS NOTE: pedagogy reviewed widgets' spec and found this; widgets fixed and generalized it. Neither
      agent owns both files. Cross-review across ownership boundaries is what caught it.
 STATUS: ✅ fixed and generalized
+
+---
+DECISION: Android distribution is a CALENDAR dependency, not a launch-day task
+DATE: 2026-09-17 (platform agent findings; verified and adopted)
+WHAT CHANGED: two 2026 Android policy shifts undercut ADR-005's original "direct APK + Play Store" assumption.
+     1. **Android Developer Verification** — sideloaded APKs will require a verified developer. Live in 4
+        countries as of Sept 2026, global through 2027. This hits our "direct APK" path specifically, which
+        matters because budget Android is our declared design target.
+     2. **Play's 12-tester / 14-day closed testing** for new personal accounts (ours will be one). It is a
+        queue you must START, not a review you can wait out.
+WHY THIS IS THE DANGEROUS KIND OF DEPENDENCY: neither can be fixed by working harder closer to launch. They
+     consume wall-clock regardless of effort. Discovering them in Phase 6 would have cost a delayed launch
+     for no engineering reason at all.
+ACTION: enrol in Developer Verification early (free, has lead time). Seed the 12-tester requirement from the
+     Phase 1 exit gate's 5 human testers and recruit the rest alongside — that converts a blocking
+     dependency into a by-product of work already scheduled.
+ALSO CORRECTED: Microsoft Store individual registration is now free (was $19). Windows store cost = $0.
+REUSABLE LESSON: Separate dependencies that consume EFFORT from those that consume CALENDAR. Calendar ones
+     must be started early even when nothing else is ready, and they are the ones a build-focused plan
+     reliably forgets.
+STATUS: ✅ ADR-005 amended
+
+---
+DECISION: ADR-002 pins corrected — golden_toolkit is discontinued
+DATE: 2026-09-17 (platform agent flagged; main verified against pub.dev and amended the ADR)
+WHAT: `golden_toolkit` (specced in ADR-002) last shipped 2023-02-21 and is flagged discontinued on pub.dev.
+     Replaced with `alchemist` ^0.14.0. Also `drift_flutter` ^0.3.1 rather than `sqlite3_flutter_libs` (+eol).
+PROCESS NOTE WORTH KEEPING: the agent verified every version live (pub.dev API, `gh api .../releases/latest`,
+     Flutter's releases_macos.json) rather than recalling them, explicitly because this ecosystem moves fast
+     and stale pins are worse than no pins. It then declined to edit `01-ARCHITECTURE.md` itself because
+     that file was outside its write scope, and surfaced the amendment instead. Both behaviours are correct
+     and worth reinforcing.
+REUSABLE LESSON: Package versions are exactly the class of fact a model should never answer from memory.
+     Verify pins at the moment of writing them, every time.
+STATUS: ✅ amended
