@@ -34,8 +34,12 @@ The unglamorous week that prevents six months of pain.
 **The most important phase in the entire project.** A defined *chain* of concepts, built to final quality, end to end.
 
 > **Scoping correction (2026-09-17).** This section originally read "ONE concept, fully built" and then named
-> FRACTIONS. Those two statements contradict each other, and the knowledge graph made it obvious: fractions is
-> **14 nodes**, not one. The schema's unit is one concept = one YAML file; "fractions" is a topic, not a unit.
+> FRACTIONS. Those two statements contradict each other, and the knowledge graph made it obvious: the
+> fractions sub-graph is **17 nodes**, not one. The schema's unit is one concept = one YAML file;
+> "fractions" is a topic, not a unit.
+> *(An earlier draft of this note said 14 — that came from grepping ids for the string "fraction" and missed
+> `unit-fractions`, `division-as-measuring`, `decimals-intro` and others that sit on the fractions spine
+> without the word in their id. The sub-graph is defined semantically in `docs/curriculum/01-graph-analysis.md` §4.)*
 > The plan was naming a topic and calling it a scope.
 >
 > **Resolved:** Phase 1 ships the minimal coherent chain from `fraction-as-part-whole` through to

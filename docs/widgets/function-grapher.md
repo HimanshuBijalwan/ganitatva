@@ -162,6 +162,12 @@ near-load-bearing dependency with no widget currently built for it, not a hypoth
 - **Stopgap if no new primitive ships in time:** a content author may use `FunctionGrapher`'s point-probe /
   `explore-slider` mode to carry variable-as-quantity, but only for a concept placed *after* basic
   coordinate-plane fluency is already established elsewhere in the sequence — never as the very first
-  encounter with the idea that a letter can vary. That ordering constraint should be stated explicitly in
-  any concept YAML that takes this stopgap path, so it doesn't silently become the de facto Intuition-layer
-  treatment.
+  encounter with the idea that a letter can vary. **Curriculum confirmed there is no genuine conceptual
+  prerequisite edge between coordinate-plane fluency and variable-as-quantity in the knowledge graph, and
+  deliberately isn't adding a fake one to route around this** — the ordering requirement above is an
+  artifact of *this stopgap's* representational demands, not a real dependency, and today's prerequisite
+  depths (coordinate-plane-intro at depth 6, variable-as-quantity at depth 10) only *correlate* toward the
+  right order, they don't guarantee it as the graph grows. So: this ordering must be stated explicitly as a
+  human-readable note (e.g. a `connect` field comment) in any concept YAML that takes this stopgap path — it
+  must never be encoded as a graph edge (that would misrepresent the actual conceptual dependency structure)
+  and must never be assumed to hold automatically from depth ordering alone.

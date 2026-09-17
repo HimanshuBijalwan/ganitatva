@@ -255,3 +255,24 @@ PROCESS NOTE (worth keeping): this resolved through agent-to-agent negotiation w
      dependency, widgets made the call within its lane, and escalated ONLY the schema change, which it
      correctly did not own. That is the delegation working as intended.
 STATUS: ✅ applied — enum 16 → 17
+
+---
+DECISION: Refused to add a graph edge that would encode implementation convenience as conceptual dependency
+DATE: 2026-09-17 (curriculum agent's call; endorsed by main)
+CONTEXT: The FunctionGrapher stopgap for variable-as-quantity only works if coordinate-plane fluency comes
+     first. The tempting fix was to add `coordinate-plane-intro` as a prerequisite edge, guaranteeing the order.
+CURRICULUM DECLINED, CORRECTLY: `variable-as-quantity` and `function-as-machine` do not require the
+     coordinate plane to be COHERENT — they are merely harder to render without it. That fails the graph's
+     own edge test ("incoherent, or just unfamiliar?"). The edge would have described our tooling, not the
+     mathematics.
+WHY THIS MATTERS MORE THAN IT LOOKS: the graph drives learning paths, prerequisite diagnosis and spaced
+     repetition. A false edge would tell a struggling learner "you're stuck on functions because you're
+     shaky on the coordinate plane" — which could be flatly untrue, sending them to re-learn something
+     irrelevant. False edges don't fail loudly; they misdiagnose quietly, forever.
+RESOLUTION: ordering constraint lives as a human-readable note in the concept YAML, never as a graph edge,
+     and must never be assumed from depth correlation as the graph grows. Today's ordering
+     (coordinate-plane depth 6 < variable-as-quantity depth 10) is coincidence, not guarantee.
+REUSABLE LESSON: A model that drives decisions must describe reality, not the convenience of whoever is
+     building against it. When tooling needs an ordering the domain doesn't have, record it in the tooling
+     layer — the moment you push it into the shared model, every consumer inherits the lie.
+STATUS: ✅ endorsed

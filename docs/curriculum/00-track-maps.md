@@ -210,8 +210,8 @@ the wrong model for a genuinely varying quantity), and that `FunctionGrapher`'s 
 `variable-as-quantity` only partially — it's a Manipulate/Formalize-layer tool, not the zero-symbol
 Intuition-layer treatment the 6-layer doctrine requires for a learner's *first* encounter with "a letter can
 be a changing amount." Their proposal is a dedicated `FunctionMachine` primitive (input-slot/output-slot
-container, no coordinate plane, no notation) for Phase 2/3, pending a `concept.schema.json` widget-enum
-addition neither of us owns. Their stated stopgap — reusing `FunctionGrapher`'s point-probe, but only for a
+container, no coordinate plane, no notation) for Phase 2/3. **Approved and applied 2026-09-17 by the
+schema owner (main): `FunctionMachine` is now in the `concept.schema.json` widget enum (16 → 17).** Their stated stopgap — reusing `FunctionGrapher`'s point-probe, but only for a
 concept placed after coordinate-plane fluency already exists — **is not enforced as a graph edge here on
 purpose**: `variable-as-quantity` and `function-as-machine` do not actually require the coordinate plane to
 be coherent (the doctrine test this graph applies to every edge), so adding one would misrepresent the
