@@ -18,13 +18,15 @@ IN PROGRESS:
 BLOCKED:
   - Everything downstream of the toolchain: needs the operator to run installs (App Store login required
     for Xcode). Not something an agent can do.
-PENDING — the two Phase 0 exit-gate items:
-  1. Toolchain install (~20–27GB, ~45min–1.5hrs hands-on). Two independent tracks, start together:
-     Apple (full Xcode → iOS runtime → CocoaPods via brew) and Android (Android Studio → SDK → licences).
-     Flutter SDK first, it's fast. Windows/Linux need no local setup — CI handles them.
-  2. **Paper-and-scissors dry run of concept 7 on two real kids.** Highest-value action available.
-  Then: GitHub repo + push CI · Developer Verification enrolment (calendar dependency) · font licensing
+PENDING — Phase 0, now WEB-FIRST (ADR-006, decided 2026-09-17):
+  1. Astro + TypeScript scaffold; one concept page rendering from the compiled content bundle
+  2. Canvas 2D widget harness — one mounted island
+  3. GitHub repo + CI (typecheck, content-YAML validation, preview deploys per branch)
+  4. **Paper-and-scissors dry run of concept 7 on two real kids** — needs no code, do it now
+  5. Android Developer Verification enrolment — free, calendar-bound, start early even though native is Phase 5
+  6. Native toolchain download (~20–27GB) — NO LONGER BLOCKING. Start it whenever; Phase 5 needs it.
+  Also open: font licensing (Atkinson Hyperlegible Next, Fraunces, KaTeX) before any UI ships
 NEXT ACTION:
-  - Operator starts both toolchain download tracks; paper dry run can happen in parallel (needs no code)
+  - Web scaffold + first concept page at a shareable URL. Paper dry run in parallel — it needs nothing built.
 CONFIDENCE: High on the specification. Medium on the Phase 1 human gate — pedagogy self-assessed ~60–65%,
   and was right that the uncertainty sits in execution and instrument design, not in the teaching.
