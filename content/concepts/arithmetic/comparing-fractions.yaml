@@ -1,0 +1,288 @@
+# Ganitatva concept — Phase 1 fractions chain, 4 of 7
+# NumberLine is the primary manipulable here, deliberately: the evidence for number-line
+# representation is strongest exactly for magnitude and comparison. FractionBar supports
+# the intuition layer (why the counts are not directly comparable).
+
+id: math.arithmetic.comparing-fractions
+title: "Which One Is Bigger?"
+domain: math
+track: arithmetic
+level: 3
+estimated_minutes: 14
+
+prerequisites:
+  - math.arithmetic.fractions-on-number-line
+  - math.arithmetic.equivalent-fractions
+
+unlocks:
+  - math.arithmetic.adding-fractions
+
+layers:
+
+  hook:
+    question: "Two identical pizzas. You get three fifths of one; your friend gets two thirds of the other. One of you should be annoyed. Which one, and can you tell without a calculator?"
+    body: >-
+      Three is more than two, which points one way. Fifths are smaller than thirds, which points
+      the other. The two numbers in each fraction are arguing with each other and there is no
+      obvious winner.
+
+      This is the moment most people quietly decide fractions are not for them. It is also,
+      handled properly, the moment fractions become easy — because the fix is not a procedure to
+      memorise, it is one idea you already use whenever you compare anything at all.
+
+  intuition:
+    body: >-
+      Suppose someone tells you they have seven of something and you have three of something, and
+      asks who has more stuff. You cannot possibly answer. Seven grains of rice against three
+      watermelons is not a close contest. Counts are only comparable when they are counts of the
+      same thing.
+
+      That is the entire difficulty with the two pizzas. One amount is counted in fifths, the
+      other in thirds. Different sized pieces, so the two counts are not talking about the same
+      unit, so putting them side by side proves nothing.
+
+      There are exactly two honest ways out, and you would invent both of them yourself.
+
+      The first is to make the pieces the same size. Cut every fifth into three, and cut every
+      third into five, and now both pizzas are in fifteenths — identical pieces, and the counts
+      become directly comparable. This is just renaming, which you already know how to do. It
+      always works and it never requires thinking.
+
+      The second is faster and more useful in real life: compare both to a landmark you already
+      trust. Half is the best landmark there is. Three fifths is a little past half, because half
+      of five pieces would be two and a half pieces and you have three. Two thirds is also past
+      half, but further — you would need one and a half thirds to reach half, and you have two,
+      so you are a whole half-piece past it. Being past half by more wins. No common denominator,
+      no arithmetic, just judgement.
+
+      A third landmark is worth collecting too: how close is it to a whole? Both nine tenths and
+      five sixths are one piece short of a whole, but a tenth is a small piece and a sixth is a
+      big one — so nine tenths is missing less and is therefore bigger. Notice this is not the
+      same as "both are one piece short so they are equal". The pieces are different, so the
+      shortfalls are different.
+
+      Get comfortable with the landmark way. Comparing fractions should feel like glancing at two
+      people and saying who is taller, not like filling in a form.
+
+  manipulate:
+    widget:
+      type: NumberLine
+      config:
+        range: { min: 0, max: 1 }
+        allow_range_extend_to: 2
+        landmarks:
+          show_zero_one: true
+          show_half: true
+          half_marker_style: "dashed vertical line, labelled"
+          show_quarter_marks_toggle: true
+        markers:
+          - id: yours
+            colour_token: learner_a
+            fraction: { numerator: 3, denominator: 5 }
+            numerator_control: { min: 0, max: 24 }
+            denominator_control: { min: 1, max: 12 }
+          - id: theirs
+            colour_token: learner_b
+            fraction: { numerator: 2, denominator: 3 }
+            numerator_control: { min: 0, max: 24 }
+            denominator_control: { min: 1, max: 12 }
+        tick_mode:
+          options: [own_denominator, common_denominator, none]
+          initial: own_denominator
+          common_denominator_label: "re-cut both the same way"
+          common_denominator_animation_ms: 600
+        predict_first:
+          enabled: true
+          prompt_id: "compare.predict.before-reveal"
+          hide_positions_until_prediction: true   # they must commit before the line shows them
+        readout:
+          show_both_names_in_common_pieces: true   # 9/15 and 10/15
+          show_distance_from_half: true
+          show_distance_from_one: true
+          show_symbol_toggle: true                 # < > = appear only on request
+        challenge_mode:
+          tasks:
+            - id: "find-a-between"
+              text_id: "compare.task.find-between"
+            - id: "bigger-top-and-bottom-yet-smaller"
+              text_id: "compare.task.bigger-both-yet-smaller"
+            - id: "decide-using-half-only"
+              text_id: "compare.task.half-only"
+              disable_common_denominator: true     # forces landmark reasoning
+    prompts:
+      - "Set up two fractions that look close to each other, and say out loud which one you think is bigger. Only then turn the markers on. Were you right?"
+      - "Keep both top numbers at one and change only the bottoms. Put them in order biggest to smallest. Is that the order the numbers underneath are in?"
+      - "Turn on re-cut both the same way. What happened to the two names, and what did NOT happen to the two markers?"
+      - "Find a fraction that sits strictly between one half and two thirds. Then find another one. How many are in there?"
+      - "Can you build a pair where one fraction has a bigger top AND a bigger bottom, and is still the smaller number?"
+      - "Switch off the common cuts and use only the dashed half line. Which pairs can you settle with that alone, and which ones defeat it?"
+      - "Make two fractions that land on the exact same point. What do their names have to do with each other?"
+    reveal: >-
+      Two counts can only be compared when they count the same-sized piece. So either re-cut both
+      until the pieces match and then simply compare the counts, or compare each one against a
+      landmark you already trust — half, or a whole.
+
+      On the line there is nothing to argue about: whichever marker sits further right is the
+      bigger number. Everything else is just a way of working out which one that is without
+      drawing the line.
+
+  formalize:
+    notation: |
+      \frac{3}{5} \;\square\; \frac{2}{3}
+      \;\longrightarrow\;
+      \frac{3 \times 3}{5 \times 3} = \frac{9}{15}
+      \;,\;
+      \frac{2 \times 5}{3 \times 5} = \frac{10}{15}
+      \;\Rightarrow\;
+      \frac{9}{15} < \frac{10}{15}
+      \\[6pt]
+      \text{shortcut: } \frac{a}{b} < \frac{c}{d} \iff a \times d < c \times b \quad (b, d > 0)
+    body: >-
+      The signs are the ordinary ones: less than, greater than, equal to. On the number line they
+      mean left of, right of, and same point.
+
+      The reliable method is the re-cutting you just did. Rewrite both fractions over a common
+      denominator, then compare the numerators, because now they count the same-sized piece.
+
+      There is a shortcut you may have seen called cross-multiplication, and it is worth seeing
+      where it comes from rather than being handed it. When you rewrite three fifths and two
+      thirds over fifteenths, the new numerators are three times three and two times five. The
+      fifteen underneath is the same on both sides, so it cannot affect which is bigger — you can
+      ignore it entirely and just compare three times three against two times five. That is all
+      cross-multiplication is: the re-cutting you already understand, with the step you do not
+      need left out.
+
+      If it ever feels like a magic trick, do the re-cutting the long way once. The shortcut will
+      stop being magic, permanently.
+    naming: >-
+      The less-than and greater-than signs are the same mark used two ways: the narrow, pinched
+      end points at the smaller number and the wide open end faces the larger one. It is a picture
+      of a gap that grows. No mnemonic about crocodiles is needed — the shape is already the
+      meaning.
+
+      The equals sign is two lines of exactly the same length, chosen by Robert Recorde in 1557
+      because, in his words, no two things can be more equal. It means "is the same number as" —
+      not "and the answer is", which is the meaning most people quietly assign it and which causes
+      real damage later in algebra.
+
+  practice:
+    generators:
+      - type: compare-same-denominator
+        difficulty: 1
+        params:
+          denominator: { min: 2, max: 12 }
+          numerators: { distinct: true, min: 1, max: 12 }
+      - type: compare-unit-fractions
+        difficulty: 1
+        params:
+          numerator: 1
+          denominators: { sample_from: [2, 3, 4, 5, 6, 8, 10, 12, 20, 100], count: 2 }
+      - type: compare-across-half
+        difficulty: 2
+        params:
+          one_below_half: true
+          one_above_half: true
+          denominator: { min: 3, max: 12 }
+          solvable_by_landmark_only: true
+      - type: compare-same-side-of-half
+        difficulty: 3
+        params:
+          both_above_half: [true, false]
+          denominator: { min: 3, max: 12 }
+          require_common_denominator: true
+      - type: near-miss-pair
+        difficulty: 4
+        params:
+          pairs_from: [[3, 5, 2, 3], [5, 8, 7, 11], [4, 7, 5, 9], [7, 12, 3, 5]]
+          note: "componentwise comparison gives the wrong answer on these"
+      - type: order-a-set
+        difficulty: 4
+        params:
+          count: { min: 3, max: 5 }
+          denominators: { sample_from: [2, 3, 4, 5, 6, 8, 10, 12] }
+          mixed_relative_to_half: true
+      - type: gap-to-whole
+        difficulty: 3
+        params:
+          shape: "n-1 over n"
+          denominators: { sample_from: [4, 5, 6, 8, 10, 12, 20] , count: 2 }
+          note: "both are one piece short; the pieces differ"
+
+    misconceptions:
+      - pattern: "Says one eighth is greater than one third."
+        diagnosis: >-
+          Whole-number ordering applied to the denominator. The learner's rule — the bigger
+          numeral names the bigger amount — has been correct in every situation they have met
+          since they were four years old. Nothing in the notation signals that the bottom number
+          runs backwards.
+        remedy: >-
+          Both markers on the line with numerator locked at one and only the denominators
+          adjustable. Sweeping the denominator from two to twelve drags the marker steadily
+          towards zero. The number going up while the position goes down, in one continuous
+          motion, is what dislodges the rule.
+      - pattern: "Says three eighths is greater than two thirds, comparing only the numerators."
+        diagnosis: >-
+          The learner treats the numerator as 'the amount' and the denominator as a category
+          label to be ignored while comparing — the way you would ignore the word 'apples' when
+          comparing three apples with two apples. The mistake is that here the label is not the
+          same on both sides, so it cannot be ignored.
+        remedy: >-
+          predict_first, then tick_mode set to common_denominator. Three eighths becomes nine
+          twenty-fourths and two thirds becomes sixteen twenty-fourths. Once the labels match,
+          their own rule works and gives the opposite answer. The rule was not wrong; the
+          precondition was missing.
+      - pattern: "Says five sixths equals seven eighths because both are one piece away from a whole."
+        diagnosis: >-
+          Gap reasoning without unit awareness. The learner correctly notices both are one piece
+          short and correctly treats distance-from-one as meaningful, but silently assumes a
+          sixth and an eighth are the same size. This is a sophisticated strategy failing on one
+          hidden assumption, not a careless slip.
+        remedy: >-
+          readout.show_distance_from_one with both markers placed and the region between one and
+          each marker shaded. The two gaps are visibly different lengths. Then hand them the
+          gap-to-whole generator, where the strategy now works because they check the piece size.
+      - pattern: "Compares by subtracting: for three quarters against five sixths, computes four minus three and six minus five, gets one and one, concludes equal."
+        diagnosis: >-
+          The same gap belief as above, dressed as arithmetic. The learner has converted a visual
+          strategy into a numerical one, which makes it feel more rigorous and therefore harder to
+          give up.
+        remedy: >-
+          The near-miss-pair generator with the line visible. The arithmetic says equal; the two
+          markers are plainly in different places. Ask which one they believe, then ask what the
+          subtraction actually measured — a count of pieces, with the size thrown away.
+      - pattern: "Insists on finding the lowest common denominator before answering anything, including one tenth against nine tenths."
+        diagnosis: >-
+          The learner has learned comparison as a procedure rather than a judgement, so every
+          comparison must run the full procedure. This is not a wrong belief about fractions; it
+          is a belief that mathematics is something you execute rather than something you see.
+          It is also slow enough to make them avoid fractions entirely.
+        remedy: >-
+          challenge_mode task decide-using-half-only, with the common-denominator control
+          disabled. They cannot run the procedure, so they must look. Most learners are surprised
+          at how many pairs fall in two seconds.
+      - pattern: "Compares fractions drawn on two diagrams of different overall size and picks by shaded area."
+        diagnosis: >-
+          Reverting to concept one's unfinished business: the fraction is being read as an
+          absolute amount rather than a proportion of its own whole. Usually appears when the
+          learner is under time pressure and falls back to looking at the picture.
+        remedy: >-
+          Move them onto the number line, where there is only one whole and it is shared. The line
+          removes the possibility of the error rather than correcting it after the fact.
+
+  connect:
+    body: >-
+      Comparing is where the two halves of a fraction finally have to be held in mind at once, and
+      it is the last stop before anything is done TO fractions rather than WITH them.
+
+      It hands two tools forward. Re-cutting to a common piece size is the exact move that makes
+      addition work in the next concept — and, later, the move that makes division collapse into
+      ordinary whole-number division. Landmark reasoning against half and one becomes estimation,
+      which is the skill that catches a wrong answer before anyone marks it wrong.
+
+      Further out, this is the root of ordering decimals, reading a percentage as a position
+      rather than a formula, and every inequality that will ever appear in algebra.
+    links:
+      - math.arithmetic.adding-fractions
+      - math.arithmetic.dividing-fractions
+      - math.arithmetic.decimals-as-fractions
+      - math.arithmetic.percentages

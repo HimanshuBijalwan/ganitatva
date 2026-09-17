@@ -1,0 +1,275 @@
+# Ganitatva concept — Phase 1 fractions chain, 3 of 7
+# One point, many names. Renaming (not "reducing") is the machinery that makes
+# comparing, adding and dividing possible later in the chain.
+
+id: math.arithmetic.equivalent-fractions
+title: "Same Point, Different Name"
+domain: math
+track: arithmetic
+level: 2
+estimated_minutes: 12
+
+prerequisites:
+  - math.arithmetic.fractions-as-parts
+  - math.arithmetic.fractions-on-number-line
+
+unlocks:
+  - math.arithmetic.comparing-fractions
+  - math.arithmetic.adding-fractions
+  - math.arithmetic.dividing-fractions
+
+layers:
+
+  hook:
+    question: "Cut your slice of cake in half. Now you are holding two pieces instead of one. Did you get more cake? Then why did the number change?"
+    body: >-
+      Something happened that ought to be impossible. Nothing was added, nothing was taken away,
+      the amount of cake on your plate is identical to a second ago — and yet the fraction you
+      would write down is now completely different.
+
+      Either the amount changed, or the name did. Only one of those can be true, and working out
+      which is the whole of this concept.
+
+  intuition:
+    body: >-
+      Slicing does not create cake. That is obvious enough that it feels like it does not need
+      saying, until you notice that every "different" fraction name for the same amount comes
+      from exactly this.
+
+      Watch what happens when you cut every piece in two. The number of pieces doubles. The size
+      of each piece halves. Those are two changes, they happen in the same instant, and they
+      pull in exactly opposite directions — so they cancel, perfectly, every single time. You
+      end up with twice as many pieces that are each half as big, which is the same cake.
+
+      Money makes it impossible to argue with. A hundred rupee note is ten ten-rupee notes. Same
+      money. More notes, smaller notes. Nobody gets richer by going to the counter and asking for
+      change. And a hundred rupees is also a thousand one-rupee coins, and two fifty-rupee notes,
+      and any number of other arrangements — all the same amount, all named differently depending
+      on what size of note you decided to count in.
+
+      That is the whole idea, and it is not really about fractions at all. It is about the fact
+      that a measurement has two halves to it: a count, and the size of the thing being counted.
+      You can trade one against the other freely. Your height is one and a half in metres and a
+      hundred and fifty in centimetres. Same you. Smaller unit, bigger count.
+
+      Go back to the road. The tea stall is standing in one spot. Whether you got there by taking
+      three strides out of four, or six half-length strides out of eight, the stall has not moved.
+      The point on the line is the number. The name is just the directions you happened to use.
+
+      And here is what you can already predict. If you want a new name for the same spot, you must
+      change the stride size and the stride count together, in step. Change only one and you have
+      walked somewhere else.
+
+  manipulate:
+    widget:
+      type: FractionBar
+      config:
+        mode: equivalence
+        bars:
+          - id: reference
+            label: "the amount — do not touch"
+            whole_length: 1.0
+            partitions: 2
+            shaded: 1
+            locked: true
+            shade_edge_style: "solid vertical rule extending through both bars"
+          - id: renamer
+            label: "rename it"
+            whole_length: 1.0
+            partitions: 2
+            shaded: 1
+            locked_shaded_edge: true     # the boundary CANNOT move; only the cuts multiply
+        split_control:
+          label: "slice every piece into"
+          min: 1
+          max: 8
+          step: 1
+          animate_ms: 450
+          animation: "each existing cut line spawns children; shaded pieces are cut too"
+        unsplit_control:
+          label: "glue pieces back together"
+          enabled_only_when_divisible: true
+          on_blocked_message_id: "equiv.cannot-unsplit"
+        sabotage_mode:
+          enabled: true
+          label: "try adding the same number to both instead"
+          effect: "numerator +k and denominator +k; the shaded edge is ALLOWED to move here"
+          purpose: "the add-to-both misconception must be allowed to happen and be seen to fail"
+          show_edge_drift_marker: true
+        readout:
+          show_name_history: true        # a running list: 1/2, 2/4, 3/6, 4/8 ...
+          show_point_on_mini_number_line: true
+          highlight_when_name_is_simplest: true
+        challenge_targets:
+          - { denominator: 6, reachable: true }
+          - { denominator: 10, reachable: true }
+          - { denominator: 7, reachable: false, purpose: "discover that only multiples work" }
+    prompts:
+      - "Slice the bottom bar more and more. Does the shaded edge ever move, even slightly?"
+      - "Collect three different names for the same shaded amount. What do those names have in common?"
+      - "Can you find a name for this amount with a seven underneath? If not, what stops you?"
+      - "Now go the other way and glue pieces back. Which names can be glued down further, and which are already as short as they go?"
+      - "Turn on sabotage mode and add one to the top and one to the bottom. Watch the edge. Did the amount survive?"
+      - "Set the reference to two thirds. Can you reach four sixths? Six ninths? What is the pattern in the pairs you can reach?"
+      - "Look at the mini number line as you rename. How many points is the marker sitting on?"
+    reveal: >-
+      Multiplying the top and the bottom by the same number does not change the amount, because
+      it makes two opposite changes at once: more pieces, and each piece smaller by exactly the
+      same factor. They cancel.
+
+      Adding the same number to both does not cancel — it changes the count and the piece size by
+      different proportions — which is why the edge moved and the cake changed.
+
+      One point on the line, many names. Choosing a name is choosing what size of piece you want
+      to count in. That freedom is about to become the tool that lets you compare, add and
+      eventually divide fractions.
+
+  formalize:
+    notation: |
+      \frac{a}{b} = \frac{a \times k}{b \times k} \quad (k \neq 0)
+      \\[4pt]
+      \frac{a \times k}{b \times k} = \frac{a}{b} \times \frac{k}{k} = \frac{a}{b} \times 1
+    body: >-
+      Slicing every piece into k pieces multiplies the piece count by k and the total piece count
+      by k. Written down, that is multiplying the numerator and the denominator by the same k.
+
+      There is a deeper reason it is allowed, and it is worth seeing rather than accepting.
+      Multiplying top and bottom by k is the same as multiplying the whole fraction by k over k —
+      and k over k is a whole cut into k pieces with all k pieces taken back, which is one. You
+      are multiplying by one. Multiplying by one never changes anything. That is the entire
+      justification, and it is not a rule someone invented; it follows from what the notation
+      already means.
+
+      The same move run backwards is called writing a fraction in its simplest form: divide top
+      and bottom by a common factor until no common factor above one is left. Six ninths becomes
+      two thirds. It is the same point on the line with a shorter name.
+    naming: >-
+      Textbooks call this "reducing" or "cancelling down", and both words actively mislead. A
+      fraction in simplest form is not smaller, reduced or diminished in any way — six ninths and
+      two thirds are the identical number, sitting on the identical point. Nothing was cancelled
+      and nothing was lost.
+
+      "Renaming" is the accurate word, and it is worth insisting on, because a surprising number
+      of people carry a private suspicion for years that simplifying a fraction makes it slightly
+      smaller, and then cannot work out why their answers are wrong.
+
+      The word EQUIVALENT means equal in value. Not similar, not close, not nearly. Two
+      equivalent fractions are the same number, and you may swap one for the other anywhere, at
+      any time, without asking permission.
+
+  practice:
+    generators:
+      - type: generate-equivalent
+        difficulty: 1
+        params:
+          base_denominator: { min: 2, max: 9 }
+          base_numerator_rule: "1..base_denominator"
+          multiplier: { min: 2, max: 6 }
+          ask: [missing_numerator, missing_denominator]
+      - type: simplest-form
+        difficulty: 2
+        params:
+          simplified_denominator: { min: 2, max: 12 }
+          hidden_multiplier: { min: 2, max: 8 }
+          distractors: [partially_simplified, subtract_common_value, swap_terms]
+      - type: reachable-denominator
+        difficulty: 3
+        params:
+          base: { numerator: 1, denominator: [2, 3, 4, 5] }
+          target_denominator_pool: [6, 7, 8, 9, 10, 11, 12]
+          ask: "which of these can name the same amount, and which cannot"
+          require_reason: true
+      - type: spot-the-fake-equivalence
+        difficulty: 3
+        params:
+          fake_rule: [add_k_to_both, multiply_denominator_only, multiply_numerator_only, add_one_to_both]
+          include_true_equivalence: true
+          ask: "which of these pairs are actually the same number"
+      - type: common-denominator-pair
+        difficulty: 3
+        params:
+          denominators: { sample_from: [2, 3, 4, 5, 6, 8, 9, 10, 12], count: 2 }
+          ask: "rewrite both with the same piece size"
+          accept_any_common_multiple: true
+          bonus_for_lcm: true
+
+    misconceptions:
+      - pattern: "Writes one half equals two thirds, by adding one to the top and one to the bottom."
+        diagnosis: >-
+          The learner has the right instinct — whatever you do to one part you must do to the
+          other — and has chosen the wrong operation to do it with. 'Do the same to both sides'
+          is a rule they have been told is important, and nobody told them that the operation
+          which preserves a ratio is multiplication rather than addition. The belief is not lazy;
+          it is a half-remembered correct principle.
+        remedy: >-
+          sabotage_mode. It performs exactly their rule and lets the shaded edge move. They
+          predicted the amount would survive; it visibly did not. Then run multiply-by-the-same
+          beside it and watch the edge hold still. The two operations must be seen side by side,
+          because the belief is about equal treatment, not about arithmetic.
+      - pattern: "To rewrite one half in sixths, writes one sixth — changes only the denominator."
+        diagnosis: >-
+          The learner believes the denominator is the part being converted and the numerator is
+          along for the ride, because in their mental picture the top number is 'how many I have',
+          which surely does not change when you just re-label the pieces.
+        remedy: >-
+          The split animation with the shaded region included. When one shaded half is sliced into
+          three, three pieces are shaded, on screen, in one motion. The numerator is not a label,
+          it is a count of pieces, and cutting makes more of them.
+      - pattern: "Believes writing a fraction in simplest form makes its value smaller."
+        diagnosis: >-
+          Induced entirely by vocabulary — 'reduce' and 'cancel' mean shrink and destroy in every
+          other context in the learner's life. The belief is about language, not about
+          mathematics, which is why re-explaining the procedure never fixes it.
+        remedy: >-
+          show_point_on_mini_number_line. Both names are placed on the line at once and they are
+          the same point. Then refuse to use the word 'reduce' anywhere in the product, ever.
+      - pattern: "Says three quarters and four fifths are equivalent because both are one piece short of a whole."
+        diagnosis: >-
+          The learner is measuring the gap to the whole and counting pieces in that gap, without
+          noticing that the two gaps are made of different-sized pieces. This is a genuinely
+          sophisticated strategy — it is right when the denominators match — and it is the same
+          faulty instinct that will reappear in comparing fractions.
+        remedy: >-
+          Both names on the mini number line, then zoom into the region between them. The gaps
+          are visibly different lengths. Follow with a bar view where the missing quarter and the
+          missing fifth are dragged out and laid against each other.
+      - pattern: "Cancels a digit that appears in both numerator and denominator, e.g. sixteen over sixty-four becoming one over four by striking the sixes."
+        diagnosis: >-
+          The learner has abstracted cancelling into a symbol-deletion game — if the same digit
+          appears above and below, strike it out. It is an entirely reasonable pattern to infer
+          from watching a teacher strike out common factors, especially since it occasionally
+          produces the right answer.
+        remedy: >-
+          The challenge_targets mechanism: ask them to reach the claimed name using the split and
+          unsplit controls only. Sixteen sixty-fourths glues down to one quarter; it cannot be
+          reached by removing a six from each. Factors are things you multiply by, not digits you
+          can see.
+      - pattern: "Cannot find a common denominator for fifths and sixths, or insists none exists."
+        diagnosis: >-
+          The learner is searching for a denominator that appears in both times tables by
+          recognition rather than by construction, and thirty is beyond the range they have
+          memorised. The belief is that common denominators are found, not made.
+        remedy: >-
+          challenge_targets with an unreachable target, followed by the split control on both
+          bars at once. Slicing the fifths into six each and the sixths into five each lands both
+          on thirtieths. A common denominator is always constructible, never a lucky find.
+
+  connect:
+    body: >-
+      Renaming is the workhorse of the rest of fractions. Nothing later works without it.
+
+      Comparing needs it, because two counts can only be compared when they count the same-sized
+      piece. Adding needs it for exactly the same reason. And dividing needs it most of all:
+      re-cutting two fractions into the same-sized pieces turns fraction division into ordinary
+      whole-number division of two counts, which is the route that makes dividing by a half stop
+      being mysterious.
+
+      Beyond this chain, it is the same machinery as simplifying ratios, converting units,
+      scaling recipes, and later cancelling common factors in algebra. Every one of those is
+      trading count against unit size while the amount stays put.
+    links:
+      - math.arithmetic.comparing-fractions
+      - math.arithmetic.adding-fractions
+      - math.arithmetic.dividing-fractions
+      - math.arithmetic.ratio-and-rate
+      - math.prealgebra.algebraic-fractions

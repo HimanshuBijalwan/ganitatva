@@ -156,3 +156,54 @@ EXPECTED RESULT: a real channel hypothesis exists before 180 concepts are writte
 REUSABLE LESSON: "Build it then figure out distribution" is the default plan shape and it is the default
      failure shape. Distribution deserves a phase gate, not an epilogue.
 STATUS: ✅ decided — plan amended
+
+---
+DECISION: Widget events report RAW INTERACTIONS, never pedagogical judgments
+DATE: 2026-09-17 (widgets agent, accepted)
+WHY: A widget that knows "the learner has the add-tops-add-bottoms misconception" is welded to one concept.
+     A widget that emits "learner dropped segment X at position Y" is reusable everywhere. Misconception
+     matching lives in the concept YAML (`practice.misconceptions` patterns), not in Dart.
+EXPECTED RESULT: ~16 widgets carry ~180 concepts instead of needing per-concept variants
+REUSABLE LESSON: Push interpretation UP to the data layer and keep the component dumb. The moment a
+     reusable component encodes domain judgment, it stops being reusable — and you find out late.
+STATUS: ✅ accepted
+
+---
+DECISION: describeState() is a second rendering target, not an accessibility afterthought
+DATE: 2026-09-17 (widgets agent, accepted)
+WHY: Every widget must render its state as a full English sentence for screen readers. Treated as a first-
+     class output alongside the canvas, it stays correct; bolted on later it rots immediately.
+SIDE BENEFIT (noted, not yet planned): this same sentence output is a natural hook for Hindi localization
+     of widget state in Phase 7, and for automated testing of widget semantics.
+STATUS: ✅ accepted
+
+---
+DECISION: Widget enum — merge TruthTable+LogicGates into LogicBoard; split GeometryCanvas
+DATE: 2026-09-17 (widgets agent recommendation, accepted)
+WHY (merge): A truth table and a gate diagram are the SAME boolean expression under two representations.
+     Toggling between them on the same expression — seeing the table row light up the wire — is itself the
+     lesson, not a convenience. Two separate widgets would duplicate engineering and lose the lesson.
+WHY (split): GeometryCanvas bundled two different teaching jobs AND two different engineering problems:
+     step-gated compass/straightedge construction (procedural — closer to StepperMachine) versus free
+     drag-and-observe invariant discovery (a constraint-solving engine). As scoped it risked being harder
+     to build than FunctionGrapher, for two audiences that don't need the same widget.
+NICE CONSEQUENCE: framing construction as procedural surfaces a real curriculum edge — a compass-and-
+     straightedge construction IS an algorithm. That's a genuine geometry↔algorithms link for the knowledge
+     graph, not a forced one. Flagged to curriculum.
+VERIFIED SAFE: no authored content referenced the changed entries at time of change.
+STATUS: ✅ applied to content/schema/concept.schema.json
+
+---
+DECISION: OPEN RISK — FunctionGrapher needs a sandboxed expression evaluator
+DATE: 2026-09-17 (widgets agent, flagged not resolved)
+WHAT: Per ADR-003, custom functions are defined in content YAML, not compiled Dart. So FunctionGrapher must
+     evaluate author-written expressions at 60–120fps with zero drag latency (the live-morph causal link IS
+     the lesson; any lag breaks it), while keeping graph + accessible table + formula consistent in one frame.
+WHY IT MATTERS BEYOND PERF: today content is first-party, so an evaluator is a correctness and performance
+     problem only. **Phase 7 proposes community-contributed concepts** — at that moment the same evaluator
+     becomes an untrusted-input surface. Design it sandboxed from the start (whitelisted operations, no
+     arbitrary execution, bounded iteration); retrofitting a sandbox after community content ships is the
+     kind of thing that goes badly.
+NEXT ACTION: prototype and benchmark the evaluator in Phase 2 before FunctionGrapher-dependent content is
+     authored. Do not let Phase 3 content assume capabilities that aren't proven.
+STATUS: ⚠️ open — owned by platform/widgets in Phase 2

@@ -197,6 +197,7 @@ nodes:
       - math.arithmetic.multiplication-multidigit
     unlocks:
       - math.arithmetic.decimal-division
+      - math.arithmetic.fraction-decimal-conversion
       - math.arithmetic.order-of-operations
     load_bearing: true
   - id: math.arithmetic.order-of-operations
@@ -351,7 +352,6 @@ nodes:
       - math.arithmetic.gcd
     unlocks:
       - math.algebra.rational-expressions-intro
-      - math.arithmetic.fraction-decimal-conversion
   - id: math.arithmetic.mixed-numbers
     title: Mixed Numbers
     track: arithmetic
@@ -478,10 +478,10 @@ nodes:
   - id: math.arithmetic.fraction-decimal-conversion
     title: Converting Between Fractions and Decimals
     track: arithmetic
-    level: 6
+    level: 4
     prerequisites:
       - math.arithmetic.decimals-intro
-      - math.arithmetic.fraction-simplification
+      - math.arithmetic.long-division
     unlocks:
       - math.arithmetic.percentage-intro
   - id: math.arithmetic.ratio-intro
@@ -519,7 +519,7 @@ nodes:
   - id: math.arithmetic.percentage-intro
     title: Introduction to Percentage
     track: arithmetic
-    level: 7
+    level: 6
     prerequisites:
       - math.arithmetic.fraction-decimal-conversion
       - math.arithmetic.ratio-intro
@@ -528,7 +528,7 @@ nodes:
   - id: math.arithmetic.percentage-of-a-quantity
     title: Finding a Percentage of a Quantity
     track: arithmetic
-    level: 8
+    level: 6
     prerequisites:
       - math.arithmetic.percentage-intro
       - math.arithmetic.fraction-of-a-quantity
@@ -537,7 +537,7 @@ nodes:
   - id: math.arithmetic.percentage-increase-decrease
     title: Percentage Increase and Decrease
     track: arithmetic
-    level: 8
+    level: 6
     prerequisites:
       - math.arithmetic.percentage-of-a-quantity
       - math.arithmetic.integer-addition
