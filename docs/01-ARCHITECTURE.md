@@ -62,11 +62,11 @@
 |---|---|---|
 | State | **Riverpod** | compile-safe, testable without widgets, no BuildContext games |
 | Routing | **go_router** | deep links → a concept URL works on every platform |
-| Local DB | **Drift** (SQLite) | typed queries, runs on all 5 targets, offline-first |
+| Local DB | **Drift** + `drift_flutter` (^0.3.1) | typed queries, runs on all 5 targets, offline-first. *Use `drift_flutter`, not `sqlite3_flutter_libs` — pub.dev marks the latter `+eol`.* |
 | Math typesetting | **flutter_math_fork** | LaTeX rendering, offline |
 | Animation | native `AnimationController` + custom `CustomPainter` | no dependency needed |
 | Serialization | `freezed` + `json_serializable` | content schema safety |
-| Tests | `flutter_test` + `golden_toolkit` | **golden tests on widgets** — a math diagram that renders wrong is a silent content bug |
+| Tests | `flutter_test` + **`alchemist`** (^0.14.0) | **golden tests on widgets** — a math diagram that renders wrong is a silent content bug. *Amended 2026-09-17: originally specced `golden_toolkit`, which is **discontinued** — last release 2023-02-21, flagged on pub.dev. `alchemist` serves the same purpose and is current.* |
 
 ## ADR-003 — Content is DATA, not code
 
@@ -116,6 +116,22 @@ This is also where the existing `/graphify` tooling plugs in.
 
 **CI is not a "later" task.** With no Windows machine in the room, GitHub Actions *is* the Windows build
 machine. It gets set up in Phase 0, not Phase 6.
+
+### Android distribution reality (added 2026-09-17 — this changes an assumption above)
+
+Two 2026 policy shifts make "direct APK + Play Store" less simple than this ADR assumed. Both are **calendar
+dependencies**, which is the dangerous kind — they cannot be fixed by working harder closer to launch.
+
+1. **Android Developer Verification is mid-rollout.** Sideloaded APKs will require a *verified developer*.
+   Live in 4 countries as of Sept 2026, going global through 2027. Our direct-APK path — which matters
+   precisely because a budget Android phone is the declared design target — **will not stay frictionless.**
+   Action: enrol early. Free, but it has its own lead time.
+2. **Google Play's 12-tester / 14-day closed-testing requirement** applies to new personal developer
+   accounts, which ours will be. It is a queue you must *start*, not a review you can wait out.
+   Action: seed it from the Phase 1 exit gate's 5 human testers and recruit the rest alongside — that turns
+   a blocking dependency into a by-product of work already scheduled.
+
+Corrected while here: **Microsoft Store individual registration is now free** (was $19), so that cost line is $0.
 
 ## Widget kit — the reusable core
 
