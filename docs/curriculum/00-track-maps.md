@@ -204,6 +204,24 @@ practice. That is a strong argument — noted here for whoever designs the funct
 a manipulation that keeps graph, table, and formula visible and synchronized simultaneously, rather than
 teaching the three representations as separate sequential lessons.
 
+**Widget-coverage gap, resolved 2026-09-17 (cross-agent note):** the widgets agent confirmed `BalanceScale`
+stays scoped to `variable-as-placeholder` only (its two-pan mechanic assumes a fixed, undiscovered number —
+the wrong model for a genuinely varying quantity), and that `FunctionGrapher`'s point-probe covers
+`variable-as-quantity` only partially — it's a Manipulate/Formalize-layer tool, not the zero-symbol
+Intuition-layer treatment the 6-layer doctrine requires for a learner's *first* encounter with "a letter can
+be a changing amount." Their proposal is a dedicated `FunctionMachine` primitive (input-slot/output-slot
+container, no coordinate plane, no notation) for Phase 2/3, pending a `concept.schema.json` widget-enum
+addition neither of us owns. Their stated stopgap — reusing `FunctionGrapher`'s point-probe, but only for a
+concept placed after coordinate-plane fluency already exists — **is not enforced as a graph edge here on
+purpose**: `variable-as-quantity` and `function-as-machine` do not actually require the coordinate plane to
+be coherent (the doctrine test this graph applies to every edge), so adding one would misrepresent the
+mathematics to serve an implementation stopgap, not fix a real dependency. In practice the ordering mostly
+takes care of itself — `coordinate-plane-intro` sits at raw depth 6, `variable-as-quantity` at depth 10,
+`function-as-machine` at depth 13, so any depth/level-ordered path engine (Phase 2) will surface
+`coordinate-plane-intro` well before either — but that's a correlation from unrelated prerequisites, not a
+guarantee. If the `FunctionGrapher` stopgap ships, the ordering assumption needs to live as an explicit
+authoring note in that concept's YAML (`connect` or a comment), not as a fabricated graph prerequisite.
+
 ### 5.5 Fracture point ≠ load-bearing node
 
 Worth stating explicitly because the numbers make it visible: "load-bearing" in this graph is a *structural*

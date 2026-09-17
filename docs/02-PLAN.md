@@ -31,9 +31,20 @@ The unglamorous week that prevents six months of pain.
 
 ## Phase 1 — The Vertical Slice · Sep 25 → Oct 8, 2026 (2 weeks)
 
-**The most important phase in the entire project.** One concept, built to final quality, end to end.
+**The most important phase in the entire project.** A defined *chain* of concepts, built to final quality, end to end.
 
-**Chosen concept: FRACTIONS.** Why this one:
+> **Scoping correction (2026-09-17).** This section originally read "ONE concept, fully built" and then named
+> FRACTIONS. Those two statements contradict each other, and the knowledge graph made it obvious: fractions is
+> **14 nodes**, not one. The schema's unit is one concept = one YAML file; "fractions" is a topic, not a unit.
+> The plan was naming a topic and calling it a scope.
+>
+> **Resolved:** Phase 1 ships the minimal coherent chain from `fraction-as-part-whole` through to
+> `fraction-division` — roughly 7 nodes, pinned exactly against `content/graph/prerequisites.yaml`. Nodes
+> outside that chain (simplification, decimal conversion, fraction-of-a-quantity, improper fractions,
+> subtraction) are **explicitly out of Phase 1** and land in Phase 3.
+> The exit gate is unchanged and still sits on `fraction-division`.
+
+**Chosen chain: FRACTIONS.** Why this topic:
 - Universally hated → highest possible "ohh" payoff
 - Purely visual at its core → proves the thesis
 - Exercises three different widgets (`FractionBar`, `NumberLine`, `AreaModel`) → proves the kit generalizes
@@ -80,6 +91,19 @@ Turn one hand-built concept into a factory.
 ## Phase 3 — Math Breadth · Nov 6, 2026 → Feb 4, 2027 (13 weeks)
 
 Content marathon. This is where the real cost lives — 80% of total project effort is content, not code.
+
+**Per-fracture-point human gates (added 2026-09-17).** Phase 1 gives fractions a dedicated 5-tester gate.
+The graph shows three other fracture points deserve the same treatment rather than being folded into one
+aggregate retention number at the end of a 13-week phase:
+
+| Fracture point | Structural weight | Why it needs its own gate |
+|---|---|---|
+| `negative-numbers-intro` | **54 descendants** | Split-ray and amalgamated-translation misconceptions are documented **in pre-service teachers themselves** — arguably more alarming than the fractions evidence |
+| `variable-as-quantity` | 41 descendants | Distinct cognitive achievement from variable-as-placeholder; `function-as-machine` depends on it specifically |
+| `function-as-machine` | 9 descendants | Low descendant count but a genuine fracture point — raw counts are root-dominated and understate late-graph concepts |
+
+Each gets a lightweight 5-tester check when Phase 3 reaches it. A failure there is a signal to stop and fix,
+exactly as in Phase 1 — not a number to average away.
 
 - **Arithmetic + Abacus track** (place value, four operations, mental math ladder)
 - **Pre-algebra & Algebra** (balance-scale equations, factoring via area, functions)

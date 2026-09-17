@@ -237,6 +237,7 @@
             "AreaModel",
             "FractionBar",
             "BalanceScale",
+            "FunctionMachine",
             "FunctionGrapher",
             "MatrixTransform",
             "GeometryConstruction",
@@ -249,7 +250,7 @@
             "CalculusZoom",
             "VectorField"
           ],
-          "$comment": "LogicBoard replaces TruthTable+LogicGates (config.view: table|gates) — they are one boolean expression under two representations, and switching representation is the lesson. GeometryCanvas split into GeometryConstruction (step-gated, procedural — a construction IS an algorithm) and DynamicGeometry (free drag, constraint-solving, invariant discovery)."
+          "$comment": "LogicBoard replaces TruthTable+LogicGates (config.view: table|gates) — they are one boolean expression under two representations, and switching representation is the lesson. GeometryCanvas split into GeometryConstruction (step-gated, procedural — a construction IS an algorithm) and DynamicGeometry (free drag, constraint-solving, invariant discovery). FunctionMachine (input slot -> output slot, no coordinate plane, no algebraic notation) exists because neither BalanceScale (assumes a FIXED unknown) nor FunctionGrapher (presupposes coordinate-plane literacy) can serve the zero-symbol Intuition layer for variable-as-quantity."
         },
         "config": {
           "type": "object",

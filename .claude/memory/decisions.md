@@ -228,3 +228,30 @@ REUSABLE LESSON: Two things. (1) When a pipeline scales content, it scales error
      recommendation is exactly the kind that vanishes. The orchestrator must own the unowned, or delegation
      quietly loses work that no individual agent did anything wrong to lose.
 STATUS: ✅ captured — Phase 2 deliverable with named owner
+
+---
+DECISION: Add FunctionMachine widget — BalanceScale and FunctionGrapher both fail the Intuition layer
+DATE: 2026-09-17 (agent-negotiated; schema call escalated to and made by main)
+WHY: Kieran (1992) distinguishes variable-as-placeholder (an unknown to solve for) from variable-as-quantity
+     (a generalized, varying amount). The 192-node graph encodes these as separate nodes with a real
+     prerequisite edge, and `function-as-machine` depends specifically on variable-as-quantity.
+     Neither existing widget can serve variable-as-quantity's INTUITION layer:
+       - BalanceScale's mirrored-pans mechanic structurally assumes a fixed unknown — wrong mental model.
+       - FunctionGrapher's point-probe works, but presupposes coordinate-plane literacy, making it a
+         Manipulate/Formalize tool. The doctrine requires Intuition to be zero-symbol.
+     So the choice was: add a widget, or break the doctrine for this concept. Added the widget.
+DESIGN: input slot → output slot container. No coordinate plane, no algebraic notation. Same rationale as
+     AbacusBoard existing rather than overloading NumberLine — a dedicated physical anchor beats a
+     stretched general-purpose one.
+STOPGAP ACCEPTED: FunctionGrapher's point-probe may carry variable-as-quantity content, but only for
+     concepts placed AFTER coordinate-plane fluency is established — never as first exposure. Any concept
+     YAML relying on the stopgap must state that ordering constraint explicitly.
+REUSABLE LESSON: When no existing component can serve a layer your own doctrine mandates, that is the
+     doctrine doing its job — it surfaced a real gap instead of letting a stretched widget quietly ship a
+     wrong mental model. Overloading a component to avoid adding one is how mental-model bugs enter a
+     system, and they are invisible afterwards.
+PROCESS NOTE (worth keeping): this resolved through agent-to-agent negotiation without main arbitrating —
+     widgets raised it, research routed it out of its own lane, curriculum supplied the concrete graph
+     dependency, widgets made the call within its lane, and escalated ONLY the schema change, which it
+     correctly did not own. That is the delegation working as intended.
+STATUS: ✅ applied — enum 16 → 17

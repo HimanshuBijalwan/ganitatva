@@ -14,6 +14,13 @@ operation applied to one side is mechanically forced onto the other** — the wi
 apply an operation to only one pan. Isolating a variable stops being a memorized sequence of moves and
 becomes "the only way to keep the thing level while removing clutter from one side."
 
+**Explicit scope boundary:** this widget teaches **variable-as-placeholder** (an unknown, fixed number to
+be found) — it does not teach and should not be stretched to teach **variable-as-quantity** (a letter
+attached to something that genuinely varies, the prerequisite `function-as-machine` needs). These are
+documented as distinct cognitive achievements (Kieran 1992), and `BalanceScale`'s entire mechanic assumes
+`x` is one specific undiscovered number — the wrong model for a varying quantity. See `function-grapher.md`
+§8 for the fuller scope note and recommendation on where variable-as-quantity should live.
+
 ## 2. Config schema
 
 ```jsonc

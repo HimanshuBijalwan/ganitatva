@@ -1,0 +1,642 @@
+# Ganitatva concept — Phase 1 fractions chain, 7 of 7. THE EXIT GATE CONCEPT.
+#
+# Design decisions, stated so they are not accidentally edited away:
+#   1. Division is taught as MEASUREMENT ("how many of these fit inside that"), never as
+#      sharing. Sharing collapses the instant the divisor is a fraction — "share among half a
+#      person" is meaningless — and that collapse is precisely why the rule feels arbitrary.
+#   2. "The answer gets bigger" is never presented as a fact about fractions. It is presented
+#      as a fact about MEASURING: a smaller unit always yields a bigger count. The learner
+#      already believes this (150 cm vs 1.5 m) before the lesson starts.
+#   3. THE CRUX: the remainder is measured against the DIVISOR, not against the whole. This is
+#      the single point where 3/4 ÷ 1/2 becomes 1½ instead of 1¼, and the widget must make it
+#      a physical action, not an assertion.
+#   4. "Flip and multiply" appears ONLY in formalize, derived, after the learner has already
+#      produced the answer. The reciprocal is given a concrete meaning: d/c is how many sticks
+#      fit in one whole. That is what the flip IS.
+#   5. Divisors greater than one are mandatory in the ladder, or we replace one false rule
+#      ("dividing makes smaller") with another ("dividing by a fraction makes bigger").
+
+id: math.arithmetic.dividing-fractions
+title: "Dividing — Why the Answer Gets Bigger"
+domain: math
+track: arithmetic
+level: 6
+estimated_minutes: 22
+
+prerequisites:
+  - math.arithmetic.fractions-on-number-line
+  - math.arithmetic.equivalent-fractions
+  - math.arithmetic.multiplying-fractions
+  - math.arithmetic.division-as-measuring
+
+unlocks:
+  - math.arithmetic.ratio-and-rate
+  - math.arithmetic.unit-conversion
+  - math.prealgebra.algebraic-fractions
+
+layers:
+
+  hook:
+    question: "You have three quarters of a pizza left and you are serving it in half-pizza portions. How many portions? The answer is one and a half — a number bigger than the pizza you started with. How can dividing give you MORE?"
+    body: >-
+      Dividing is supposed to break things down. Every division you have ever done made the
+      number smaller. And yet here is one that hands back something larger than what went in.
+
+      Before you decide that fractions are just weird, try this. You are one and a half metres
+      tall. You are also a hundred and fifty centimetres tall. Same person, same height, and one
+      of those numbers is a hundred times the other.
+
+      Nobody thinks that is strange. By the end of this concept you will see that it is exactly
+      the same thing happening — and that the pizza answer is not a trick, a rule, or an
+      exception. It is the most ordinary fact about measuring there is.
+
+  intuition:
+    body: >-
+      Division is a question you have been answering since you were small, and you have probably
+      never noticed which question it is.
+
+      How many threes fit inside twelve? Four. That is what twelve divided by three means. Not
+      "share twelve among three people" — that is a different question which happens to have the
+      same answer here, and it is the one that is about to let you down. The question that
+      matters is the fitting question: how many of these go into that.
+
+      Now answer this one without thinking about any rule at all. You have a jug that holds three
+      litres and you are filling it from half-litre bottles. How many bottles? Six. You did not
+      use a method. You counted.
+
+      Look very hard at what just happened, because the whole of this concept is hiding inside it.
+      You started with three. You finished with six. The answer came out bigger than the number
+      you started with, and it did not strike you as strange for even a second.
+
+      Why did it get bigger? Because the answer is not counting litres. It is counting bottles.
+      Bottles are smaller than litres, so it takes more of them to make up the same amount of
+      water. Nothing grew. The unit shrank.
+
+      You already live with this. You are one and a half in metres and a hundred and fifty in
+      centimetres, and you are precisely the same height either way. Measure any room with a
+      shorter stick and you will always get a bigger number. That is not a mathematical curiosity.
+      It is the plainest fact about measuring there is, and it is the entire answer to why
+      dividing by something small gives something big.
+
+      So now take a piece of ribbon three quarters of a metre long, and a measuring stick half a
+      metre long. The question is: how many sticks fit along the ribbon?
+
+      Lay the stick against one end of the ribbon. It fits. Try to lay a second one down beside
+      it and you run out of ribbon. So one whole stick fits, and there is a bit left over.
+
+      Here is the part where almost everybody goes wrong, so slow right down.
+
+      You have a leftover bit of ribbon. What is it worth? The temptation is to say the leftover
+      is a quarter of a metre — which is perfectly true — and to announce the answer as one and a
+      quarter. But look at what you are counting. You are counting sticks. The answer to "how many
+      sticks fit" has to come out in sticks. So the leftover has to be measured against the stick,
+      not against the metre.
+
+      Pick up the leftover piece and hold it against the stick. It covers exactly half the stick.
+      So the leftover is worth half a stick.
+
+      One whole stick, and half of another. One and a half sticks. You got that by laying two
+      things against each other. You did not remember anything.
+
+      Say the answer with its unit attached and it stops being strange at all: one and a half
+      sticks. Of course that number is bigger than three quarters — three quarters was measured in
+      metres, one and a half is measured in sticks, and a stick is smaller than a metre. Same
+      ribbon, smaller unit, bigger count. The bottles, the room, your height in centimetres.
+
+      There is a second question that division answers, and it arrives at the same place by a
+      completely different road, which is a good way to test whether you actually believe any of
+      this. Suppose three quarters of a metre is only half of what you need for the job. Then how
+      much do you need? Twice as much — one and a half metres. Same answer, and this time nobody
+      counted any sticks. When two honest routes agree, it is usually not a coincidence.
+
+      One more thing before a single symbol appears, because leaving it out would swap your old
+      wrong rule for a shiny new one. Take a stick that is longer than a whole metre — say one and
+      a half metres — and lay it against the three-quarter-metre ribbon. It does not fit even
+      once. It covers half of its own length, so half a stick fits, and the answer is smaller than
+      the ribbon. So dividing does not make things bigger because a fraction was involved. It
+      makes things bigger when the measuring stick is shorter than a whole, and smaller when the
+      stick is longer than a whole. That is the rule you already met when multiplying, standing on
+      its head.
+
+      And finally, a shortcut you can find for yourself. Cut the ribbon and the stick into the
+      same-sized pieces. Quarters will do: the ribbon is three of them and the stick is two of
+      them. Now the question reads, how many lots of two little pieces fit inside three little
+      pieces? That is a question about two plain whole numbers, and the answer is one and a half.
+      Once both things are measured in the same piece, the fraction has completely left the
+      problem.
+    visual:
+      type: NumberLine
+      config:
+        range: { min: 0, max: 1 }
+        landmarks: { show_zero_one: true }
+        target_marker:
+          value_fraction: { numerator: 3, denominator: 4 }
+          label_id: "div.visual.the-ribbon"
+        hops:
+          step_fraction: { numerator: 1, denominator: 2 }
+          animate: true
+          animate_ms: 900
+          draw_style: "arcs above the line, each arc labelled as one stick"
+          partial_hop:
+            show: true
+            shade_fraction_of_hop: true
+            label_id: "div.visual.half-a-stick"
+        count_readout:
+          unit: sticks
+          format: mixed
+          show_unit_word_always: true
+        labels_off_until_hops_complete: true
+  manipulate:
+    widget:
+      type: FractionBar
+      config:
+        mode: measure
+        unit:
+          label_id: "div.unit.whole"
+          show_whole_outline: true
+          background_ruler:
+            show: true
+            denominator: from_target      # quarters behind the ribbon, so BOTH readings coexist
+            label_id: "div.ruler.in-wholes"
+
+        target:
+          label_id: "div.target.ribbon"
+          fraction: { numerator: 3, denominator: 4 }
+          numerator_control: { min: 1, max: 12 }
+          denominator_control: { min: 1, max: 12 }
+          allow_greater_than_one: true
+          max_value: 4
+          colour_token: target
+
+        measuring_stick:
+          label_id: "div.stick.stick"
+          fraction: { numerator: 1, denominator: 2 }
+          numerator_control: { min: 0, max: 12 }
+          denominator_control: { min: 1, max: 12 }
+          allow_greater_than_one: true
+          colour_token: stick
+          interaction: drag-and-lay-end-to-end
+          snap_to_previous_copy: true
+          copies_persist_on_screen: true
+          refuse_overhang: true            # a copy that would run past the target will not seat
+          on_refuse_message_id: "div.stick.will-not-fit"
+
+        counter:
+          counts: measuring_stick_copies
+          unit_word_id: "div.unit.sticks"
+          show_unit_word_always: true      # the answer is NEVER a bare number
+          format: mixed
+          live_while_dragging: true
+
+        remainder:
+          enabled: true
+          appears_when: "target not exactly covered by whole copies"
+          # ---- THE CRUX OF THE ENTIRE CONCEPT ----
+          compare_against: measuring_stick
+          action: "drag the leftover piece out and lay it against the stick"
+          readout_id: "div.remainder.fraction-of-stick"
+          also_allow_compare_against_whole: true
+          frame_toggle:
+            label_id: "div.toggle.measured-in"
+            options: [in_sticks, in_wholes]
+            initial: in_sticks
+            show_both_simultaneously_button: "show me both at once"
+            explainer_id: "div.toggle.both-are-true"
+            purpose: >-
+              The learner who answers one and a quarter is reading the leftover against the
+              metre. Both readings are true statements about the same piece of ribbon; only one
+              of them answers the question that was asked. The toggle makes that visible and
+              nameable instead of marking them wrong.
+
+        whole_probe:
+          enabled: true
+          label_id: "div.probe.one-whole"
+          action: "snap the target to exactly one whole and count the sticks"
+          readout_id: "div.probe.sticks-per-whole"
+          purpose: >-
+            With the target at one whole, the count IS the flipped divisor. Stick of one half
+            gives two. Stick of two thirds gives one and a half. This is where the reciprocal
+            stops being a magic move and becomes a measured quantity: how many sticks there are
+            in one whole. Formalize leans directly on this reading.
+
+        same_pieces_mode:
+          enabled: true
+          label_id: "div.samepieces.recut-both"
+          action: "cut the target and the stick into the same-sized pieces"
+          suggest_common_denominator_button: true
+          animate_ms: 600
+          readout_id: "div.samepieces.counts-only"
+          purpose: >-
+            Re-cuts both into a common piece, then hides the fractions and shows only the two
+            counts. Three little pieces measured in lots of two little pieces. The fraction
+            leaves the problem and ordinary whole-number division is left standing.
+
+        size_predictor:
+          enabled: true
+          ask_before_laying_id: "div.predict.bigger-or-smaller"
+          record_prediction: true
+          reveal_boundary_hint_after_n_attempts: 4
+          boundary_is: "stick length compared with one whole"
+
+        edge_cases:
+          stick_equals_one_whole:
+            allowed: true
+            note_id: "div.edge.divide-by-one"
+          stick_zero:
+            allowed: true
+            behaviour: "copies of zero length are laid forever and the target never fills"
+            readout_id: "div.edge.divide-by-zero"
+            purpose: "division by zero has no answer, seen rather than asserted"
+
+        presets:
+          # The ladder IS the pedagogy. Order is load-bearing; do not reorder.
+          - id: bottles
+            target: { numerator: 3, denominator: 1 }
+            stick:  { numerator: 1, denominator: 2 }
+            expect: { numerator: 6, denominator: 1 }
+            note: "whole target, exact fit. Answer SIX from THREE, and it is countable. First meeting with 'bigger', in a case nobody disputes."
+          - id: quarters-in-one
+            target: { numerator: 1, denominator: 1 }
+            stick:  { numerator: 1, denominator: 4 }
+            expect: { numerator: 4, denominator: 1 }
+            note: "the whole probe. Four quarters in one whole — this is the reciprocal, measured."
+          - id: read-it-out-loud
+            target: { numerator: 3, denominator: 4 }
+            stick:  { numerator: 1, denominator: 4 }
+            expect: { numerator: 3, denominator: 1 }
+            note: "how many quarters in three quarters. The answer is the name said aloud. Spine A pays off here."
+          - id: the-gate
+            target: { numerator: 3, denominator: 4 }
+            stick:  { numerator: 1, denominator: 2 }
+            expect: { numerator: 3, denominator: 2 }
+            note: "THE EXIT GATE ITEM. One stick fits, remainder is half a stick. Remainder must be laid against the stick."
+          - id: exact-again
+            target: { numerator: 2, denominator: 3 }
+            stick:  { numerator: 1, denominator: 6 }
+            expect: { numerator: 4, denominator: 1 }
+            note: "exact fit with unlike denominators, to show the gate item was not a special case"
+          - id: another-remainder
+            target: { numerator: 5, denominator: 6 }
+            stick:  { numerator: 1, denominator: 2 }
+            expect: { numerator: 5, denominator: 3 }
+            note: "second remainder case, different numbers. Generalisation, not memory."
+          - id: stick-past-one
+            target: { numerator: 3, denominator: 4 }
+            stick:  { numerator: 3, denominator: 2 }
+            expect: { numerator: 1, denominator: 2 }
+            note: "MANDATORY GUARD. Stick longer than a whole, answer SMALLER. Kills 'dividing by a fraction always makes it bigger'."
+          - id: divide-by-one
+            target: { numerator: 3, denominator: 4 }
+            stick:  { numerator: 1, denominator: 1 }
+            expect: { numerator: 3, denominator: 4 }
+            note: "the boundary. Stick exactly one whole, nothing changes."
+          - id: divide-by-zero
+            target: { numerator: 3, denominator: 4 }
+            stick:  { numerator: 0, denominator: 1 }
+            expect: undefined
+            note: "lay zero-length sticks forever; the ribbon never fills. No answer exists."
+
+    prompts:
+      - "Before you lay anything down: is the stick shorter or longer than a whole? Say out loud whether you think the count will come out bigger or smaller than the ribbon, and only then start laying."
+      - "Make the stick shorter and shorter without touching the ribbon. What happens to the number of sticks? Where have you seen that before?"
+      - "Find a stick that fits the ribbon exactly, with nothing left over. How many such sticks are there?"
+      - "There is a bit of ribbon left over. Drag it out and lay it against the stick. How much of the stick does it cover?"
+      - "Flip between measured in sticks and measured in wholes. Both readings are true. So why do they give different answers, and which one answered the question you asked?"
+      - "Snap the ribbon to exactly one whole and count the sticks. Now change the stick and count again. Do you notice anything about those counts and the stick's own two numbers?"
+      - "Make the stick longer than a whole metre. Does the count still come out bigger than the ribbon? So what was the rule really about?"
+      - "Set the stick to exactly one whole. What does the count do, and does that explain anything about dividing by one?"
+      - "Set the stick to nothing at all and try to fill the ribbon. How long can you keep laying sticks down? What does that tell you about dividing by zero?"
+      - "Now cut the ribbon and the stick into the same-sized pieces and look only at the two counts. Do you still need the picture to get the answer?"
+      - "Turn the picture off and predict the count for a ribbon of five sixths with a stick of one half. Then turn it back on and check yourself."
+    reveal: >-
+      Dividing asks how many of the measuring stick fit inside the amount. So the answer is
+      counted in sticks — not in wholes. That is why the leftover gets held against the stick
+      rather than against the metre, and it is the entire difference between one and a half and
+      one and a quarter.
+
+      A short stick gives a big count, for exactly the reason your height is a bigger number in
+      centimetres than in metres. Nothing grew; the unit shrank. Make the stick longer than a
+      whole and the count drops below one again — so the rule was never about fractions, it was
+      about whether the stick is shorter or longer than one whole. That is the mirror image of
+      what you found when multiplying.
+
+      And once both the ribbon and the stick are cut into the same-sized pieces, the whole
+      question collapses into dividing two ordinary counts, with no fractions left in it at all.
+
+  formalize:
+    notation: |
+      \text{Same pieces first:}\quad
+      \frac{3}{4} \div \frac{1}{2}
+      = \frac{3}{4} \div \frac{2}{4}
+      = 3 \div 2
+      = \frac{3}{2}
+      \\[8pt]
+      \frac{a}{c} \div \frac{b}{c} \;=\; a \div b \;=\; \frac{a}{b}
+      \\[10pt]
+      \text{One whole holds } \frac{d}{c} \text{ sticks of size } \frac{c}{d}
+      \quad\Longrightarrow\quad
+      \frac{a}{b} \div \frac{c}{d} \;=\; \frac{a}{b} \times \frac{d}{c}
+      \\[8pt]
+      \frac{3}{4} \div \frac{1}{2} = \frac{3}{4} \times \frac{2}{1} = \frac{6}{4} = \frac{3}{2}
+      \\[10pt]
+      \tfrac{c}{d} < 1 \Rightarrow \text{quotient} > \tfrac{a}{b}
+      \;;\qquad
+      \tfrac{c}{d} = 1 \Rightarrow \text{quotient} = \tfrac{a}{b}
+      \;;\qquad
+      \tfrac{c}{d} > 1 \Rightarrow \text{quotient} < \tfrac{a}{b}
+    body: >-
+      There are two ways to write down what you just did with your hands, and the first one is
+      the one to trust.
+
+      THE SAME-PIECES METHOD. Rewrite both fractions over the same denominator, then divide the
+      two counts. Three quarters divided by one half becomes three quarters divided by two
+      quarters — how many lots of two quarters fit inside three quarters — which is three divided
+      by two, which is three halves. The denominators were only ever unit names, and once both
+      amounts are named in the same unit the names cancel out of the question entirely. This is
+      exactly the "cut both into the same pieces" move you did on screen, and it always works.
+
+      THE RECIPROCAL METHOD, and why the flip is not magic. Ask the whole-probe question: how many
+      sticks fit inside one whole? A stick of one half fits twice. A stick of one quarter fits four
+      times. A stick of two thirds fits one and a half times. In every case the count is the
+      divisor with its two numbers swapped — because "how many pieces of size c over d make one
+      whole" is answered by d over c. That swapped fraction is not an invented move. It is a
+      measured quantity with a plain meaning: STICKS PER WHOLE.
+
+      Now finish the argument. One whole holds d over c sticks. You do not have one whole, you
+      have a over b of one. So you hold a over b of that many sticks — which is a over b times d
+      over c. That is invert and multiply, derived in two sentences from something you measured.
+
+      Read it in English and it stays honest: FLIP tells you how many sticks are in one whole;
+      MULTIPLY scales that by how much of a whole you actually have. Anybody who can say those two
+      sentences owns the rule. Anybody who can only chant "flip the second one and multiply" is
+      holding a rule with nothing underneath it, and it will fail them the moment the problem
+      looks slightly different.
+
+      THE SIZE RULE, stated honestly. If the divisor is less than one whole, the answer is bigger
+      than what you started with. If it is exactly one, the answer is unchanged. If it is greater
+      than one, the answer is smaller. This is the same statement you met when multiplying, with
+      bigger and smaller exchanged. It is about the number's size relative to one — never about
+      whether it happens to be written as a fraction.
+
+      DIVIDING BY ZERO. How many sticks of no length at all fit inside the ribbon? You can lay
+      them down forever and the ribbon is never covered, so there is no count that works. This is
+      not a rule someone imposed to be difficult. The question genuinely has no answer, and the
+      measuring picture shows exactly why.
+    naming: >-
+      The division sign has a story that is too good to leave out. The obelus — a short bar with a
+      dot above it and a dot below — is a picture of a fraction, with the dots standing in for the
+      numbers that would sit above and below the line. The symbol for dividing is a drawing of a
+      fraction. Which is the same thing as saying that a fraction was always a division waiting to
+      happen: three quarters is three divided by four, and it always was.
+
+      QUOTIENT, the name of the answer, comes from the Latin quotiens, meaning "how many times".
+      The word for the answer is literally the question this whole concept asked: how many times
+      does the stick fit. Whoever named it was thinking about measuring, not sharing.
+
+      RECIPROCAL comes from the Latin reciprocus, meaning moving backwards and forwards — a thing
+      that returns. The reciprocal of a number is what takes you back to one, and in this concept
+      it has a concrete job: it counts how many sticks make one whole. The flip has a meaning. It
+      was never a trick.
+
+      One last note on the word "divide" itself, which comes from a root meaning to force apart.
+      The word carries the sharing meaning in its bones, and that is a large part of why dividing
+      by a fraction feels wrong — the everyday word promises breaking something up, while the
+      mathematics is asking how many times something fits. The language is what misled you, not
+      the mathematics.
+
+  practice:
+    generators:
+      - type: how-many-fit-whole-by-unit-fraction
+        difficulty: 1
+        params:
+          whole: { min: 1, max: 6 }
+          stick: { numerator: 1, denominator: { min: 2, max: 8 } }
+          phrasing: "how many <stick> fit inside <whole>"
+          require_unit_in_answer: true
+      - type: how-many-fit-exact
+        difficulty: 2
+        params:
+          target_denominator: { min: 2, max: 12 }
+          stick_divides_target_exactly: true
+          note: "no remainder; builds confidence in the counting model"
+      - type: whole-probe-reciprocal
+        difficulty: 2
+        params:
+          stick: { numerator: { min: 1, max: 5 }, denominator: { min: 2, max: 9 } }
+          ask: "how many of these fit in exactly one whole"
+          follow_up: "what do you notice about your answer and the stick's own two numbers"
+      - type: predict-the-direction
+        difficulty: 2
+        params:
+          divisor_relative_to_one: [less, equal, greater]
+          ask: "will the answer be bigger than, smaller than, or the same as the amount you started with"
+          no_exact_answer_required: true
+          note: "trains the size rule as judgement, not arithmetic"
+      - type: how-many-fit-with-remainder
+        difficulty: 3
+        params:
+          target: { numerator: { min: 2, max: 11 }, denominator: { min: 3, max: 12 } }
+          stick: { numerator: 1, denominator: { min: 2, max: 6 } }
+          ensure_remainder: true
+          require_remainder_as_fraction_of_stick: true
+          trap_answer: "remainder expressed as a fraction of the whole"
+      - type: same-pieces-method
+        difficulty: 3
+        params:
+          denominators: { sample_from: [2, 3, 4, 5, 6, 8, 10, 12], count: 2 }
+          show_working_slots: [common_denominator, count_a, count_b, quotient]
+      - type: divisor-greater-than-one
+        difficulty: 4
+        params:
+          stick: { numerator_rule: "> denominator" }
+          target: { numerator_rule: "any" }
+          note: "MANDATORY in every practice mix. Guards against the replacement false rule."
+      - type: word-problem-measurement
+        difficulty: 3
+        params:
+          contexts: [ribbon_into_bows, flour_into_scoops, juice_into_glasses, plank_into_shelves, track_into_laps]
+          divisor_relative_to_one: [less, greater]
+          ask_unit_of_answer: true
+      - type: word-problem-missing-whole
+        difficulty: 4
+        params:
+          phrasing: "this much is <fraction> of what you need — how much do you need"
+          note: "the second reading of division; cross-checks the measurement route"
+      - type: explain-in-your-own-words
+        difficulty: 5
+        params:
+          item: { target: { numerator: 3, denominator: 4 }, stick: { numerator: 1, denominator: 2 } }
+          response_mode: [free_text, sentence_builder, spoken]
+          accept_if_mentions: [how_many_fit, counting_in_sticks, smaller_unit_bigger_count, remainder_against_the_stick]
+          reject_if_only: [flip_and_multiply, keep_change_flip, "because that is the rule"]
+          note: >-
+            This item IS the Phase 1 exit gate, embedded in the product. It is scored on the
+            explanation, never on the number. A learner who produces three halves by chanting
+            the rule has not passed it.
+      - type: divide-by-one-and-zero
+        difficulty: 2
+        params:
+          divisors: [1, 0]
+          require_reason: true
+
+    misconceptions:
+      - pattern: "Answers one and a quarter for three quarters divided by one half."
+        diagnosis: >-
+          THE central error of this concept, and it is the mark of a learner who is reasoning
+          correctly with one wrong assumption rather than one who is lost. They have laid the
+          stick down, seen it fit once, seen a quarter of the ribbon left over, and reported the
+          leftover as a quarter — because in every measuring experience of their life the leftover
+          is read against the ruler's own unit. Read a tape measure: one metre and a bit, and the
+          bit is in centimetres, not in tape-lengths. The belief is that a remainder is expressed
+          in wholes. What is missing is that the answer to "how many sticks" is denominated in
+          sticks, so the remainder must be too.
+        remedy: >-
+          remainder.action — physically drag the leftover piece out and lay it against the stick.
+          It covers half of it. Then frame_toggle with show_both_simultaneously: the same leftover
+          is one quarter of a metre AND one half of a stick, both statements true at once, and
+          only one of them answers the question that was asked. Never mark this answer simply
+          wrong; name the frame they used. Getting the frame named is the concept.
+      - pattern: "Answers 'one remainder one quarter' and stops there."
+        diagnosis: >-
+          The learner is carrying over the whole-number division convention where a quotient and
+          a remainder are a complete and acceptable answer — twelve divided by five is two
+          remainder two. That convention is perfectly valid, and nobody ever told them that the
+          remainder can itself be expressed in the unit being counted. Closely related to the
+          previous entry but distinguishable: this learner has not misread the frame, they have
+          simply stopped early.
+        remedy: >-
+          Ask the two questions the notation is hiding: one what, and a quarter of what? The
+          counter's show_unit_word_always setting forces both parts of the answer to carry a unit,
+          so 'one stick remainder one quarter of a metre' is visibly an answer in two different
+          currencies. Then lay the leftover on the stick and convert.
+      - pattern: "Flips the first fraction instead of the second, or flips both."
+        diagnosis: >-
+          Pure symptom of a memorised rule with no referent. If flipping is just a move you make,
+          there is no principled way to know which fraction it applies to, and the learner is
+          guessing — often correctly about half the time, which keeps the guess alive. This
+          never appears in a learner who knows what the flipped number counts.
+        remedy: >-
+          whole_probe. Set the ribbon to exactly one whole and count sticks. A half-stick gives
+          two; a two-thirds stick gives one and a half. The flipped divisor is sitting there as a
+          measured count of sticks per whole. The target has no such reading, so there is nothing
+          to flip about it. The question 'which one do I flip' dissolves rather than being
+          answered.
+      - pattern: "Insists the answer to a division must be smaller than what you started with, and so rejects or re-does a correct larger answer."
+        diagnosis: >-
+          Generalised from years of whole-number division in which the divisor was always at
+          least two. The rule has never failed because it has never been tested below one. This
+          is the same shape of error as 'multiplying makes bigger', and it comes from the same
+          place: a rule inferred from an unrepresentative sample.
+        remedy: >-
+          The bottles preset, first in the ladder and deliberately whole-number. Three litres,
+          half-litre bottles, six bottles — counted on screen, undeniable, and involving no
+          fraction arithmetic at all. The belief has to fail on a case they can verify by
+          counting before any fraction division is attempted.
+      - pattern: "After this concept, says dividing by a fraction always makes the answer bigger."
+        diagnosis: >-
+          A brand-new false rule which this very concept will install if the ladder is cut short.
+          The learner has replaced one over-general slogan with its opposite and is no better off;
+          they will fail the moment a divisor like three halves appears. This is a teaching
+          failure, not a learner failure.
+        remedy: >-
+          The stick-past-one preset is mandatory, and the divisor-greater-than-one generator must
+          appear in every practice mix. size_predictor with the boundary at one whole makes the
+          learner locate the turning point themselves. The sentence they leave with must be about
+          one, not about fractions.
+      - pattern: "Multiplies instead of dividing: answers three eighths."
+        diagnosis: >-
+          Two fractions with an operator between them triggers the most recently practised
+          routine, which is multiplication from the previous concept. Reinforced by a genuine
+          half-memory that dividing has something to do with multiplying, which it does — but
+          only after one of the fractions is flipped.
+        remedy: >-
+          size_predictor before any calculating. Three eighths is less than one, meaning fewer
+          than one stick fits — yet the learner can see the half-metre stick sitting comfortably
+          inside the three-quarter-metre ribbon. The prediction contradicts the picture directly,
+          and no arithmetic is needed to notice it.
+      - pattern: "Says dividing by a fraction is meaningless, or that it is 'just a rule', often while producing correct answers."
+        diagnosis: >-
+          The learner holds division as sharing and nothing else — which is what school taught
+          first and taught hardest. Sharing something among half a person is genuine nonsense, so
+          their model tells them the operation is nonsense, and the only way to survive is to
+          treat the rule as arbitrary. This is the root cause of the entire flip-and-multiply
+          alienation, and it is the most important entry in this catalogue because it is invisible
+          on any marking scheme.
+        remedy: >-
+          Do not argue with the sharing model; it is not wrong, it is incomplete. Establish
+          measurement division on whole numbers first — the ladder's opening presets — so the
+          learner sees that division has always answered two different questions and that only one
+          of them survives a fractional divisor. Then run the word-problem-missing-whole generator,
+          which rehabilitates the sharing reading in the form that does survive: 'this is half of
+          what I need, so what do I need'.
+      - pattern: "Finds a common denominator, then carries it into the answer: three quarters divided by two quarters gives three halves of a quarter, or an answer still written over four."
+        diagnosis: >-
+          Transfer from addition, where the common denominator is kept in the answer because you
+          are counting pieces and the piece name survives. Here the two counts are being compared
+          rather than combined, so the unit cancels and the answer is a pure number — a count of
+          sticks, not a quantity of ribbon. The learner is applying a correct rule from a
+          neighbouring operation.
+        remedy: >-
+          same_pieces_mode with readout set to counts only. Once both are cut into quarters the
+          display hides the fractions entirely and shows three against two. Ask what the answer
+          counts: not quarters, but sticks. Then compare side by side with an addition of the same
+          two fractions, where the unit does survive, and ask why the two differ.
+      - pattern: "Divides in the wrong order: computes one half divided by three quarters."
+        diagnosis: >-
+          The learner believes division is order-free, generalising from addition and
+          multiplication, which genuinely are. Nothing in the written form strongly signals which
+          number is the measuring stick and which is the thing being measured, especially once
+          the problem is copied out of a word problem.
+        remedy: >-
+          The widget's two roles are physically different objects — one is the ribbon lying on the
+          bench, the other is the stick in your hand. Swap them in the widget and watch the answer
+          change from one and a half to two thirds. Then ask which of the two questions each
+          arrangement answers, in words, before writing anything.
+      - pattern: "Produces the correct answer and explains it as 'you flip the second one and multiply', or 'keep, change, flip'."
+        diagnosis: >-
+          Not an arithmetic error at all — this is a diagnosis of UNDERSTANDING, and it is the one
+          the Phase 1 exit gate is designed to catch. The learner has a working procedure with no
+          model beneath it. It will produce correct answers on items shaped like the practice
+          items and fail on transfer, on word problems where they must decide which number is the
+          divisor, and on algebraic fractions two years later. It is invisible to every marking
+          scheme in existence, which is exactly why it survives into adulthood.
+        remedy: >-
+          The explain-in-your-own-words generator, scored on the explanation and never on the
+          number. Then hand them the widget with the answer already given and ask them to make
+          the picture show it. A learner with the model lays one stick, drags the leftover onto
+          the stick, and says 'one and a half sticks'. A learner without it has nothing to do with
+          their hands. Note also that componentwise division — three divided by one over four
+          divided by two — is algebraically valid and will produce the right answer here, so a
+          correct answer by that route is likewise not evidence of understanding.
+
+  connect:
+    body: >-
+      This is the end of the fractions chain and the point the whole of it was built towards.
+      Everything earlier was laying the ground: a fraction is a count of a named unit, a fraction
+      is one number with a place on the line, and any amount can be renamed into whatever unit is
+      convenient. Division is where all three cash in at once.
+
+      What it unlocks immediately is larger than it looks. Rate and ratio are division questions
+      wearing different clothes: kilometres per hour is asking how many hours fit into the
+      journey, and the word "per" is the division sign spoken aloud. Unit conversion is literally
+      this operation — a hundred and fifty centimetres divided by a hundred centimetres per metre
+      — which is why the height example at the start was not an analogy but the same calculation.
+      Density, speed, price per kilogram, scale on a map, gear ratios and probability all inherit
+      directly from here.
+
+      Further out it becomes dividing algebraic fractions, which is this procedure with letters
+      substituted in and nothing else changed, and much later the difference quotient at the
+      opening of calculus, where the question "how many of these fit in that" is asked about two
+      quantities that are both shrinking.
+
+      And there is one more thing this concept is quietly for. A learner who can say why dividing
+      by one half makes the answer bigger has discovered that a rule which looked arbitrary had a
+      reason hiding underneath it the whole time. That discovery is worth more than fractions.
+      It is the thing that makes someone willing to look for the reason next time instead of
+      reaching for a mnemonic — and it is the sentence the entire product is built to produce.
+    links:
+      - math.arithmetic.ratio-and-rate
+      - math.arithmetic.unit-conversion
+      - math.arithmetic.percentages
+      - math.arithmetic.decimals-as-fractions
+      - math.prealgebra.algebraic-fractions

@@ -124,3 +124,44 @@ of slope).
 9. `compact-collapsed-table__compact` — collapsed-table strip state, confirming the reflow rule.
 10. `deuteranopia-two-function-compare` — colour-vision-deficiency simulated render of state #5.
 11. `dark-theme__default-linear-identity` — dark-theme render of state #1.
+
+## 8. Known scope boundary — variable-as-quantity, and whether this widget covers it
+
+Raised by curriculum during this pass (`docs/curriculum/00-track-maps.md` §5.4): the knowledge graph encodes
+**variable-as-placeholder** (unknown-to-solve-for — `balance-scale.md`'s entire job) and
+**variable-as-quantity** (a letter attached to something that varies) as two distinct prerequisite nodes,
+per Kieran (1992)'s documented-distinct-achievements framing, not one node with two readings.
+`function-as-machine` depends specifically on variable-as-quantity. `variable-as-quantity` sits at 41
+descendants in the graph — one under curriculum's 42-descendant "load-bearing" cutoff, so this is a real,
+near-load-bearing dependency with no widget currently built for it, not a hypothetical gap.
+
+**My call, as widget-kit architect:**
+
+- `BalanceScale` should **not** be stretched to cover this. Its entire mechanic (mirrored two-pan operations,
+  isolate the fixed unknown) is built around `x` being one specific, undiscovered number — that's the
+  correct model for variable-as-placeholder and the wrong model for a quantity that genuinely varies. Using
+  it for both would blur a distinction the curriculum graph deliberately keeps separate.
+- `FunctionGrapher`'s point-probe (§3, §5) is **real but partial** coverage: dragging along the curve and
+  watching `x` vary while `y` responds live, synchronized with the table row, *is* the "a letter is a
+  changing amount, and something else changes because of it" idea in action. But it presupposes coordinate-
+  plane literacy and algebraic notation already in view — which makes it a **Manipulate/Formalize-layer**
+  tool, not a **zero-symbol Intuition-layer** tool per `docs/00-VISION.md`'s 6-layer doctrine. Using it as a
+  learner's *first* encounter with "a letter can mean a changing quantity" risks presenting the idea already
+  wrapped in the very notation the Intuition layer exists to defer.
+- **Recommendation, not an action I can take unilaterally:** scope a lightweight new primitive — tentatively
+  `FunctionMachine` — for Phase 2/3: an input-slot/output-slot container metaphor (a box, or a
+  fill/pour-style container) where a physical quantity visibly varies as the learner manipulates an input
+  control and a second quantity visibly and immediately responds, with **no coordinate plane and no
+  algebraic notation** at first exposure. This mirrors why `AbacusBoard` exists as a dedicated physical
+  anchor for place value rather than overloading `NumberLine` for that job (`00-VISION.md`'s abacus-track
+  reasoning) — variable-as-quantity plausibly deserves the same dedicated, more-concrete-than-a-graph
+  treatment before `FunctionGrapher` picks it up for the Formalize/Manipulate layers. This is outside my
+  assigned scope for this pass (adding a widget type requires a `content/schema/concept.schema.json` enum
+  change I don't own, and a full spec I wasn't asked to write) — it's a recommendation for curriculum/
+  pedagogy to weigh for Phase 3 scoping, not a decision I've made on their behalf.
+- **Stopgap if no new primitive ships in time:** a content author may use `FunctionGrapher`'s point-probe /
+  `explore-slider` mode to carry variable-as-quantity, but only for a concept placed *after* basic
+  coordinate-plane fluency is already established elsewhere in the sequence — never as the very first
+  encounter with the idea that a letter can vary. That ordering constraint should be stated explicitly in
+  any concept YAML that takes this stopgap path, so it doesn't silently become the de facto Intuition-layer
+  treatment.
