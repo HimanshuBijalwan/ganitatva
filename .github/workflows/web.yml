@@ -1,0 +1,71 @@
+name: web
+
+# Ganitatva web build (ADR-006 — web ships first).
+# The content gate runs FIRST and on the cheapest runner: bad content fails in seconds,
+# before anything expensive starts.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: web
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: pnpm
+          cache-dependency-path: web/pnpm-lock.yaml
+
+      - run: pnpm install --frozen-lockfile
+
+      # THE CONTENT GATE. A concept with no manipulable widget, an id missing from the
+      # knowledge graph, or symbols leaked into the intuition layer fails the build here.
+      # This is the "no concept without a widget" rule enforced mechanically, not by review.
+      - name: Validate content
+        run: pnpm content
+
+      - name: Typecheck
+        run: pnpm exec astro check --minimumFailingSeverity error
+
+      - name: Build
+        run: pnpm exec astro build
+        env:
+          SITE_URL: ${{ steps.pages.outputs.origin || 'https://himanshubijalwan.github.io' }}
+          BASE_PATH: /ganitatva
+
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: web/dist
+
+  deploy:
+    needs: build
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

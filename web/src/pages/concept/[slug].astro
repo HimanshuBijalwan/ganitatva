@@ -1,0 +1,121 @@
+---
+import Bench from '../../layouts/Bench.astro';
+import concepts from '../../generated/concepts.json';
+import katex from 'katex';
+
+export function getStaticPaths() {
+  return (concepts as any[]).map((c) => ({ params: { slug: c._slug }, props: { concept: c } }));
+}
+
+const { concept } = Astro.props as { concept: any };
+const L = concept.layers;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+// Rendered at BUILD time — the page ships as static HTML with no math JS.
+function tex(src: string): string {
+  // Multi-line notation needs an alignment environment; bare \\ does nothing in display mode.
+  const body = /\\\\/.test(src) && !/\\begin\{/.test(src)
+    ? `\\begin{aligned}${src}\\end{aligned}`
+    : src;
+  try {
+    return katex.renderToString(body, { displayMode: true, throwOnError: false, output: 'html' });
+  } catch {
+    return `<pre>${src}</pre>`;
+  }
+}
+const paras = (s: string) => (s ?? '').trim().split(/\n\s*\n/);
+---
+<Bench title={concept.title} description={L.hook?.question}>
+  <main class="bench">
+    <p class="layer__tag" style="margin-bottom:1.5rem;">
+      <a href={`${base}/`} style="color:var(--ink-500);text-decoration:none;">Ganitatva</a>
+      · {concept.track} · {concept.estimated_minutes} min
+    </p>
+
+    <h1>{concept.title}</h1>
+
+    <!-- 1 · HOOK — a real question, never "today we learn X" -->
+    <section class="layer">
+      <p class="hook__question">{L.hook.question}</p>
+      {L.hook.body && paras(L.hook.body).map((p: string) => <p>{p}</p>)}
+    </section>
+
+    <!-- 2 · INTUITION — zero symbols, enforced by the content pipeline -->
+    <section class="layer">
+      <p class="layer__tag">Before any symbols</p>
+      {paras(L.intuition.body).map((p: string) => <p>{p}</p>)}
+    </section>
+
+    <!-- 3 · MANIPULATE — the object. The one element allowed to break the margin. -->
+    <section class="layer">
+      <p class="layer__tag">Your hand goes here</p>
+      <div class="object">
+        <div
+          id="widget-mount"
+          data-widget={L.manipulate.widget.type}
+          data-config={JSON.stringify(L.manipulate.widget.config ?? {})}
+          style="min-height: 18rem; display: grid; place-items: center;"
+        >
+          <p style="color: var(--ink-500); font-size: 15px; text-align: center;">
+            {L.manipulate.widget.type} — loading
+          </p>
+        </div>
+        <div id="widget-live" aria-live="polite" class="sr-only"></div>
+      </div>
+      <ul class="prompts">
+        {L.manipulate.prompts.map((p: string) => <li>{p}</li>)}
+      </ul>
+    </section>
+
+    <!-- 4 · FORMALIZE — notation, earned -->
+    <section class="layer">
+      <p class="layer__tag">Now the notation</p>
+      {L.formalize.notation && <div class="notation" set:html={tex(L.formalize.notation)} />}
+      {paras(L.formalize.body).map((p: string) => <p>{p}</p>)}
+      {L.formalize.naming && paras(L.formalize.naming).map((p: string) => <p style="color:var(--ink-700);">{p}</p>)}
+    </section>
+
+    <!-- 6 · CONNECT -->
+    <section class="layer shelf">
+      <p class="layer__tag">Where this sits</p>
+      {paras(L.connect.body).map((p: string) => <p>{p}</p>)}
+    </section>
+  </main>
+</Bench>
+
+<style>
+  .sr-only {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+  }
+</style>
+
+<script>
+  // The only JS on the page. Everything above is static HTML (ADR-006).
+  // import.meta.glob resolves at build time and yields {} when the widget module does not
+  // exist yet, so the page builds and degrades honestly while widgets are still being written.
+  const loaders = import.meta.glob('../../widgets/mount.ts');
+  const el = document.getElementById('widget-mount');
+
+  if (el) {
+    const kind = el.dataset.widget;
+    const config = JSON.parse(el.dataset.config || '{}');
+    const load = loaders['../../widgets/mount.ts'];
+    const unbuilt = () => {
+      el.innerHTML =
+        '<p style="color:var(--ink-500);font-size:15px;text-align:center;">' +
+        'This object is still being built.</p>';
+    };
+
+    if (kind === 'FractionBar' && load) {
+      load()
+        .then((m: any) => {
+          if (typeof m.mountFractionBar === 'function') m.mountFractionBar(el, config);
+          else unbuilt();
+        })
+        .catch(unbuilt);
+    } else {
+      unbuilt();
+    }
+  }
+</script>

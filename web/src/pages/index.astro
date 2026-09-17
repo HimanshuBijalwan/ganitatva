@@ -1,0 +1,27 @@
+---
+import Bench from '../layouts/Bench.astro';
+import concepts from '../generated/concepts.json';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<Bench title="Ganitatva" description="Math you can touch before it becomes a symbol.">
+  <main class="bench">
+    <h1>Ganitatva</h1>
+    <p style="color: var(--ink-700); font-size: 20px;">
+      Most people don't find math hard. They find <em>symbol-first teaching</em> hard.
+      Every idea here is something you can move with your hand before it ever becomes a symbol.
+    </p>
+
+    <h2 style="margin-top: 3rem;">The fractions chain</h2>
+    <p style="color: var(--ink-500); font-size: 15px;">
+      Seven concepts, ending at the one that breaks math for most people.
+    </p>
+    <ol class="prompts" style="counter-reset: none;">
+      {concepts.map((c: any) => (
+        <li>
+          <a href={`${base}/concept/${c._slug}/`} style="color: var(--live); font-weight: 500;">{c.title}</a>
+          <span style="color: var(--ink-500); font-size: 15px;"> · {c.estimated_minutes} min</span>
+        </li>
+      ))}
+    </ol>
+  </main>
+</Bench>
