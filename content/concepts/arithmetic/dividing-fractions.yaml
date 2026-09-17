@@ -16,23 +16,24 @@
 #   5. Divisors greater than one are mandatory in the ladder, or we replace one false rule
 #      ("dividing makes smaller") with another ("dividing by a fraction makes bigger").
 
-id: math.arithmetic.dividing-fractions
+id: math.arithmetic.fraction-division
 title: "Dividing — Why the Answer Gets Bigger"
 domain: math
 track: arithmetic
 level: 6
 estimated_minutes: 22
 
+# GRAPH MAPPING: 1:1 with math.arithmetic.fraction-division; prerequisites copied from the graph.
+# math.arithmetic.division-as-measuring was added to the graph at this file's request and is the
+# single most important upstream edge in the chain — see the design notes above.
+# NOTE FOR CURRICULUM: the graph records NO unlocks for fraction-division. That looks like a miss —
+# ratio-intro, unit-rate and rates-and-unit-conversion all genuinely need this idea (a rate IS a
+# measurement-division question, and unit conversion IS this operation). Left empty here to conform.
 prerequisites:
-  - math.arithmetic.fractions-on-number-line
-  - math.arithmetic.equivalent-fractions
-  - math.arithmetic.multiplying-fractions
+  - math.arithmetic.fraction-multiplication
   - math.arithmetic.division-as-measuring
 
-unlocks:
-  - math.arithmetic.ratio-and-rate
-  - math.arithmetic.unit-conversion
-  - math.prealgebra.algebraic-fractions
+unlocks: []
 
 layers:
 
@@ -635,8 +636,8 @@ layers:
       It is the thing that makes someone willing to look for the reason next time instead of
       reaching for a mnemonic — and it is the sentence the entire product is built to produce.
     links:
-      - math.arithmetic.ratio-and-rate
-      - math.arithmetic.unit-conversion
-      - math.arithmetic.percentages
-      - math.arithmetic.decimals-as-fractions
-      - math.prealgebra.algebraic-fractions
+      - math.arithmetic.ratio-intro
+      - math.prealgebra.rates-and-unit-conversion
+      - math.arithmetic.percentage-intro
+      - math.arithmetic.fraction-decimal-conversion
+      - math.algebra.rational-expressions-intro

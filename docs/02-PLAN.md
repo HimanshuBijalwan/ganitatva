@@ -21,7 +21,11 @@ The unglamorous week that prevents six months of pain.
    - Artifacts downloadable from every run ← this is how Windows gets tested without a Windows machine
 3. **Design doctrine pass** (mandatory before any UI — per global design-doctrine rules)
    - Concept sentence, out-of-category references, Art Direction Brief
-   - Explicitly reject: "friendly EdTech blue-and-purple with a cartoon mascot"
+   - Reject the default EdTech look — but honestly: reference research found the blue-purple gradient hero
+     is **not** actually the category norm (Khan, Duolingo, Vedantu, Desmos, GeoGebra, Mathway are all
+     non-gradient). Rejecting it is hygiene, not a differentiator, and we should not congratulate ourselves
+     for it. The norm we actually break is structural: ~75% of surveyed apps make content/questions/a game
+     the hero rather than the interactive object.
 4. **Content schema v1** — JSON Schema for a concept file; one hand-written example
 5. **Skeleton app** — Riverpod + go_router + Drift wired, one screen
 
@@ -71,6 +75,14 @@ If that gate fails, **do not proceed**. Fix the pedagogy. The whole company is t
 Turn one hand-built concept into a factory.
 
 - **Widget kit**: 8–10 primitives, documented, golden-tested
+- **Intuition-layer object library** — scheduled as its own line item at the same cadence as the widget kit,
+  **not folded into it and not treated as illustration.** Under the current brief this is the ~25-object
+  Bench Object Library, drawn in code (`CustomPainter`), run `readOnly` for Layer 2 and `guided`/`free` for
+  Layer 3. Flagged by illustration-director as the gate's most important operational risk, and it is a real
+  one: **if this isn't scheduled separately, the design gate passes on paper while Phase 1 ships a grey box
+  for every Intuition layer.** Layer 2 is where the "ohh" is supposed to happen; a grey box there fails the
+  whole thesis silently. (Direction-neutral: whatever art direction is approved, its Intuition-layer objects
+  are widget-kit engineering and get their own line.)
 - **Content pipeline**: YAML → validated → compiled bundle; authoring guide written
 - **Author misconception checklist** — the authoring guide must carry, per concept, a list of documented
   misconceptions the author must not *reinforce*. Rationale: studies find even pre-service teachers hold the

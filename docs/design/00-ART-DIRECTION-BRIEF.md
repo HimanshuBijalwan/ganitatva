@@ -64,11 +64,12 @@ All five are **outside the client's category** per doctrine step 2 `[02 §1.2]`.
 
 Full light + dark tables, CVD rules and validator output are in `02-DESIGN-TOKENS.md`. The law is here.
 
-### The colour law — four clauses, each sourced
+### The colour law — five clauses, each sourced
 1. **There is exactly ONE saturated colour in the entire product.** (ET66: one yellow key.)
 2. **It means "live under your hand."** It appears on the thing you can touch *and* on the part of the object that thing controls — binding control to parameter. (OP-1.) **It appears at most once per screen.** If a screen seems to need it twice, the screen is doing two jobs.
 3. **Chrome recedes by going quiet, never by shrinking or moving.** (Push.) Inactive controls lose colour and contrast; they do not resize, and they never disappear except in Quiet mode.
-4. **Two drawn quantities are never distinguished by hue alone.** Lightness, position, line style and a direct label carry it; hue is the last cue. (Sourced gap: found in **zero of 16** category apps.)
+4. **`--live` never appears inside a Layer-2 (Intuition) object.** Layer 2 is read-only — nothing there is touchable — so the colour law is true **by construction**, not by discipline. The same object gains its geru bead only when it mounts as a Manipulate widget, and only on the sub-part the hand can actually move. *(Raised by illustration-director; adopted, because it is a stronger form of the rule than I wrote.)*
+5. **Two drawn quantities are never distinguished by hue alone.** Lightness, position, line style and a direct label carry it; hue is the last cue. (Sourced gap: found in **zero of 16** category apps.) This is independently kit law in `docs/widgets/00-kit-overview.md` §7 — the two documents arrived at it separately.
 
 ### The tokens (light mode; dark in `02-DESIGN-TOKENS.md`)
 | Token | Hex | Role | Hue-bias note |
@@ -80,12 +81,13 @@ Full light + dark tables, CVD rules and validator output are in `02-DESIGN-TOKEN
 | `--sheet` | `#FBF8F1` | The working surface a math object sits on | Lighter than the bench, so the live area is the brightest thing on screen. |
 | `--sunk` | `#E9E3D6` | Wells, insets, inactive | |
 | `--rule` | `#D6CEBC` | Minor ruling, gridlines, minor ticks | |
-| `--rule-major` | `#B8AE99` | Axes, major ticks, sheet edge | 2.07:1 vs sheet — **decorative ruling only.** Anything load-bearing uses `--ink-500` or darker to clear 3:1 `[06 §5]`. |
+| `--rule-major` | `#B8AE99` | Major ruling, sheet edge | 2.07:1 vs sheet — **decorative ruling only**, never load-bearing. |
+| `--axis` | `#8F856E` | **Axes, major ticks, any load-bearing graphical structure** | 3.44:1 vs sheet — clears SC 1.4.11 `[06 §5]`. Ruling may be faint; structure may not. |
 | `--ink-900` | `#1E1B16` | Primary text, object outlines | Warm near-black, never `#000` `[01 §2.8]`. 15.23:1 on paper. |
 | `--ink-700` | `#4A443A` | Secondary text | 8.55:1 |
-| `--ink-500` | `#756E60` | Tertiary text, tick labels | 4.48:1 — AA floor. Never lighter for text. |
+| `--ink-500` | `#6F6859` | Tertiary text, tick labels | 4.90:1. Never lighter for text. |
 | `--qty-blue` | `#12609B` | Drawn quantity A | 6.24:1 vs sheet. The **only** quantity hue. |
-| `--qty-ink` | `#1E1B16` | Drawn quantity B | Graphite — the pencil line. Achromatic, therefore maximally separable from both `--live` and `--qty-blue` under every CVD type. |
+| `--qty-graphite` | `#1E1B16` | Drawn quantity B | Graphite — the pencil line. Achromatic, therefore maximally separable from both `--live` and `--qty-blue` under every CVD type. **Its dark-mode twin is chalk (`#DCD4C7`)** — on a dark bench you draw in chalk, not pencil. The material logic does the work, not a colour trick. |
 | `--qty-blue-ramp` | `#86B2D6 → #4E8CBB → #1F6BA3 → #0A4571` | Magnitude, one hue light→dark | Riemann bars, histograms, heat. Never a rainbow. |
 
 **Rule: if a colour is not in this table (or its dark twin), it does not ship.** There is no green. There is no purple. There is no gradient anywhere in the product.
@@ -140,7 +142,7 @@ This is the concept sentence made structural: the object outranks the page, visi
 - **Source (one primary language):** **the identity *is* the object vocabulary.** A finite library of ~20–30 physical things (bead, rod, strip, tile, jug, ruler, string, weight, coin, die, folded sheet, balance pan…) drawn in code by the same painter vocabulary as the interactive widgets. This is doctrine's identity-as-imagery pattern `[02 §2.4]` — the imagery is not commissioned separately from the system, so it is cheap to extend and impossible to apply inconsistently. **Secondary, used sparingly:** oversized numerals and ruled/ticked surfaces as texture — System 8, typographic backgrounds `[03 §1 System 8]`.
 - **Why not the other seven systems:** cut-out collage, isometric mini-worlds, hand-painted washes, photo duotone and 3D clay all require per-asset production, which does not survive 180 concepts offline in an APK. Folk/regional motifs `[03 §1 System 7]` are explicitly excluded here: the doctrine itself flags that system as resting on convention with no verified case study, and mandates real local sourcing rather than generation — a commitment this project cannot honour in Phase 0. Revisit only with a named local artist.
 - **Consistency rule — crop:** objects are drawn in plan or elevation only. No perspective, ever. An object is a thing on a bench seen from where your eyes are.
-- **Consistency rule — grade:** flat fills and ink strokes only. **No gradient, no blur, no drop shadow, no elevation, no glass.** One light direction is implied by a single optional flat facet, never by a rendered highlight.
+- **Consistency rule — grade:** flat fills and ink strokes only. **No gradient, no blur, no elevation, no glass.** **One exception, and it is a material fact rather than a lighting effect: the contact shadow** — a hard, zero-blur, single-tone mark where an object meets the bench, offset ≤ 0.15 bu, light locked at upper-left 315°. It appears only where an object touches a surface, never on chrome, text or a button, and it must never grow into a UI elevation shadow. Spec in `02-DESIGN-TOKENS.md` §6.
 - **Consistency rule — weight:** one stroke weight per size class, expressed in `bu`, so an object drawn at 6 bu and the same object at 24 bu are recognisably the same hand.
 - **Concept test** — every asset must restate the concept sentence or it is filler `[02 §2.4]`: *the object library* restates "one object under your hand" by being the only pictorial content in the product; *the ruled surface* restates "the quiet surface it rests on"; *the geru bead* restates "your hand goes here". **Anything that passes none of those three does not ship.**
 - **Delegated to illustration-director:** the object library, the drawing rules, the app icon, empty/rest states, and the bundled-asset byte budget → `docs/design/IMAGERY-SYSTEM.md`.
@@ -203,6 +205,23 @@ Design target is a budget Android phone; 360 dp is the floor `[04 §3]`.
 - **Reduced motion:** `MediaQuery.disableAnimations` neutralises SETTLE and CARRY entirely; DETENT keeps only its non-moving tick-weight change `[06 §3]`.
 - **27" and up:** the object stops growing at 28 bu. The extra width becomes **bench margin and a marginalia column** carrying the Formalize and Connect material as textbook-style side notes. **The desktop does not scale the object up; it opens the margin.** A pointer platform also gets `1 bu ≈ 6.8 mm`, so the object holds the same visual angle it has in the hand.
 
+### 9.1 The same design on a 5" phone and a 27" monitor
+
+The doctrine's answer to "responsive" is *let content decide layout* `[02 §2.3]`. Ours is sharper, because a number line is a measuring instrument and an instrument has a correct size.
+
+| | 5" budget Android (360 dp) | 27" monitor (2560 px) |
+|---|---|---|
+| **1 bu** | 4.0 mm | 6.8 mm — same **visual angle** at 60 cm as 4 mm at 35 cm |
+| **The object** | 14 bu — fills the width, edge to edge, the only element allowed to break the margin | 20–28 bu — larger in millimetres, **identical in apparent size to the eye** |
+| **Extra space goes to** | nothing; there is none | **bench margin + a marginalia column** carrying Formalize and Connect as textbook side notes |
+| **Text** | inset, single column, 17 px body | inset, max 640 dp measure — the column does **not** widen |
+| **Controls** | lower-centre thumb band, 48 dp targets `[04 §3]` | spatially aligned to the thing each one governs — free real estate a phone does not have |
+| **Nav** | three word-labels at the bottom | three word-labels, same order, same words |
+| **Motion** | CARRY degrades to a cut below 55 fps | full |
+| **What is identical** | the object's apparent size, the ruling pitch, the single geru bead, the type scale's ratios, every token |
+
+**The rule in one line: the desktop does not scale the object up — it opens the margin.** A learner who does a concept on a phone at school and again on a desktop at home is holding the *same instrument at the same size*, with more room around it. That is only expressible because the design is specified in millimetres, and it is the single hardest thing in this brief to copy.
+
 ---
 
 ## 10. Don'ts
@@ -218,7 +237,7 @@ Design target is a budget Android phone; 360 dp is the floor `[04 §3]`.
 - **No second saturated colour, ever.** If a screen seems to need two, the screen is doing two jobs.
 - **No colour, mark or sound ever means "wrong".** Diagnosis is words.
 - **Never distinguish two drawn quantities by hue alone.** Never more than three quantities on screen at once — a fourth means the widget is wrong.
-- **No gradient, no blur, no drop shadow, no elevation, no glass, anywhere.** (Doctrine's own teardown of Apple's Liquid Glass documents the usability cost `[01 §4 Teardown 4]`.)
+- **No gradient, no blur, no elevation, no glass, anywhere** — and the one permitted contact shadow (§6) is hard-edged, zero-blur, object-only, and may never become a UI shadow. (Doctrine's own teardown of Apple's Liquid Glass documents the usability cost `[01 §4 Teardown 4]`.)
 - **No card, and no generic `Card` widget in the codebase.**
 - **No streak, XP, badge, heart, leaderboard, level, confetti, celebration or mascot.** Not as a toggle. Not as an experiment.
 - **No push notification and no daily reminder, ever.** We are not renting attention (`03-GOALS.md` principle 6).

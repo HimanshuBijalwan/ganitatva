@@ -3,19 +3,25 @@
 # The headline remedy here is the mediant trap: (a+c)/(b+d) always lands BETWEEN the two
 # addends, so the wrong answer refutes itself on the number line without anyone marking it wrong.
 
-id: math.arithmetic.adding-fractions
+id: math.arithmetic.fraction-addition-unlike-denominators
 title: "Adding Fractions — and Why One Half Plus One Third Is Not Two Fifths"
 domain: math
 track: arithmetic
-level: 4
+level: 6
 estimated_minutes: 16
 
+# GRAPH MAPPING: this file covers TWO graph nodes:
+#   math.arithmetic.fraction-addition-like-denominators   (the base case — same pieces already)
+#   math.arithmetic.fraction-addition-unlike-denominators (the canonical id below)
+#   It also covers math.arithmetic.fraction-subtraction in the formalize layer.
+#   Scope call for the vertical slice. Record all three as satisfied by this file.
 prerequisites:
-  - math.arithmetic.equivalent-fractions
-  - math.arithmetic.comparing-fractions
+  - math.arithmetic.fraction-as-part-whole
+  - math.arithmetic.lcm
 
 unlocks:
-  - math.arithmetic.multiplying-fractions
+  - math.arithmetic.fraction-subtraction
+  - math.algebra.linear-equations-with-fractions
 
 layers:
 
@@ -313,7 +319,7 @@ layers:
       decimals — lining up the point is nothing but forcing a common unit — and, later, adding
       algebraic fractions, which is the identical procedure with letters in it.
     links:
-      - math.arithmetic.multiplying-fractions
-      - math.arithmetic.dividing-fractions
-      - math.arithmetic.decimals-as-fractions
-      - math.prealgebra.algebraic-fractions
+      - math.arithmetic.fraction-multiplication
+      - math.arithmetic.fraction-division
+      - math.arithmetic.fraction-decimal-conversion
+      - math.algebra.rational-expressions-intro

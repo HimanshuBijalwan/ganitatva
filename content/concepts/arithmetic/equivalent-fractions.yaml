@@ -6,17 +6,22 @@ id: math.arithmetic.equivalent-fractions
 title: "Same Point, Different Name"
 domain: math
 track: arithmetic
-level: 2
+level: 4
 estimated_minutes: 12
 
+# GRAPH MAPPING: 1:1 with math.arithmetic.equivalent-fractions. Prerequisites and unlocks below
+# are copied verbatim from the graph. Note the chain ALSO sequences this after
+# fractions-on-number-line (one point, many names) — a pedagogical ordering, not a graph edge.
 prerequisites:
-  - math.arithmetic.fractions-as-parts
-  - math.arithmetic.fractions-on-number-line
+  - math.arithmetic.fraction-as-part-whole
+  - math.arithmetic.factors-and-multiples
 
 unlocks:
   - math.arithmetic.comparing-fractions
-  - math.arithmetic.adding-fractions
-  - math.arithmetic.dividing-fractions
+  - math.arithmetic.fraction-multiplication
+  - math.arithmetic.fraction-simplification
+  - math.arithmetic.proportion
+  - math.arithmetic.ratio-intro
 
 layers:
 
@@ -269,7 +274,7 @@ layers:
       trading count against unit size while the amount stays put.
     links:
       - math.arithmetic.comparing-fractions
-      - math.arithmetic.adding-fractions
-      - math.arithmetic.dividing-fractions
-      - math.arithmetic.ratio-and-rate
-      - math.prealgebra.algebraic-fractions
+      - math.arithmetic.fraction-addition-unlike-denominators
+      - math.arithmetic.fraction-division
+      - math.arithmetic.ratio-intro
+      - math.algebra.rational-expressions-intro

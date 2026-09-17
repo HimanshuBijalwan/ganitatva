@@ -10,10 +10,10 @@
 #   (see docs/curriculum/01-graph-analysis.md for the full ranking)
 meta:
   domain: math
-  node_count: 192
+  node_count: 193
   load_bearing_threshold_descendants: 42
   tracks:
-    arithmetic: 55
+    arithmetic: 56
     abacus: 8
     prealgebra: 18
     algebra: 35
@@ -61,8 +61,8 @@ nodes:
     prerequisites:
       - math.arithmetic.number-comparison
     unlocks:
-      - math.arithmetic.comparing-fractions
       - math.arithmetic.decimal-comparison
+      - math.arithmetic.fractions-on-number-line
       - math.arithmetic.negative-numbers-intro
       - math.prealgebra.absolute-value
       - math.prealgebra.coordinate-plane-intro
@@ -318,6 +318,7 @@ nodes:
       - math.arithmetic.equivalent-fractions
       - math.arithmetic.fraction-addition-like-denominators
       - math.arithmetic.fraction-of-a-quantity
+      - math.arithmetic.fractions-on-number-line
       - math.arithmetic.mixed-numbers
       - math.statistics.probability-as-likelihood
     load_bearing: true
@@ -335,13 +336,23 @@ nodes:
       - math.arithmetic.proportion
       - math.arithmetic.ratio-intro
     load_bearing: true
+  - id: math.arithmetic.fractions-on-number-line
+    title: A Fraction as a Point on the Number Line
+    track: arithmetic
+    level: 4
+    prerequisites:
+      - math.arithmetic.fraction-as-part-whole
+      - math.arithmetic.number-line
+    unlocks:
+      - math.arithmetic.comparing-fractions
+      - math.arithmetic.fraction-division
   - id: math.arithmetic.comparing-fractions
     title: Comparing Fractions
     track: arithmetic
     level: 5
     prerequisites:
       - math.arithmetic.equivalent-fractions
-      - math.arithmetic.number-line
+      - math.arithmetic.fractions-on-number-line
     unlocks: []
   - id: math.arithmetic.fraction-simplification
     title: Simplifying Fractions
@@ -420,6 +431,7 @@ nodes:
     prerequisites:
       - math.arithmetic.fraction-multiplication
       - math.arithmetic.division-as-measuring
+      - math.arithmetic.fractions-on-number-line
     unlocks: []
   - id: math.arithmetic.decimals-intro
     title: Introduction to Decimals

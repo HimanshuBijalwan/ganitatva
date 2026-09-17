@@ -7,15 +7,17 @@ id: math.arithmetic.comparing-fractions
 title: "Which One Is Bigger?"
 domain: math
 track: arithmetic
-level: 3
+level: 5
 estimated_minutes: 14
 
+# GRAPH MAPPING: 1:1 with math.arithmetic.comparing-fractions; prerequisites copied from the graph.
+# The graph records no unlocks for this node. In the Phase-1 chain it is nevertheless sequenced
+# before addition, because re-cutting to a common piece size is introduced here.
 prerequisites:
-  - math.arithmetic.fractions-on-number-line
   - math.arithmetic.equivalent-fractions
+  - math.arithmetic.number-line
 
-unlocks:
-  - math.arithmetic.adding-fractions
+unlocks: []
 
 layers:
 
@@ -282,7 +284,7 @@ layers:
       Further out, this is the root of ordering decimals, reading a percentage as a position
       rather than a formula, and every inequality that will ever appear in algebra.
     links:
-      - math.arithmetic.adding-fractions
-      - math.arithmetic.dividing-fractions
-      - math.arithmetic.decimals-as-fractions
-      - math.arithmetic.percentages
+      - math.arithmetic.fraction-addition-unlike-denominators
+      - math.arithmetic.fraction-division
+      - math.arithmetic.fraction-decimal-conversion
+      - math.arithmetic.percentage-intro

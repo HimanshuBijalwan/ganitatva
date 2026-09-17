@@ -276,3 +276,76 @@ REUSABLE LESSON: A model that drives decisions must describe reality, not the co
      building against it. When tooling needs an ordering the domain doesn't have, record it in the tooling
      layer — the moment you push it into the shared model, every consumer inherits the lie.
 STATUS: ✅ endorsed
+
+---
+DECISION: Art direction = THE BENCH (concept sentence approved by design-director; USER SIGN-OFF PENDING)
+DATE: 2026-09-17
+CONCEPT SENTENCE: "Ganitatva is a bench, not a lesson: one mathematical object lies under the learner's
+     hand, the single saturated colour in the whole app means 'your hand goes here', and every other thing
+     on screen is the quiet surface that object rests on."
+WHY THIS DIRECTION (not taste — structure): of three directions (Bench / Instrument / Survey), Bench is the
+     only one that CANNOT be built while breaking the product's one hard rule. A bench with nothing on it is
+     visibly broken, so "no concept without a manipulable widget" enforces itself in the LAYOUT rather than
+     in code review. It also resolves the real double bind — warm paper/graphite/wood is approachable
+     without being childish, where a dark instrument panel reads "math is for experts" and anything sweeter
+     reads "this is for babies". And flat fills with no gradient/blur/elevation is simultaneously cheapest
+     to render at 60fps on a budget phone and most legible in daylight — aesthetics and performance budget
+     agreeing is rare enough to weight heavily.
+COSTS ACCEPTED IN WRITING: delight is given up entirely as a lever (comprehension becomes the only reward
+     available); a warm light UI is the harder mode to make look expensive; the rejected direction would
+     have produced the better store screenshot.
+STATUS: ⚠️ AWAITING USER SIGN-OFF — no UI work may begin until approved. Built result must additionally
+     pass design-critic ≥65/100 + non-transferability before anything is called done.
+
+---
+DECISION: There is no green in this product. No colour, mark or sound ever means "wrong".
+DATE: 2026-09-17 (design-director ruling; endorsed)
+WHAT: `role.incorrect` deleted from the widget kit theme. `role.correct` renamed `role.resolved` and
+     re-scoped to "the object reached a mathematically notable state" — a property of the object, not a
+     verdict on the learner.
+WHY IT'S RIGHT: the doctrine already says a red ✗ teaches nothing and diagnosis must be words. A theme that
+     ships an "incorrect" colour token hands every future author a one-keystroke way to violate that — and
+     they will, under deadline. Deleting the token removes the affordance rather than relying on discipline.
+REUSABLE LESSON: To enforce a principle, delete the affordance that breaks it. A rule that depends on
+     everyone remembering it under pressure is not a rule, it's a hope.
+STATUS: ✅ endorsed
+
+---
+DECISION: Intuition-layer object library is ENGINEERING, scheduled separately from the widget kit
+DATE: 2026-09-17 (illustration-director risk; escalated by design-director; scheduled by main)
+THE RISK, STATED PLAINLY: the ~25-object Bench Object Library is code-drawn (`CustomPainter`) widget-kit
+     work, not illustration. If it rides along inside "the widget kit" line item, the design gate passes on
+     paper while Phase 1 ships a GREY BOX for every Intuition layer. Layer 2 is where the "ohh" is supposed
+     to happen — a grey box there fails the entire thesis, and fails it silently.
+ACTION: added to docs/02-PLAN.md Phase 2 as its own line item at the same cadence as the widget kit,
+     phrased direction-neutrally so it survives a change of art direction.
+REUSABLE LESSON: When a deliverable sits across two disciplines' boundaries, it belongs to neither by
+     default and gets scheduled by nobody. Name its owner and its line item explicitly, or it evaporates —
+     the second time this exact failure mode appeared today (cf. the Phase 2 authoring-guide checklist).
+STATUS: ✅ scheduled
+
+---
+DECISION: Honest correction — rejecting the "blue-purple EdTech gradient" is hygiene, not differentiation
+DATE: 2026-09-17
+WHY: docs/02-PLAN.md Phase 0 (written by main) instructed rejecting "friendly EdTech blue-and-purple with a
+     cartoon mascot" as if that were the category norm being broken. Reference research found it is NOT the
+     norm — Khan, Duolingo, Vedantu, Desmos, GeoGebra and Mathway are all non-gradient. The norm we actually
+     break is structural: ~75% of surveyed apps make content/questions/a game the hero rather than the
+     interactive object.
+     Also recorded: pixel-level verification was achieved for only 2 of 16 surveyed apps. The design agent
+     flagged its own evidence limit rather than presenting the survey as stronger than it was.
+REUSABLE LESSON: Check that the norm you're congratulating yourself for breaking is actually a norm.
+     A strawman competitor makes a design brief feel sharper while giving it nothing real to push against.
+STATUS: ✅ corrected in plan
+
+---
+DECISION: OPEN — font licensing must be resolved before any UI ships
+DATE: 2026-09-17 (design-director open question; unowned, logged by main)
+WHAT: Atkinson Hyperlegible Next terms/weights, Fraunces variable axes on older Android, and the KaTeX
+     licence as actually shipped all need checking. Explicit instruction from the brief: do NOT silently
+     substitute a system font if licensing turns out to be a problem — that would quietly break the type
+     system the whole direction rests on.
+OTHER OPEN ITEMS from the brief (do not guess these): the `bu` physical metric needs a real ruler test on
+     all five platforms; whether the geru bead reads as "error" to an actual 13-year-old (put it in the
+     Phase 1 five-tester session); Quiet mode discoverability; whether the progress "shelf" motivates at all.
+STATUS: ⚠️ open — resolve in Phase 0/1

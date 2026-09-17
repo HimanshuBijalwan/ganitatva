@@ -2,20 +2,30 @@
 # Spine A starts here: the bottom number NAMES the size of piece; the top number COUNTS them.
 # Everything from adding to dividing is built on that single reframe.
 
-id: math.arithmetic.fractions-as-parts
+id: math.arithmetic.fraction-as-part-whole
 title: "Fractions as Parts of a Whole"
 domain: math
 track: arithmetic
-level: 1
+level: 4
 estimated_minutes: 12
 
+# GRAPH MAPPING (content/graph/prerequisites.yaml, curriculum-owned):
+#   This one Phase-1 file deliberately covers TWO graph nodes:
+#     math.arithmetic.unit-fractions        (the 1/n step — carried by the partitions slider
+#                                            and the unit-fraction-ordering generator)
+#     math.arithmetic.fraction-as-part-whole (general a/b — the canonical id below)
+#   Scope call for the vertical slice, agreed with curriculum. The pipeline must record BOTH
+#   node ids as satisfied by this file; do not silently orphan unit-fractions.
 prerequisites:
-  - math.arithmetic.equal-groups
+  - math.arithmetic.division-as-equal-sharing
 
 unlocks:
-  - math.arithmetic.fractions-on-number-line
   - math.arithmetic.equivalent-fractions
-  - math.arithmetic.multiplying-fractions
+  - math.arithmetic.fraction-addition-like-denominators
+  - math.arithmetic.fraction-of-a-quantity
+  - math.arithmetic.mixed-numbers
+  - math.arithmetic.decimals-intro
+  - math.statistics.probability-as-likelihood
 
 layers:
 
@@ -252,6 +262,6 @@ layers:
     links:
       - math.arithmetic.fractions-on-number-line
       - math.arithmetic.equivalent-fractions
-      - math.arithmetic.multiplying-fractions
-      - math.arithmetic.decimals-as-fractions
-      - math.arithmetic.percentages
+      - math.arithmetic.fraction-multiplication
+      - math.arithmetic.fraction-decimal-conversion
+      - math.arithmetic.percentage-intro

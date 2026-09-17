@@ -7,17 +7,27 @@ id: math.arithmetic.fractions-on-number-line
 title: "A Fraction Is One Number"
 domain: math
 track: arithmetic
-level: 2
+level: 5
 estimated_minutes: 14
 
+# GRAPH MAPPING — ATTENTION, UNRESOLVED:
+#   math.arithmetic.fractions-on-number-line DOES NOT YET EXIST in content/graph/prerequisites.yaml.
+#   It is PROPOSED to curriculum. The graph currently has math.arithmetic.number-line (whole
+#   numbers only), mixed-numbers and improper-fractions, but no node for the reframe itself —
+#   "a fraction is ONE number with a position", which is the hinge the whole Phase-1 chain turns
+#   on and which comparing-fractions already implicitly depends on.
+#   This file also covers the content of math.arithmetic.mixed-numbers and
+#   math.arithmetic.improper-fractions (formalize layer).
+#   Until curriculum adds the node, this id will not validate against the graph.
 prerequisites:
-  - math.arithmetic.fractions-as-parts
-  - math.arithmetic.whole-numbers-on-number-line
+  - math.arithmetic.fraction-as-part-whole
+  - math.arithmetic.number-line
 
 unlocks:
-  - math.arithmetic.equivalent-fractions
   - math.arithmetic.comparing-fractions
-  - math.arithmetic.dividing-fractions
+  - math.arithmetic.mixed-numbers
+  - math.arithmetic.improper-fractions
+  - math.arithmetic.fraction-division
 
 layers:
 
@@ -273,5 +283,5 @@ layers:
     links:
       - math.arithmetic.equivalent-fractions
       - math.arithmetic.comparing-fractions
-      - math.arithmetic.dividing-fractions
-      - math.arithmetic.decimals-as-fractions
+      - math.arithmetic.fraction-division
+      - math.arithmetic.fraction-decimal-conversion

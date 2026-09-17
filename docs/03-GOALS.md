@@ -59,3 +59,21 @@ When these conflict with a metric, **these win**:
 4. **Mistakes get diagnosed, not just marked wrong.** A red ✗ teaches nothing.
 5. **Offline-first.** A learner on a ₹8,000 phone with no data is the *design target*, not an edge case.
 6. **No dark patterns.** No guilt streaks, no artificial scarcity, no engagement traps. We are not renting attention.
+
+---
+
+## The completion trade — and the rule for when it hurts
+
+We have deleted this category's entire completion toolkit: no streaks, no XP, no badges, no hearts, no
+confetti, no mascot. In exchange, completion has to be carried by design instead — resume-in-place, no dead
+ends, an honest shelf, Quiet mode.
+
+**Be clear-eyed: those are weaker levers than a streak.** That is the deliberate trade, not an oversight.
+
+**The governance rule, written down now while it is cheap to mean it:**
+> If G4's 7-day retention misses badly, the correct response is to **re-open this trade in writing** — argue
+> it, and change the principle openly if the argument wins. The wrong response, and the one that will feel
+> reasonable at the time, is to quietly add "just a small streak chip."
+
+This rule exists because the moment retention disappoints is exactly the moment the principle will feel
+expensive and negotiable. Deciding now, in calm conditions, is the only way the decision means anything.

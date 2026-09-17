@@ -3,20 +3,23 @@
 # (2) Install the HONEST rule — less than one shrinks, more than one grows — because
 # concept 7 is its mirror image, and a sloppy rule here poisons the whole gate.
 
-id: math.arithmetic.multiplying-fractions
+id: math.arithmetic.fraction-multiplication
 title: "Multiplying — Why the Answer Gets Smaller"
 domain: math
 track: arithmetic
 level: 5
 estimated_minutes: 16
 
+# GRAPH MAPPING: 1:1 with math.arithmetic.fraction-multiplication; prerequisites copied from the
+# graph. math.arithmetic.fraction-of-a-quantity stays a genuine upstream node (curriculum's call);
+# the "of" reading is rehearsed here but first taught there.
 prerequisites:
-  - math.arithmetic.fractions-as-parts
-  - math.arithmetic.adding-fractions
-  - math.arithmetic.equal-groups
+  - math.arithmetic.fraction-of-a-quantity
+  - math.arithmetic.equivalent-fractions
 
 unlocks:
-  - math.arithmetic.dividing-fractions
+  - math.arithmetic.fraction-division
+  - math.statistics.compound-events-independent
 
 layers:
 
@@ -310,7 +313,7 @@ layers:
       geometry, percentages of amounts, probability of two things both happening, and eventually
       area under a curve.
     links:
-      - math.arithmetic.dividing-fractions
-      - math.arithmetic.percentages
-      - math.arithmetic.ratio-and-rate
-      - math.prealgebra.algebraic-fractions
+      - math.arithmetic.fraction-division
+      - math.arithmetic.percentage-intro
+      - math.arithmetic.ratio-intro
+      - math.algebra.rational-expressions-intro
