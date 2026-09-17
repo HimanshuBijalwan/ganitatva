@@ -1,23 +1,30 @@
 # Ganitatva — Live Progress
 
-TASK: Project inception — vision, architecture, phased plan, goals
-STATUS: 85% — planning deliverables written; open decisions pending user input
+TASK: Phase 0 — Foundation
+STATUS: 60% — all planning + specification complete; toolchain install and the paper dry run remain
 COMPLETED:
-  - Machine toolchain audit (Flutter/Xcode/Android SDK/CocoaPods all absent; Node/Java/git present)
-  - docs/00-VISION.md — thesis, anti-goals, 6-layer concept doctrine, domain order, North Star
-  - docs/01-ARCHITECTURE.md — ADR-001..005, widget kit, build/distribution matrix
-  - docs/02-PLAN.md — Phases 0–7 with exit gates, risks
-  - docs/03-GOALS.md — G1–G6 with measurable criteria, overriding principles
-  - .claude/memory/ scaffolding (decisions.md, progress.md, dev.md)
-  - git repo initialized
+  - Vision, architecture (ADR-001..005), phased plan, goals — written, then REVISED against research
+  - Moat claim falsified and rewritten (Mathigon already ships manipulables free; ours is Layers 5–6,
+    the native/offline surface they abandoned, Hindi, and CGU measurement)
+  - 193-node math knowledge graph — DAG verified independently by main, zero cycles, zero orphans
+  - 7 Phase 1 fractions concepts authored — 7/7 schema-valid, 7/7 ids in graph, zero-symbol lint passes
+  - misconceptions.md — 45 entries from 8 root generators, detection signatures, gate scoring rubric
+  - 17-entry widget enum finalized; 9 widget specs written, 3 rewritten against the real authored content
+  - Art Direction Brief — THE BENCH — ✅ APPROVED BY USER 2026-09-17
+  - Setup runbook, 5-platform GitHub Actions CI, release matrix
+  - Distribution moved out of Phase 7 into Phase 2/3; per-fracture-point human gates added to Phase 3
 IN PROGRESS:
-  - Awaiting user decisions: framework confirmation, primary audience, content language, AI-tutor scope
+  - (nothing — all six agents have handed back)
 BLOCKED:
-  - Phase 0 build work — blocked on framework confirmation (ADR-001)
-PENDING:
-  - Phase 0: Flutter SDK · full Xcode · Android SDK · CocoaPods · GitHub repo + Actions CI
-  - Phase 0: design-doctrine pass (concept sentence + Art Direction Brief) before ANY UI
-  - Phase 0: content schema v1
+  - Everything downstream of the toolchain: needs the operator to run installs (App Store login required
+    for Xcode). Not something an agent can do.
+PENDING — the two Phase 0 exit-gate items:
+  1. Toolchain install (~20–27GB, ~45min–1.5hrs hands-on). Two independent tracks, start together:
+     Apple (full Xcode → iOS runtime → CocoaPods via brew) and Android (Android Studio → SDK → licences).
+     Flutter SDK first, it's fast. Windows/Linux need no local setup — CI handles them.
+  2. **Paper-and-scissors dry run of concept 7 on two real kids.** Highest-value action available.
+  Then: GitHub repo + push CI · Developer Verification enrolment (calendar dependency) · font licensing
 NEXT ACTION:
-  - User confirms ADR-001 + audience + language + AI scope → begin Phase 0 toolchain install
-CONFIDENCE: High (on plan quality) · Medium (on 48-week timeline — content volume is the unknown)
+  - Operator starts both toolchain download tracks; paper dry run can happen in parallel (needs no code)
+CONFIDENCE: High on the specification. Medium on the Phase 1 human gate — pedagogy self-assessed ~60–65%,
+  and was right that the uncertainty sits in execution and instrument design, not in the teaching.
